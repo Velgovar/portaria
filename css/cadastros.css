@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+    background-image: url('../images/imagem.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 1600px;
+    height: 80%;
+    max-height: 80vh;
+    overflow-y: auto; /* Adicionar barra de rolagem vertical apenas quando necessário */
+    padding: 40px;
+    background-color: rgba(51, 51, 51, 0.9);
+    border-radius: 4%;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+                5px 5px 20px rgba(0, 0, 0, 0.2),
+                10px 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.container::-webkit-scrollbar {
+    display: none; /* Esconder a barra de rolagem do Chrome/Safari */
+}
+
+.container {
+    scrollbar-width: none; /* Esconder a barra de rolagem do Firefox */
+    -ms-overflow-style: none; /* Esconder a barra de rolagem do IE/Edge */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.search-container {
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9;
+    padding: 10px;
+    z-index: 100;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-container input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.cadastros-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.cadastros-table th,
+.cadastros-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.cadastros-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.cadastros-table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.cadastros-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.action-button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 8px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.edit {
+    background-color: #4CAF50; /* Verde */
+}
+
+.delete {
+    background-color: #f44336; /* Vermelho */
+}
+
+.edit:hover,
+.delete:hover {
+    background-color: #3e8e41; /* Verde escuro */ /* Vermelho escuro */
+}

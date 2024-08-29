@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+    background-image: url('../images/imagem.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    max-width: 1200px;
+    height: 400px;
+    max-height: 80vh;
+    overflow-y: auto; /* Adicionar barra de rolagem vertical apenas quando necessário */
+    padding: 20px;
+    background-color: rgba(51, 51, 51, 0.9);
+    border-radius: 4%;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+                5px 5px 20px rgba(0, 0, 0, 0.2),
+                10px 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.container::-webkit-scrollbar {
+  display: none; /* Esconder a barra de rolagem do Chrome/Safari */
+}
+
+  .styled {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 70px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgb(5, 143, 0);
+    background-image: linear-gradient(
+      to top left,
+      rgb(0 0 0 / 20%),
+      rgb(0 0 0 / 20%) 30%,
+      rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+      inset 2px 2px 3px rgb(255 255 255 / 60%),
+      inset -2px -2px 3px rgb(0 0 0 / 60%);
+  }
+  
+  .styled:hover {
+    background-color: rgb(0, 216, 36);
+  }
+  
+  .styled:active {
+    box-shadow:
+      inset -2px -2px 3px rgb(255 255 255 / 60%),
+      inset 2px 2px 3px rgb(0 0 0 / 60%);
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ccc;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: calc(100%);
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: rgba(85, 85, 85, 0.0);
+    color: #fff;
+    border: 1px solid #e9e7e7;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .form-group input.error,
+  .form-group select.error {
+    border: 1px solid #e42929; /* Bordas vermelhas mais finas */
+  }
+  
+  .form-group select {
+    -webkit-appearance: none; /* Remove estilos padrão do sistema */
+    -moz-appearance: none;
+    appearance: none;
+    padding: 8px 24px 8px 8px; /* Ajuste para alinhar com os inputs */
+    background-color: rgba(248, 248, 248, 0);
+    color: #fff;
+    border: 1px solid #e9e7e7;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom, #555, #555); /* Gradiente para seta customizada */
+    background-position: calc(100% - 15px) center, calc(100% - 10px) center; /* Posicionamento da seta customizada */
+    background-size: 10px 10px; /* Tamanho da seta */
+    background-repeat: no-repeat; /* Evita repetição da seta */
+    cursor: pointer; /* Mostra o cursor como ponteiro para indicar interação */
+  }
+  
+  .form-group select:focus {
+    outline: none; /* Remove o outline ao focar */
+    border-color: #66afe9; /* Cor da borda ao focar */
+    box-shadow: 0 0 10px rgba(102, 175, 233, 0.6); /* Sombra ao focar */
+  }
+  
+  .form-group select option {
+    background-color: rgba(51, 51, 51, 0.9); /* Cor de fundo das opções */
+    color: white; /* Cor do texto das opções */
+    padding: 8px;
+  }
+  
+
+  .edit-button {
+    border: 0;
+    color: white;
+    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
+    padding: 0 10px; /* Reduz o padding horizontal para diminuir a largura */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
+    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+    cursor: pointer;
+    background-color: rgb(100, 100, 100);
+    background-image: linear-gradient(
+      to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+      inset 2px 2px 3px rgb(255 255 255 / 60%),
+      inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.edit-button:hover {
+  background-color: rgb(100, 100, 100);
+}
+
+.edit-button:active {
+    box-shadow:
+      inset -2px -2px 3px rgb(255 255 255 / 60%),
+      inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
