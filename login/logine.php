@@ -14,7 +14,7 @@ session_start();
         /* Estilos gerais */
         body {
             font-family: Arial, sans-serif;
-            background-color: #333;
+            background-color: #000;
             color: #fff;
             margin: 0;
             padding: 0;
@@ -22,7 +22,6 @@ session_start();
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-image: url('../images/imagem.jpg');
             background-size: cover;
             background-position: center;
             overflow: hidden;
@@ -31,10 +30,12 @@ session_start();
         .container {
             width: 100%;
             max-width: 400px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
+            background-color: rgba(51, 51, 51, 0.9);
+            border-radius: 4%;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+                5px 5px 20px rgba(0, 0, 0, 0.2),
+                10px 10px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -155,21 +156,37 @@ session_start();
     font-size: 18px; /* Ajuste o tamanho conforme necessário */
 }
 
+.title {
+    position: absolute;
+    top: 245px; /* Ajuste conforme necessário */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    font-weight: bold;
+    color: #666; /* Texto preto */
+    text-shadow: 
+        0.6px 0.6px 0 rgba(255, 255, 255, 0.8),
+        1px 1px 0 rgba(255, 255, 255, 0.7),
+        1.5px 1.5px 0 rgba(255, 255, 255, 0.6),
+        2px 2px 0 rgba(255, 255, 255, 0.5); /* Sombra branca suave */
+    z-index: 1000; /* Garante que o título fique sobre outros elementos */
+}
 
     </style>
 </head>
 <body>
+<div class="title">login</div>
+
     <a href="../menu.html" class="style">Voltar</a>
 
     <div class="container">
         <form action="login.php" method="post">
-            <h2>Login</h2>
             <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username">USUÁRIO</label>
                 <input type="text" name="username" id="username" autocomplete="off">
             </div>
             <div class="form-group">
-    <label for="password">Password</label>
+    <label for="password">SENHA</label>
     <div class="password-wrapper">
         <input type="password" name="password" id="password" autocomplete="off">
         <span id="togglePassword" class="toggle-password">

@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['user_id'])) {
+    // Se não estiver logado, redireciona para a página de login
+    header('Location: logine.php');
+    exit;
+}
+?>
+
+<?php
 // Configurações de conexão com o banco de dados
 $host = '192.168.254.136';
 $dbname = 'cobra';
@@ -55,9 +66,9 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela de Veículos</title>
+    <title>Tabela de Visitantes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <style>
 body {
     font-family: Arial, sans-serif;
@@ -76,7 +87,7 @@ body {
 .container_table1 {
     position: fixed;
     width: 95%; /* Aumenta a largura do container */
-    max-width: 1800px; /* Ajusta o tamanho máximo do container */
+    max-width: 2000px; /* Ajusta o tamanho máximo do container */
     height: 90%;
     max-height: 85vh;
     padding: 20px;
@@ -144,21 +155,21 @@ th, td {
 }
 
 /* Opcional: Ajusta o estilo das colunas específicas */
-th:nth-child(1), td:nth-child(1) { width: 40px; } 
-th:nth-child(2), td:nth-child(2) { width: 81px; }
+th:nth-child(1), td:nth-child(1) { width: 30px; } 
+th:nth-child(2), td:nth-child(2) { width: 56px; }
 th:nth-child(3), td:nth-child(3) { width: 120px; }
 th:nth-child(4), td:nth-child(4) { width: 120px; }
 th:nth-child(5), td:nth-child(5) { width: 100px; }
-th:nth-child(6), td:nth-child(6) { width: 100px; }
-th:nth-child(7), td:nth-child(7) { width: 120px; }
-th:nth-child(8), td:nth-child(8) { width: 120px; } 
+th:nth-child(6), td:nth-child(6) { width: 60px; }
+th:nth-child(7), td:nth-child(7) { width: 80px; }
+th:nth-child(8), td:nth-child(8) { width: 80px; } 
 th:nth-child(9), td:nth-child(9) { width: 60px; }
 th:nth-child(10), td:nth-child(10) { width: 60px; }
 th:nth-child(11), td:nth-child(11) { width: 70px; }
 th:nth-child(12), td:nth-child(12) { width: 70px; }
 th:nth-child(13), td:nth-child(13) { width: 100px; }
-th:nth-child(14), td:nth-child(14) { width: 100px; }
-th:nth-child(15), td:nth-child(15) { width: 60px; }
+th:nth-child(14), td:nth-child(14) { width: 60px; }
+th:nth-child(15), td:nth-child(15) { width: 120px; }
 
 
 
@@ -548,15 +559,48 @@ th:nth-child(15), td:nth-child(15) { width: 60px; }
     display: block;
 }
 
+/* Botão Excluir */
+.delete-button {
+    border: 0;
+    color: white;
+    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
+    padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
+    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+    cursor: pointer;
+    background-color: rgb(150, 0, 0); /* Cor vermelha escura */
+    background-image: linear-gradient(
+        to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.delete-button:hover {
+    background-color: rgb(120, 0, 0); /* Cor de fundo ao passar o mouse */
+}
+
+.delete-button:active {
+    box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
 
     </style>
 </head>
 <body>
-    <a href="../menu.html" class="style">Voltar</a>
+<a href="../login/entrar.php" class="style">Voltar</a>
 
     <div class="container_table1">
         <div class="header">
-            <h2>Dados da Tabela</h2>
+            <h2>[Administrador] Cadastros de Visitantes</h2>
         </div>
 
         <!-- Formulário de Busca -->
@@ -617,40 +661,47 @@ th:nth-child(15), td:nth-child(15) { width: 60px; }
         <tbody>
             <?php foreach ($registros as $registro): ?>
                 <tr data-id="<?php echo htmlspecialchars($registro['id']); ?>">
-                    <td><?php echo htmlspecialchars($registro['id']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['data']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['porteiro']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['nome']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['cpf']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['tipovisitante']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['servico']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['empresa']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['estacionamento']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['placa']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['horario_entrada']); ?></td>
-                    <td class="horario_saida"><?php echo htmlspecialchars($registro['horario_saida']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['colaborador']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['setor']); ?></td>
+            <td class="id"><?php echo htmlspecialchars($registro['id']); ?></td>
+            <td class="data"><?php echo htmlspecialchars($registro['data']); ?></td>
+            <td class="porteiro"><?php echo htmlspecialchars($registro['porteiro']); ?></td>
+            <td class="nome"><?php echo htmlspecialchars($registro['nome']); ?></td>
+            <td class="cpf"><?php echo htmlspecialchars($registro['cpf']); ?></td>
+            <td class="tipovisitante"><?php echo htmlspecialchars($registro['tipovisitante']); ?></td>
+            <td class="servico"><?php echo htmlspecialchars($registro['servico']); ?></td>
+            <td class="empresa"><?php echo htmlspecialchars($registro['empresa']); ?></td>
+            <td class="estacionamento"><?php echo htmlspecialchars($registro['estacionamento']); ?></td>
+            <td class="placa"><?php echo htmlspecialchars($registro['placa']); ?></td>
+            <td class="horario_entrada"><?php echo htmlspecialchars($registro['horario_entrada']); ?></td>
+            <td class="horario_saida"><?php echo htmlspecialchars($registro['horario_saida']); ?></td>
+            <td class="colaborador"><?php echo htmlspecialchars($registro['colaborador']); ?></td>
+            <td class="setor"><?php echo htmlspecialchars($registro['setor']); ?></td>
                     
-                    <td>
-                        <button class="edit-button" 
-                            data-id="<?php echo htmlspecialchars($registro['id']); ?>" 
-                            data-data="<?php echo htmlspecialchars($registro['data']); ?>"
-                            data-porteiro="<?php echo htmlspecialchars($registro['porteiro']); ?>"
-                            data-nome="<?php echo htmlspecialchars($registro['nome']); ?>"
-                            data-cpf="<?php echo htmlspecialchars($registro['cpf']); ?>"
-                            data-tipovisitante="<?php echo htmlspecialchars($registro['tipovisitante']); ?>"
-                            data-servico="<?php echo htmlspecialchars($registro['servico']); ?>"
-                            data-empresa="<?php echo htmlspecialchars($registro['empresa']); ?>"
-                            data-estacionamento="<?php echo htmlspecialchars($registro['estacionamento']); ?>"
-                            data-placa="<?php echo htmlspecialchars($registro['placa']); ?>"
-                            data-horario_entrada="<?php echo htmlspecialchars($registro['horario_entrada']); ?>"
-                            data-horario_saida="<?php echo htmlspecialchars($registro['horario_saida']); ?>"
-                            data-colaborador="<?php echo htmlspecialchars($registro['colaborador']); ?>"
-                            data-setor="<?php echo htmlspecialchars($registro['setor']); ?>">
-                            Editar
-                        </button>
-                    </td>
+                    
+            <td>
+    <button class="edit-button" 
+        data-id="<?php echo htmlspecialchars($registro['id']); ?>" 
+        data-data="<?php echo htmlspecialchars($registro['data']); ?>"
+        data-porteiro="<?php echo htmlspecialchars($registro['porteiro']); ?>"
+        data-nome="<?php echo htmlspecialchars($registro['nome']); ?>"
+        data-cpf="<?php echo htmlspecialchars($registro['cpf']); ?>"
+        data-tipovisitante="<?php echo htmlspecialchars($registro['tipovisitante']); ?>"
+        data-servico="<?php echo htmlspecialchars($registro['servico']); ?>"
+        data-empresa="<?php echo htmlspecialchars($registro['empresa']); ?>"
+        data-estacionamento="<?php echo htmlspecialchars($registro['estacionamento']); ?>"
+        data-placa="<?php echo htmlspecialchars($registro['placa']); ?>"
+        data-horario_entrada="<?php echo htmlspecialchars($registro['horario_entrada']); ?>"
+        data-horario_saida="<?php echo htmlspecialchars($registro['horario_saida']); ?>"
+        data-colaborador="<?php echo htmlspecialchars($registro['colaborador']); ?>"
+        data-setor="<?php echo htmlspecialchars($registro['setor']); ?>">
+        Editar
+    </button>
+    <button class="delete-button" 
+        data-id="<?php echo htmlspecialchars($registro['id']); ?>"
+        onclick="openConfirmationModal(<?php echo htmlspecialchars($registro['id']); ?>)">
+        Excluir
+    </button>
+</td>
+
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -700,7 +751,7 @@ th:nth-child(15), td:nth-child(15) { width: 60px; }
 <div id="editModal" class="modal">
     <div class="modal-content">
         <h2>Editar Registro</h2>
-        <form id="editForm" method="post" action="./editar_teste.php">
+        <form id="editForm" method="post" action="../config/visitantes.php">
             <input type="hidden" name="id" id="editId">
             
             <label for="editData">Data</label>
@@ -756,6 +807,20 @@ th:nth-child(15), td:nth-child(15) { width: 60px; }
 <!-- Contêiner para a notificação -->
 <div id="launcher" class="launcher hidden">
     <div class="launcher-message">Cadastro editado com sucesso!</div>
+</div>
+
+<!-- Modal de confirmação -->
+<div id="confirmationModal" class="confirmation-modal">
+    <div class="confirmation-modal-content">
+        <h3>Confirmação de Exclusão</h3>
+        <p>Você tem certeza que deseja excluir este cadastro?</p>
+        <form id="confirmationForm">
+<!-- Campo de texto para confirmação -->
+<input type="text" id="confirmationInput" autocomplete="off" placeholder="Digite 'excluir' para confirmar">
+            <button type="submit">Excluir</button>
+            <button type="button" class="cancel" onclick="closeConfirmationModal()">Cancelar</button>
+        </form>
+    </div>
 </div>
 
 <div class="message-container"></div>
@@ -832,7 +897,7 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
 
     const formData = new FormData(this);
 
-    fetch('editar_teste.php', {
+    fetch('../config/visitantes.php', {
         method: 'POST',
         body: formData
     })
@@ -857,9 +922,19 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
             closeModalFunction();
             updateTableRow(
                 formData.get('id'),
-                formData.get('horario_saida'), // Atualiza o horário de saída
-                formData.get('horario_entrada'), // Atualiza o horário de entrada
-                formData.get('setor') // Atualiza o setor
+                formData.get('data'),
+                formData.get('porteiro'),
+                formData.get('nome'),
+                formData.get('cpf'),
+                formData.get('tipovisitante'),
+                formData.get('servico'),
+                formData.get('empresa'),
+                formData.get('estacionamento'),
+                formData.get('placa'),
+                formData.get('horario_entrada'),
+                formData.get('horario_saida'),
+                formData.get('colaborador'),
+                formData.get('setor')
             );
         } else {
             console.error('Falha ao editar o registro:', data.message);
@@ -872,7 +947,7 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
 });
 
 // Função para atualizar a linha da tabela com os novos dados
-function updateTableRow(id, horarioSaida, horarioEntrada, setor) {
+function updateTableRow(id, data, porteiro, nome, cpf, tipovisitante, servico, empresa, estacionamento, placa, horarioEntrada, horarioSaida, colaborador, setor) {
     if (!id) {
         console.error('ID não fornecido.');
         return;
@@ -884,31 +959,119 @@ function updateTableRow(id, horarioSaida, horarioEntrada, setor) {
         console.log(`Atualizando a linha com ID ${id}`); // Log para depuração
 
         // Atualizar o conteúdo das células
-        const horarioSaidaCell = row.querySelector('.horario_saida');
+        const dataCell = row.querySelector('.data');
+        const porteiroCell = row.querySelector('.porteiro');
+        const nomeCell = row.querySelector('.nome');
+        const cpfCell = row.querySelector('.cpf');
+        const tipovisitanteCell = row.querySelector('.tipovisitante');
+        const servicoCell = row.querySelector('.servico');
+        const empresaCell = row.querySelector('.empresa');
+        const estacionamentoCell = row.querySelector('.estacionamento');
+        const placaCell = row.querySelector('.placa');
         const horarioEntradaCell = row.querySelector('.horario_entrada');
+        const horarioSaidaCell = row.querySelector('.horario_saida');
+        const colaboradorCell = row.querySelector('.colaborador');
         const setorCell = row.querySelector('.setor');
-        
-        if (horarioSaidaCell) {
-            horarioSaidaCell.textContent = horarioSaida;
-        } else {
-            console.error('Célula horario_saida não encontrada.');
-        }
 
-        if (horarioEntradaCell) {
-            horarioEntradaCell.textContent = horarioEntrada;
-        } else {
-            console.error('Célula horario_entrada não encontrada.');
-        }
+        if (dataCell) dataCell.textContent = data;
+        if (porteiroCell) porteiroCell.textContent = porteiro;
+        if (nomeCell) nomeCell.textContent = nome;
+        if (cpfCell) cpfCell.textContent = cpf;
+        if (tipovisitanteCell) tipovisitanteCell.textContent = tipovisitante;
+        if (servicoCell) servicoCell.textContent = servico;
+        if (empresaCell) empresaCell.textContent = empresa;
+        if (estacionamentoCell) estacionamentoCell.textContent = estacionamento;
+        if (placaCell) placaCell.textContent = placa;
+        if (horarioEntradaCell) horarioEntradaCell.textContent = horarioEntrada;
+        if (horarioSaidaCell) horarioSaidaCell.textContent = horarioSaida;
+        if (colaboradorCell) colaboradorCell.textContent = colaborador;
+        if (setorCell) setorCell.textContent = setor;
 
-        if (setorCell) {
-            setorCell.textContent = setor;
-        } else {
-            console.error('Célula setor não encontrada.');
-        }
+        console.log('Linha atualizada com sucesso.');
     } else {
         console.error(`Linha com ID ${id} não encontrada.`);
     }
 }
+
+
+// Variável global para armazenar o ID do item a ser excluído
+let deleteId = null;
+
+// Abrir o modal de confirmação de exclusão
+document.querySelectorAll('.delete-button').forEach(button => {
+    button.addEventListener('click', function() {
+        deleteId = this.getAttribute('data-id'); // Define o ID do item a ser excluído
+        document.getElementById('confirmationModal').style.display = 'flex'; // Abre o modal
+    });
+});
+
+// Função para fechar o modal de confirmação
+function closeConfirmationModal() {
+    document.getElementById('confirmationModal').style.display = 'none';
+    document.getElementById('confirmationInput').value = ''; // Limpa o campo de texto
+}
+
+// Função para confirmar a exclusão
+document.getElementById('confirmationForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    const confirmationInput = document.getElementById('confirmationInput').value.trim().toLowerCase();
+    if (confirmationInput === 'excluir') {
+        fetch('../config/visitantes.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'id': deleteId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Resposta do servidor:', data);
+
+            if (data.status === 'success') {
+                // Remove a linha da tabela
+                const row = document.querySelector(`tr[data-id="${deleteId}"]`);
+                if (row) {
+                    row.remove();
+                }
+
+                // Mostra a mensagem de sucesso
+                showMessage('Registro excluído com sucesso!', 'success');
+            } else {
+                // Mostra a mensagem de erro
+                showMessage(data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            showMessage('Erro ao excluir o registro.', 'error');
+        });
+
+        closeConfirmationModal(); // Fecha o modal após a confirmação
+    } else {
+        showMessage('Você deve digitar "excluir" para confirmar.', 'warning');
+    }
+});
+
+// Função para mostrar mensagens
+function showMessage(message, type) {
+    const messageContainer = document.querySelector('.message-container');
+    messageContainer.textContent = message;
+    messageContainer.className = `message-container ${type}`; // Adiciona a classe de tipo (success, error, warning)
+    setTimeout(() => {
+        messageContainer.textContent = '';
+    }, 2000);
+}
+
+// Fechar o modal de confirmação ao clicar fora dele
+window.addEventListener('click', function(event) {
+    if (event.target === document.getElementById('confirmationModal')) {
+        closeConfirmationModal();
+    }
+});
+
 
 // Função para alterar o número de registros por página
 function changeRecordsPerPage() {
@@ -919,6 +1082,7 @@ function changeRecordsPerPage() {
 
 // Adicionar event listener para mudança no número de registros por página
 document.getElementById('registrosPorPagina').addEventListener('change', changeRecordsPerPage);
+
 
 
     </script>
