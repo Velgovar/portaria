@@ -181,9 +181,7 @@ if (!isset($_SESSION['user_id'])) {
             background-color: #cc0000;
         }
 
-        .main-container {
-    display: flex; /* Usar flexbox para posicionar o formulário e a tabela lado a lado */
-    justify-content: space-between; /* Espaço entre o formulário e a tabela */
+.main-container {
     width: 100%;
     max-width: 1000px; /* Ajuste conforme necessário */
     margin: 0 auto;
@@ -200,15 +198,21 @@ if (!isset($_SESSION['user_id'])) {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    width: 30%; /* Ajuste a largura conforme necessário */
-    margin-right: 20px; /* Espaço entre o formulário e a tabela */
-    box-sizing: border-box; /* Inclui padding e borda na largura total */
+    margin-bottom: 0; /* Remove qualquer espaço abaixo do formulário */
 }
 
-.fixed-scrollable-container {
-    width: 70%; /* Ajuste a largura conforme necessário */
-    overflow-x: auto; /* Habilita o scroll horizontal se necessário */
-    position: relative; /* Necessário para o posicionamento do cabeçalho fixo */
+.table-container {
+    width: 100%;
+    margin: 0; /* Remove qualquer margem extra */
+    padding: 0; /* Remove padding extra */
+}
+
+.table-header {
+    position: -webkit-sticky; /* Para navegadores WebKit */
+    position: sticky; /* Para navegadores modernos */
+    top: 0; /* Fixa o cabeçalho no topo */
+    background-color: rgba(51, 51, 51, 0.9); /* Cor de fundo para o cabeçalho */
+    padding: 10px; /* Espaço ao redor do cabeçalho */
 }
 
 .scrollable-container {
@@ -219,20 +223,9 @@ if (!isset($_SESSION['user_id'])) {
     position: relative; /* Necessário para o posicionamento do cabeçalho fixo */
 }
 
-.scrollable-container h2 {
-    position: -webkit-sticky; /* Para navegadores WebKit */
-    position: sticky; /* Para navegadores modernos */
-    top: 0; /* Fica fixo no topo do contêiner de rolagem */
-    background-color: rgba(51, 51, 51, 0.9); /* Cor de fundo para o título */
-    padding: 10px; /* Espaço ao redor do título */
-    margin: 0; /* Remove a margem para um alinhamento mais preciso */
-    z-index: 2; /* Garante que o título fique sobre o conteúdo da tabela */
-}
-
 .scrollable-container table {
     width: 100%;
     border-collapse: collapse; /* Remove os espaços entre as bordas da tabela */
-    margin-top: 10px; /* Espaço entre o título e a tabela */
 }
 
 .scrollable-container th, .scrollable-container td {
@@ -248,7 +241,7 @@ if (!isset($_SESSION['user_id'])) {
     border-top: 1px solid #ddd; /* Linha superior */
     position: -webkit-sticky; /* Para navegadores WebKit */
     position: sticky; /* Para navegadores modernos */
-    top: 40px; /* Ajuste conforme necessário para o tamanho do título */
+    top: 0; /* Fixa o cabeçalho no topo da tabela */
     z-index: 1; /* Garante que o cabeçalho fique sobre o conteúdo da tabela */
 }
 
@@ -273,8 +266,9 @@ if (!isset($_SESSION['user_id'])) {
 
 
 <div class="main-container">
-    <!-- Container fixo para o formulário -->
+    <!-- Container fixo para o formulário e a tabela -->
     <div class="fixed-container">
+        <!-- Formulário de cadastro de setores -->
         <h2>Cadastro de Setores</h2>
         <form id="vigia-form" method="POST" action="../config/salvar_porteiro.php">
             <div class="form-group">
@@ -287,11 +281,12 @@ if (!isset($_SESSION['user_id'])) {
         </form>
     </div>
 
-    <!-- Container fixo para a tabela -->
-    <div class="fixed-scrollable-container">
-        <!-- Tabela com a lista de setores cadastrados -->
-        <div class="scrollable-container">
+    <!-- Container para o título e a tabela -->
+    <div class="table-container">
+        <div class="table-header">
             <h2>Lista de Setores Cadastrados</h2>
+        </div>
+        <div class="scrollable-container">
             <table>
                 <thead>
                     <tr>
@@ -356,6 +351,7 @@ if (!isset($_SESSION['user_id'])) {
         </form>
     </div>
 </div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
