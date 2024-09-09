@@ -235,20 +235,182 @@ h2 {
 }
 
 /* Ajuste para posicionar mensagem abaixo do botão */
-.error-message,
-.success-message {
+
+
+/* Estilo para o contêiner do launcher */
+.launcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: #4CAF50; /* Verde para sucesso */
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100px); /* Inicialmente fora da tela */
+}
+
+/* Estilo para a mensagem de erro */
+.launcher-error {
+  background-color: #f44336; /* Vermelho para erro */
+  color: white;
+}
+
+/* Animação para o launcher aparecer */
+.launcher-show {
+  transform: translateY(0); /* Aparece na tela */
+}
+
+/* Classe para ocultar o launcher */
+.hidden {
+  display: none;
+}
+
+        /* Estilo do botão verde de voltar */
+        .voltar {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          border: 0;
+          color: white;
+          line-height: 1.75;
+          padding: 0 40px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 0.95rem;
+          border-radius: 10px;
+          cursor: pointer;
+          background-color: rgb(0, 138, 143);
+          background-image: linear-gradient(
+              to top left,
+                  rgb(0 0 0 / 20%),
+                  rgb(0 0 0 / 20%) 30%,
+                  rgb(0 0 0 / 0%));
+        box-shadow:
+          inset 2px 2px 3px rgb(255 255 255 / 60%),
+          inset -2px -2px 3px rgb(0 0 0 / 60%);
+      }
+      
+      .voltar:hover {
+        background-color: rgb(0, 209, 216);
+      }
+      
+      .voltar:active {
+        box-shadow:
+          inset -2px -2px 3px rgb(255 255 255 / 60%),
+          inset 2px 2px 3px rgb(0 0 0 / 60%);
+      }
+
+
+    
+    .datepicker {
+        width: 150px;
+        padding: 10px; /* Aumenta o espaço interno */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+    }
+    
+
+/* Ajusta a cor de fundo do calendário */
+.flatpickr-calendar {
+  background-color: #333 !important;
+  color: #fff !important;
+  max-height: 230px; /* Limita a altura máxima do calendário */
+  overflow: hidden; /* Esconde qualquer conteúdo excedente */
+}
+
+/* Cor dos dias */
+.flatpickr-calendar .flatpickr-day {
+  color: #fff !important;
+  line-height: 24px; /* Ajusta o espaçamento de linha para os dias */
+  height: 24px; /* Reduz a altura das células dos dias */
+}
+
+/* Ocultar dias fora do mês atual mantendo o layout */
+.flatpickr-calendar.only-current-month .flatpickr-day.prevMonthDay,
+.flatpickr-calendar.only-current-month .flatpickr-day.nextMonthDay {
+  visibility: hidden !important;
+}
+
+/* Cor de fundo dos dias quando o mouse passa sobre eles */
+.flatpickr-calendar .flatpickr-day:hover {
+  background-color: #666 !important;
+}
+
+/* Cor das setas de navegação (botões) */
+.flatpickr-calendar .flatpickr-prev-month svg,
+.flatpickr-calendar .flatpickr-next-month svg {
+  fill: #fff !important;
+}
+
+/* Cor do nome do mês e ano */
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-year {
+  color: #fff !important;
+}
+
+/* Cor dos dias da semana */
+.flatpickr-calendar .flatpickr-weekday {
+  color: #ccc !important;
+}
+
+/* Cor dos dias selecionados */
+.flatpickr-calendar .flatpickr-day.selected {
+  background-color: #666 !important;
+  color: #fff !important;
+}
+
+/* Cor dos dias do mês atual */
+.flatpickr-calendar .flatpickr-day.currentMonth {
+  color: #fff !important;
+}
+
+/* Cor do ícone de fechar (se houver) */
+.flatpickr-calendar .flatpickr-close {
+  color: #fff !important;
+}
+
+/* Ícone do calendário no campo de entrada */
+.fas.fa-calendar-alt {
+  color: #fff;
+}
+
+/* Estilo para o contêiner do campo de entrada */
+.input-container {
+  position: relative; /* Define a referência para o posicionamento absoluto do ícone */
+  display: inline-block;
+}
+
+/* Estilo para o campo de entrada */
+.input-container input {
+  padding-right: 30px; /* Espaçamento para o ícone na direita */
+  width: 100%; /* Certifique-se de que o campo de entrada preencha o contêiner */
+}
+
+/* Estilo para o ícone do calendário */
+.calendar-icon {
   position: absolute;
-  bottom: -50px; /* Posição abaixo do botão */
-  left: 50%; /* Centralizado horizontalmente */
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 400px; /* Tamanho máximo da mensagem */
+  right: 10px; /* Ajusta a posição horizontal do ícone para a direita */
+  top: 50%;
+  transform: translateY(-50%); /* Centraliza o ícone verticalmente */
+  color: #fff; /* Cor do ícone */
+  pointer-events: none; /* O ícone não interfere com o clique do mouse */
 }
 
-.error-message {
-  background-color: rgba(229, 57, 53, 0.8); /* Vermelho */
+/* Estilo para o ícone no rótulo, se desejar reposicionar também */
+.data-item label i {
+  color: #fff; /* Cor do ícone */
+  margin-right: 5px; /* Espaçamento entre o ícone e o texto do rótulo */
 }
 
-.success-message {
-  background-color: rgba(76, 175, 80, 0.8); /* Verde */
-}

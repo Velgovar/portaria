@@ -157,40 +157,41 @@ nav {
     font-size: 1.2em;
 }
 
-.style {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    border: 0;
-    color: white;
-    line-height: 2.5;
-    padding: 0 70px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: rgb(0, 138, 143);
-    background-image: linear-gradient(
-      to top left,
-        rgb(0 0 0 / 20%),
-        rgb(0 0 0 / 20%) 30%,
-        rgb(0 0 0 / 0%));
-    box-shadow:
-      inset 2px 2px 3px rgb(255 255 255 / 60%),
-      inset -2px -2px 3px rgb(0 0 0 / 60%);
-}
-
-.style:hover {
-    background-color: rgb(0, 209, 216);
-}
-
-.style:active {
-    box-shadow:
-      inset -2px -2px 3px rgb(255 255 255 / 60%),
-      inset 2px 2px 3px rgb(0 0 0 / 60%);
-}
+        /* Estilo do botão verde de voltar */
+        .voltar {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          border: 0;
+          color: white;
+          line-height: 1.75;
+          padding: 0 40px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 0.95rem;
+          border-radius: 10px;
+          cursor: pointer;
+          background-color: rgb(0, 138, 143);
+          background-image: linear-gradient(
+              to top left,
+                  rgb(0 0 0 / 20%),
+                  rgb(0 0 0 / 20%) 30%,
+                  rgb(0 0 0 / 0%));
+        box-shadow:
+          inset 2px 2px 3px rgb(255 255 255 / 60%),
+          inset -2px -2px 3px rgb(0 0 0 / 60%);
+      }
+      
+      .voltar:hover {
+        background-color: rgb(0, 209, 216);
+      }
+      
+      .voltar:active {
+        box-shadow:
+          inset -2px -2px 3px rgb(255 255 255 / 60%),
+          inset 2px 2px 3px rgb(0 0 0 / 60%);
+      }
 
 /* Estilos do Modal */
 .modal {
@@ -274,7 +275,7 @@ iframe {
 
         <!-- Conteúdo do Modal -->
         <div class="modal-content">
-            <a href="./menu.html" class="style">Voltar</a>
+            <a href="./menu.html" class="voltar">Voltar</a>
 
             <span class="close">&times;</span>
             

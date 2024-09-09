@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_id'])) {
                 <form id="vigia-form" method="POST" action="../config/setor.php">
                     <div class="form-group">
                     <div class="form-group">
-                    <h2>Cadastrar Setor</h2>
+                    <h2>Cadastrar Setores</h2>
                         <input type="text" id="nome" name="nome" placeholder="Digite o nome do Setor" required>
                         <div id="nome-error" class="error-message"></div> <!-- Mensagem de erro opcional -->
                     </div>
