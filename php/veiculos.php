@@ -68,9 +68,45 @@
             </div>
 
             <div class="form-group">
-                <label for="veiculo">Veículo</label>
-                <input type="text" id="veiculo" name="veiculo">
-            </div>
+    <label for="veiculo">Veículo</label>
+    <select id="veiculo" name="veiculo">
+        <option value="">Selecione um veículo</option>
+        <?php
+        // Exibir erros de PHP
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
+        // Conexão com o banco de dados
+        $servername = "192.168.254.136";
+        $username = "felipe";
+        $password = "Aranhas12@";
+        $dbname = "cobra";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        if ($conn->connect_error) {
+            die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+        }
+
+        // Query para buscar os veículos cadastrados
+        $sql = "SELECT id, nome FROM veiculos";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                // Exibe o nome do veículo e usa o nome como valor da opção
+                echo '<option value="' . htmlspecialchars($row['nome']) . '">' . htmlspecialchars($row['nome']) . '</option>';
+            }
+        } else {
+            echo '<option value="">Nenhum veículo encontrado</option>';
+        }
+
+        $conn->close();
+        ?>
+    </select>
+</div>
+
 
             <div class="form-group">
                 <label for="motorista">Motorista</label>

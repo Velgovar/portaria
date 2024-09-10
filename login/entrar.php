@@ -269,6 +269,8 @@ iframe {
                 <ul>
                     <li><a href="../login/porteiros.php">Cadastros de Porteiros</a></li>
                     <li><a href="../login/setores.php">Cadastros de Setores</a></li>
+                    <li><a href="../login/veiculos.php">Cadastros de Veiculos</a></li>
+
                 </ul>
             </div>
         </nav>
