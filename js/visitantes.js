@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             var formData = new FormData(this);
 
-            // Envia os dados do formulário para o servidor
             fetch('../config/configr.php', {
                 method: 'POST',
                 body: formData
@@ -41,20 +40,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.json();
             })
             .then(function(data) {
-                displaySuccessMessage(data.message);
+                showLauncher(data.message); // Exibe mensagem de sucesso
                 resetForm();
             })
             .catch(function(error) {
-                displayErrorMessage('Erro ao processar o formulário.');
+                showLauncher('Erro ao processar o formulário.', true); // Exibe mensagem de erro
             })
             .finally(function() {
                 setTimeout(function() {
                     formIsProcessing = false;
                     submitButton.disabled = false;
-                }, 2000);
+                }, 1500);
             });
         } else {
-            displayErrorMessage('Por favor, preencha todos os campos corretamente.');
+            showLauncher('Por favor, preencha todos os campos corretamente.', true); // Exibe mensagem de erro
         }
     });
 
@@ -67,28 +66,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Função para validar os campos de entrada
-function validateInput(input) {
-    if (input.tagName === 'SELECT') {
-        if (input.value === '') {
-            input.classList.add('error');
-            input.classList.remove('valid');
-            return false;
-        } else {
+    function validateInput(input) {
+        if (input.tagName === 'SELECT') {
+            if (input.value === '') {
+                input.classList.add('error');
+                input.classList.remove('valid');
+                return false;
+            } else {
+                input.classList.remove('error');
+                input.classList.add('valid');
+                return true;
+            }
+        } else if (input.id === 'km_chegada' || input.id === 'horario_saida') {
             input.classList.remove('error');
             input.classList.add('valid');
             return true;
-        }
-    } else if (input.id === 'km_chegada') {
-        input.classList.remove('error');
-        input.classList.add('valid');
-        return true;
-    } else if (input.id === 'horario_saida') {
-        // Campo horario_saida não é obrigatório
-        input.classList.remove('error');
-        input.classList.add('valid');
-        return true;
-    } else if (input.id === 'placa') {
-        if (placaField.style.display !== 'none') {
+        } else if (input.id === 'placa') {
+            if (placaField.style.display !== 'none') {
+                if (input.value.trim() === '') {
+                    input.classList.add('error');
+                    input.classList.remove('valid');
+                    return false;
+                } else {
+                    input.classList.remove('error');
+                    input.classList.add('valid');
+                    return true;
+                }
+            } else {
+                input.classList.remove('error');
+                input.classList.add('valid');
+                return true;
+            }
+        } else {
             if (input.value.trim() === '') {
                 input.classList.add('error');
                 input.classList.remove('valid');
@@ -98,47 +107,49 @@ function validateInput(input) {
                 input.classList.add('valid');
                 return true;
             }
-        } else {
-            input.classList.remove('error');
-            input.classList.add('valid');
-            return true;
-        }
-    } else {
-        if (input.value.trim() === '') {
-            input.classList.add('error');
-            input.classList.remove('valid');
-            return false;
-        } else {
-            input.classList.remove('error');
-            input.classList.add('valid');
-            return true;
         }
     }
-}
 
+    // Função para validar todo o formulário
+    function validateForm() {
+        var isValid = true;
+        inputs.forEach(function(input) {
+            if (!validateInput(input)) {
+                isValid = false;
+            }
+        });
+        return isValid;
+    }
 
     // Função para exibir mensagens de erro
-    function displayErrorMessage(message) {
-        var errorMessage = document.getElementById('error-message');
-        errorMessage.textContent = message;
-        errorMessage.classList.add('show');
+    function showLauncher(message, isError = false) {
+        var launcher = document.getElementById('launcher');
+        var messageElement = launcher.querySelector('.launcher-message');
+
+        messageElement.textContent = message;
+        launcher.classList.remove('launcher-error');
+        if (isError) {
+            launcher.classList.add('launcher-error');
+        }
+
+        launcher.classList.remove('hidden');
+        launcher.classList.add('launcher-show');
 
         setTimeout(function() {
-            errorMessage.classList.remove('show');
-        }, 1500);
+            launcher.classList.remove('launcher-show');
+            launcher.classList.add('hidden');
+        }, 3000); // A mensagem desaparece após 3 segundos
     }
 
-    // Função para exibir mensagens de sucesso
-    function displaySuccessMessage(message) {
-        var successMessage = document.getElementById('success-message');
-        successMessage.textContent = message;
-        successMessage.classList.add('show');
+    // Função para redefinir o formulário
+    function resetForm() {
+        form.reset();
 
-        setTimeout(function() {
-            successMessage.classList.remove('show');
-        }, 1500);
+        var inputs = form.querySelectorAll('input, select');
+        inputs.forEach(function(input) {
+            input.classList.remove('valid', 'error');
+        });
     }
-
     // Função para resetar o formulário
     function resetForm() {
         var form = document.getElementById('vehicle-form');
@@ -247,6 +258,94 @@ function validateInput(input) {
         } else {
             placaField.style.display = 'none';
             document.getElementById('placa').value = '';
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('date');
+    let isCalendarOpen = false; // Variável de controle para o estado do calendário
+    let preventImmediateClose = false; // Variável para prevenir fechamento imediato
+
+    const flatpickrInstance = flatpickr(dateInput, {
+        locale: "pt", // Define o idioma para português
+        dateFormat: "Y/m/d", // Formato de data como dia/mês/ano
+        showMonths: 1, // Mostra apenas um mês por vez
+        disableMonthNav: true, // Desabilita a navegação entre meses
+        defaultDate: "today", // Define a data padrão como hoje
+        onReady: function(selectedDates, dateStr, instance) {
+            instance.calendarContainer.classList.add('only-current-month');
+        },
+        onOpen: function() {
+            isCalendarOpen = true; // Atualiza o estado quando o calendário abre
+            preventImmediateClose = true; // Impede fechamento imediato ao abrir
+            setTimeout(() => preventImmediateClose = false, 200); // Libera após 200ms
+        },
+        onClose: function() {
+            isCalendarOpen = false; // Atualiza o estado quando o calendário fecha
+        }
+    });
+
+    // Função para alternar a exibição do calendário
+    dateInput.addEventListener('click', function(event) {
+        if (preventImmediateClose) return; // Previne o fechamento imediato
+
+        if (isCalendarOpen) {
+            flatpickrInstance.close(); // Fecha o calendário se estiver aberto
+        } else {
+            flatpickrInstance.open(); // Abre o calendário se estiver fechado
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const horarioEntrada = document.getElementById('horario_entrada');
+    const horarioSaida = document.getElementById('horario_saida');
+
+    function setupTimeScrollPlugin(flatpickrInstance) {
+        function handleWheel(event) {
+            event.preventDefault(); // Previne o comportamento padrão do scroll
+
+            const currentDate = flatpickrInstance.selectedDates[0] || new Date();
+            const increment = event.deltaY < 0 ? 1 : -1; // Determina a direção do scroll
+            const minutes = currentDate.getMinutes() + increment;
+
+            if (minutes >= 60) {
+                currentDate.setHours(currentDate.getHours() + 1);
+                currentDate.setMinutes(0);
+            } else if (minutes < 0) {
+                currentDate.setHours(currentDate.getHours() - 1);
+                currentDate.setMinutes(59);
+            } else {
+                currentDate.setMinutes(minutes);
+            }
+
+            flatpickrInstance.setDate(currentDate, true); // Atualiza o valor no Flatpickr
+        }
+
+        // Adiciona o ouvinte de evento de rotação do mouse ao campo de entrada
+        flatpickrInstance._input.addEventListener('wheel', handleWheel);
+    }
+
+    flatpickr(horarioEntrada, {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minuteIncrement: 1,
+        onReady: function(selectedDates, dateStr, instance) {
+            setupTimeScrollPlugin(instance);
+        }
+    });
+
+    flatpickr(horarioSaida, {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minuteIncrement: 1,
+        onReady: function(selectedDates, dateStr, instance) {
+            setupTimeScrollPlugin(instance);
         }
     });
 });

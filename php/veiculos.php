@@ -78,26 +78,40 @@
             </div>
 
             <div class="form-group km">
-                <div class="km-item">
-                    <label for="km_saida">KM saída</label>
-                    <input type="number" id="km_saida" name="km_saida">
-                </div>
-                <div class="km-item">
-                    <label for="km_chegada">KM chegada</label>
-                    <input type="number" id="km_chegada" name="km_chegada">
-                </div>
-            </div>
-
-            <div class="form-group horario">
-        <div class="horario-item">
-            <label for="horario_saida"><i class="fas fa-clock"></i> Horário saída</label>
-            <input type="text" id="horario_saida" name="horario_saida">
-        </div>
-        <div class="horario-item">
-            <label for="horario_entrada"><i class="fas fa-clock"></i> Horário chegada</label>
-            <input type="text" id="horario_entrada" name="horario_entrada">
+    <div class="km-item">
+        <label for="km_saida">KM saída</label>
+        <div class="input-icon">
+            <input type="number" id="km_saida" name="km_saida">
+            <i class="fas fa-tachometer-alt"></i> <!-- Ícone de carro -->
         </div>
     </div>
+    <div class="km-item">
+        <label for="km_chegada">KM chegada</label>
+        <div class="input-icon">
+            <input type="number" id="km_chegada" name="km_chegada">
+            <i class="fas fa-tachometer-alt"></i> <!-- Ícone de painel -->
+        </div>
+    </div>
+</div>
+
+
+            <div class="form-group horario">
+    <div class="horario-item">
+        <label for="horario_saida"> Horário saída</label>
+        <div class="input-icon">
+            <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
+            <input type="text" id="horario_saida" name="horario_saida" placeholder="">
+        </div>
+    </div>
+    <div class="horario-item">
+        <label for="horario_entrada"> Horário chegada</label>
+        <div class="input-icon">
+            <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
+            <input type="text" id="horario_entrada" name="horario_entrada" placeholder="">
+        </div>
+    </div>
+</div>
+
 
             <div class="form-group">
                 <label for="destino">Destino</label>
@@ -122,6 +136,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
-    <script src="../js/scripts.js"></script>
+
+        <script src="../js/scripts.js"></script>
 </body>
 </html>

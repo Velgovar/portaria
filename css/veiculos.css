@@ -422,3 +422,35 @@ h2 {
   color: #fff !important; /* Cor do separador */
 }
 
+.input-icon {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.input-icon i {
+  position: absolute;
+  right: 10px; /* Move o ícone para a direita */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff; /* Cor branca para o ícone */
+  pointer-events: none; /* O ícone não interfere na interação do usuário com o input */
+}
+
+.input-icon input {
+  padding-right: 30px; /* Espaço para o ícone dentro do campo */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Remove as flechinhas dos campos tipo number no Chrome, Safari e Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove as flechinhas dos campos tipo number no Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
