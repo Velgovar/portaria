@@ -252,24 +252,25 @@ iframe {
                 <ul>
                     <li><a href="php/veiculos.php">Cadastrar Veículos da Empresa</a></li>
                     <li><a href="./php/tabela_veiculos.php">Editar Veículos da Empresa</a></li>
+                    <li><a href="#" onclick="handleCadastrarRamais()">Ramais</a></li> <!-- Atualizado -->
                 </ul>
             </div>
             <div class="nav-column">
                 <ul>
                     <li><a href="php/visitantes.php">Cadastrar Visitantes</a></li>
                     <li><a href="./php/tabela_visitantes.php">Editar tabela de visitantes</a></li>
+                    
                 </ul>
             </div>
         </nav>
     </div>
+
     <i class="fas fa-cog settings-icon" onclick="toggleAdminLauncher()"></i>
     <div class="admin-launcher" id="adminLauncher">
         <div class="admin" onclick="openAdmin()">Administrador</div>
-        <div class="ramais" onclick="openRamaisModal()">Ramais</div>
         <div class="ajuda" onclick="openAjuda()">Ajuda</div>
     </div>
     
-
     <!-- Estrutura do Modal -->
     <div id="myModal" class="modal">
 
@@ -309,6 +310,24 @@ function openAjuda() {
     window.location.href = 'http://172.16.0.225/front/ticket.form.php';
 }
 
+function handleCadastrarRamais() {
+    toggleAdminLauncher(); // Mostra o painel de administração
+    openRamaisModal(); // Abre o modal de ramais
+}
+
+// Fechar o modal ao clicar no "x"
+document.querySelector('.close').addEventListener('click', function() {
+    document.getElementById('myModal').style.display = 'none';
+});
+
+// Fechar o modal ao clicar fora do conteúdo
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('myModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
 // Fechar o painel de administração ao clicar fora dele
 window.addEventListener('click', function(event) {
     const adminLauncher = document.getElementById('adminLauncher');
@@ -319,8 +338,6 @@ window.addEventListener('click', function(event) {
         adminLauncher.style.display = 'none';
     }
 });
-
-
     </script>
 </body>
 </html>
