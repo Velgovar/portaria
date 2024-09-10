@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const flatpickrInstance = flatpickr(dateInput, {
         locale: "pt", // Define o idioma para português
-        dateFormat: "d/m/Y", // Formato de data como dia/mês/ano
+        dateFormat: "Y/m/d", // Formato de data como dia/mês/ano
         showMonths: 1, // Mostra apenas um mês por vez
         disableMonthNav: true, // Desabilita a navegação entre meses
         defaultDate: "today", // Define a data padrão como hoje
@@ -223,3 +223,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const horarioEntrada = document.getElementById('horario_entrada');
+    const horarioSaida = document.getElementById('horario_saida');
+
+    function setupTimeScrollPlugin(flatpickrInstance) {
+        function handleWheel(event) {
+            event.preventDefault(); // Previne o comportamento padrão do scroll
+
+            const currentDate = flatpickrInstance.selectedDates[0] || new Date();
+            const increment = event.deltaY < 0 ? 1 : -1; // Determina a direção do scroll
+            const minutes = currentDate.getMinutes() + increment;
+
+            if (minutes >= 60) {
+                currentDate.setHours(currentDate.getHours() + 1);
+                currentDate.setMinutes(0);
+            } else if (minutes < 0) {
+                currentDate.setHours(currentDate.getHours() - 1);
+                currentDate.setMinutes(59);
+            } else {
+                currentDate.setMinutes(minutes);
+            }
+
+            flatpickrInstance.setDate(currentDate, true); // Atualiza o valor no Flatpickr
+        }
+
+        // Adiciona o ouvinte de evento de rotação do mouse ao campo de entrada
+        flatpickrInstance._input.addEventListener('wheel', handleWheel);
+    }
+
+    flatpickr(horarioEntrada, {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minuteIncrement: 1,
+        onReady: function(selectedDates, dateStr, instance) {
+            setupTimeScrollPlugin(instance);
+        }
+    });
+
+    flatpickr(horarioSaida, {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minuteIncrement: 1,
+        onReady: function(selectedDates, dateStr, instance) {
+            setupTimeScrollPlugin(instance);
+        }
+    });
+});

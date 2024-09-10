@@ -64,8 +64,7 @@ h2 {
   width: calc(100%);
   padding: 8px;
   box-sizing: border-box;
-  background-color: rgba(85, 85, 85, 0.0);
-  
+  background-color: #222;
   color: #fff;
   border: 1px solid #e9e7e7;
   border-radius: 4px;
@@ -87,10 +86,12 @@ h2 {
   border: 1px solid #e9e7e7;
   border-radius: 4px;
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom, #555, #555); /* Gradiente para seta customizada */
-  background-position: calc(100% - 15px) center, calc(100% - 10px) center; /* Posicionamento da seta customizada */
-  background-size: 10px 10px; /* Tamanho da seta */
+  
+  /* Gradiente para seta customizada usando SVG */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><polygon points='0,0 10,0 5,7' fill='white'/></svg>"); 
+  background-position: calc(100% - 10px) center; /* Posicionamento da seta customizada */
   background-repeat: no-repeat; /* Evita repetição da seta */
+  background-size: 10px; /* Tamanho da seta */
   cursor: pointer; /* Mostra o cursor como ponteiro para indicar interação */
 }
 
@@ -180,7 +181,7 @@ h2 {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
-  background-color: rgba(248, 248, 248, 0);
+  background-color: #222;
   color: #fff;
   border: 1px solid #e9e7e7;
   border-radius: 4px;
@@ -191,39 +192,7 @@ h2 {
   color: #ccc;
 }
 
-/* Estilos para a mensagem de erro */
-.error-message {
-  text-align: center;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: rgba(229, 57, 53, 0.8); /* Vermelho */
-  color: white;
-  border-radius: 4px;
-  display: none; /* Inicia escondida */
-}
-
-.error-message.show {
-  display: block; /* Mostra quando necessário */
-}
-
-/* Estilos para a mensagem de sucesso */
-.success-message {
-  text-align: center;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: rgba(76, 175, 80, 0.8); /* Verde */
-  color: white;
-  border-radius: 4px;
-  display: none; /* Inicia escondida */
-}
-
-.success-message.show {
-  display: block; /* Mostra quando necessário */
-}
-
 /* Ajustes nos campos de entrada */
-.form-group input[type="date"],
-.form-group input[type="time"],
 .form-group input[type="number"] {
   width: calc(100% - 2px); /* Corrigindo o tamanho para evitar quebra de linha */
 }
@@ -321,10 +290,27 @@ h2 {
         box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
     }
     
+    /* Ajusta o fundo do seletor de meses */
+.flatpickr-calendar .flatpickr-months select,
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-year {
+  background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
+  color: #fff !important; /* Cor do texto */
+}
+
+/* Ajusta o fundo das opções do seletor de meses */
+.flatpickr-calendar .flatpickr-months select option,
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-year {
+  background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
+  color: #fff !important; /* Cor do texto */
+}
+
+
 
 /* Ajusta a cor de fundo do calendário */
 .flatpickr-calendar {
-  background-color: #333 !important;
+  background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
   color: #fff !important;
   max-height: 230px; /* Limita a altura máxima do calendário */
   overflow: hidden; /* Esconde qualquer conteúdo excedente */
@@ -412,5 +398,27 @@ h2 {
 .data-item label i {
   color: #fff; /* Cor do ícone */
   margin-right: 5px; /* Espaçamento entre o ícone e o texto do rótulo */
+}
+
+/* Estilos personalizados para o Flatpickr */
+.flatpickr-input {
+  background-color: #222 !important; /* Cor de fundo com transparência */
+  color: #fff !important; /* Texto branco */
+  border: 1px solid #222; /* Borda sutil para contraste */
+  padding: 10px; /* Espaçamento interno */
+  border-radius: 4px; /* Bordas arredondadas */
+  font-size: 16px; /* Tamanho da fonte */
+}
+
+/* Fundo e texto das horas e minutos */
+.flatpickr-time .flatpickr-hour,
+.flatpickr-time .flatpickr-minute {
+  background-color: transparent !important; /* Fundo transparente das horas e minutos */
+  color: #fff !important; /* Texto branco das horas e minutos */
+}
+
+/* Cor do separador de horas e minutos */
+.flatpickr-time .flatpickr-time-separator {
+  color: #fff !important; /* Cor do separador */
 }
 
