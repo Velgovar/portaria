@@ -80,11 +80,39 @@
             <div class="form-group">
                 <label for="tipovisitante">Tipo de visitante</label>
                 <select type="text" id="tipovisitante" name="tipovisitante">
-                    <option value="">Selecione...</option>
-                    <option value="Candidato">Candidato</option>
-                    <option value="Cliente">Cliente</option>
-                    <option value="Fornecedor">Fornecedor</option>
-                    <option value="Acabamento">Prestador de serviço</option>
+                <option value="">Selecione o Tipo de Visitante</option>
+                        <?php
+                        // Exibir erros de PHP
+                        ini_set('display_errors', 1);
+                        ini_set('display_startup_errors', 1);
+                        error_reporting(E_ALL);
+
+                        // Conexão com o banco de dados
+                        $servername = "192.168.254.136";
+                        $username = "felipe";
+                        $password = "Aranhas12@";
+                        $dbname = "cobra";
+
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        if ($conn->connect_error) {
+                            die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+                        }
+
+                        // Query para buscar os porteiro/vigias cadastrados
+                        $sql = "SELECT id, nome FROM tipovisitante";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo '<option value="' . $row['nome'] . '">' . $row['nome'] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">Nenhum porteiro/vigia encontrado</option>';
+                        }
+
+                        $conn->close();
+                        ?>
 
                 </select>
             </div>

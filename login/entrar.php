@@ -263,6 +263,8 @@ iframe {
                 <ul>
                     <li><a href="../login/tabela_veiculos.php">Cadastros de Veiculos</a></li>
                     <li><a href="../login/tabela_visitantes.php">Cadastros de Visitantes</a></li>
+                    <li><a href="../login/tipo_visitante.php">Cadastros de Tipo de Visitante</a></li>
+
                 </ul>
             </div>
             <div class="nav-column">

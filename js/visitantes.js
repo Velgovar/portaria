@@ -55,8 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             showLauncher('Por favor, preencha todos os campos corretamente.', true); // Exibe mensagem de erro
         }
+        
     });
 
+
+    
     // Adiciona validadores aos campos do formulário
     var inputs = document.querySelectorAll('#vehicle-form input, #vehicle-form select');
     inputs.forEach(function(input) {
