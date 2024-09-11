@@ -8,10 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-    
-
-</head>
-<body>
+                </head>
+            <body>
                 <a href="../menu.html" class="voltar">Voltar</a>
 
                 <div class="container">
@@ -109,15 +107,15 @@
 
 
             <div class="form-group">
-                <label for="motorista">Motorista</label>
-                <input type="text" id="motorista" name="motorista">
+                <label for="motorista">Motorista (Nome completo)</label>
+                <input type="text" id="motorista" name="motorista" placeholder="Ex: Carlos Eduardo Santos">
             </div>
 
             <div class="form-group km">
     <div class="km-item">
         <label for="km_saida">KM saída</label>
         <div class="input-icon">
-            <input type="number" id="km_saida" name="km_saida">
+            <input type="number" id="km_saida" name="km_saida" placeholder="">
             <i class="fas fa-tachometer-alt"></i> <!-- Ícone de carro -->
         </div>
     </div>

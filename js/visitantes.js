@@ -351,4 +351,5 @@ document.addEventListener('DOMContentLoaded', function() {
             setupTimeScrollPlugin(instance);
         }
     });
+    
 });

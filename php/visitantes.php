@@ -16,7 +16,7 @@
 
     <div class="container">
                     <img src="../images/inusitta.png" class="image-center" alt="icone central">
-                    <h2>Controle de Veículos da Empresa</h2>
+                    <h2>CONTROLE DE ENTRADA E SAÍDA DE TERCEIROS</h2>
                     <form id="vehicle-form" method="POST" action="../config/config.php" autocomplete="off">
                         <div class="form-group data-porteiro">
             <div class="data-item">
@@ -69,12 +69,12 @@
 
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome">
+                <input type="text" id="nome" name="nome" placeholder="Digite o nome completo">
             </div>
 
             <div class="form-group">
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf">
+                <input type="text" id="cpf" name="cpf" placeholder="Formato xxx.xxx.xxx-xx">
             </div>
 
             <div class="form-group">
@@ -108,7 +108,7 @@
                                 echo '<option value="' . $row['nome'] . '">' . $row['nome'] . '</option>';
                             }
                         } else {
-                            echo '<option value="">Nenhum porteiro/vigia encontrado</option>';
+                            echo '<option value="">Nenhum Tipo de visitante encontrado</option>';
                         }
 
                         $conn->close();
@@ -118,15 +118,14 @@
             </div>
 
             <div class="form-group">
-                <label for="servico">Qual serviço prestou?</label>
-                <input type="text" id="servico" name="servico">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Ex: Inusittá">
             </div>
 
             <div class="form-group">
-                <label for="empresa">Empresa</label>
-                <input type="text" id="empresa" name="empresa">
+                <label for="servico">Motivo da Visita</label>
+                <input type="text" id="servico" name="servico" placeholder="Ex: Manutenção de Impressoras">
             </div>
-
 
             <div class="form-group km">
                 <div class="km-item">
@@ -138,8 +137,9 @@
                     </select>
                 </div>
                 <div class="km-item" style="display: none;">
-                    <label for="placa">Qual placa?</label>
-                    <input type="text" id="placa" name="placa">
+                <label for="placa">Qual placa?</label>
+                <input type="text" id="placa" name="placa" class="placa">
+
                 </div>
             </div>
 
@@ -162,11 +162,11 @@
 
             <div class="form-group km">
                 <div class="km-item">
-                    <label for="colaborador">Colaborador responsavel</label>
-                    <input type="text" id="colaborador" name="colaborador">
+                    <label for="colaborador">Colaborador Responsável pela Liberação</label>
+                    <input type="text" id="colaborador" name="colaborador" placeholder="Colaborador responsável">
                 </div>
                 <div class="km-item">
-                    <label for="setor">Setor</label>
+                    <label for="setor">Setor de Destino</label>
                     <select type="text" id="setor" name="setor">
                     <option value="">Selecione um setor</option>
                         <?php
@@ -219,6 +219,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+    
+
+    
     <script src="../js/visitantes.js"></script>
 </body>
 </html>
