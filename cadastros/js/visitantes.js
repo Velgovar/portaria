@@ -68,81 +68,79 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Função para validar os campos de entrada
-    function validateInput(input) {
-        if (input.tagName === 'SELECT') {
-            if (input.value === '') {
-                input.classList.add('error');
-                input.classList.remove('valid');
-                return false;
-            } else {
+// Função para exibir mensagens de erro
+function showLauncher(message, isError = false) {
+    var launcher = document.getElementById('launcher');
+    var messageElement = launcher.querySelector('.launcher-message');
+
+    messageElement.textContent = message;
+    launcher.classList.remove('launcher-error');
+    if (isError) {
+        launcher.classList.add('launcher-error');
+    }
+
+    launcher.classList.remove('hidden');
+    launcher.classList.add('launcher-show');
+
+    setTimeout(function() {
+        launcher.classList.remove('launcher-show');
+        launcher.classList.add('hidden');
+    }, 3000); // A mensagem desaparece após 3 segundos
+}
+
+// Função para validar os campos de entrada
+function validateInput(input) {
+    if (input.tagName === 'SELECT') {
+        if (input.value === '') {
+            input.classList.add('error');
+            input.classList.remove('valid');
+            setTimeout(function() {
                 input.classList.remove('error');
-                input.classList.add('valid');
-                return true;
-            }
-        } else if (input.id === 'km_chegada' || input.id === 'horario_saida') {
+            }, 3000); // Remove a borda vermelha após 3 segundos
+            return false;
+        } else {
             input.classList.remove('error');
             input.classList.add('valid');
             return true;
-        } else if (input.id === 'placa') {
-            if (placaField.style.display !== 'none') {
-                if (input.value.trim() === '') {
-                    input.classList.add('error');
-                    input.classList.remove('valid');
-                    return false;
-                } else {
+        }
+    } else if (input.id === 'km_chegada' || input.id === 'horario_saida') {
+        input.classList.remove('error');
+        input.classList.add('valid');
+        return true;
+    } else if (input.id === 'placa') {
+        if (placaField.style.display !== 'none') {
+            if (input.value.trim() === '') {
+                input.classList.add('error');
+                input.classList.remove('valid');
+                setTimeout(function() {
                     input.classList.remove('error');
-                    input.classList.add('valid');
-                    return true;
-                }
+                }, 3000); // Remove a borda vermelha após 3 segundos
+                return false;
             } else {
                 input.classList.remove('error');
                 input.classList.add('valid');
                 return true;
             }
         } else {
-            if (input.value.trim() === '') {
-                input.classList.add('error');
-                input.classList.remove('valid');
-                return false;
-            } else {
+            input.classList.remove('error');
+            input.classList.add('valid');
+            return true;
+        }
+    } else {
+        if (input.value.trim() === '') {
+            input.classList.add('error');
+            input.classList.remove('valid');
+            setTimeout(function() {
                 input.classList.remove('error');
-                input.classList.add('valid');
-                return true;
-            }
+            }, 3000); // Remove a borda vermelha após 3 segundos
+            return false;
+        } else {
+            input.classList.remove('error');
+            input.classList.add('valid');
+            return true;
         }
     }
-
-    // Função para validar todo o formulário
-    function validateForm() {
-        var isValid = true;
-        inputs.forEach(function(input) {
-            if (!validateInput(input)) {
-                isValid = false;
-            }
-        });
-        return isValid;
-    }
-
-    // Função para exibir mensagens de erro
-    function showLauncher(message, isError = false) {
-        var launcher = document.getElementById('launcher');
-        var messageElement = launcher.querySelector('.launcher-message');
-
-        messageElement.textContent = message;
-        launcher.classList.remove('launcher-error');
-        if (isError) {
-            launcher.classList.add('launcher-error');
-        }
-
-        launcher.classList.remove('hidden');
-        launcher.classList.add('launcher-show');
-
-        setTimeout(function() {
-            launcher.classList.remove('launcher-show');
-            launcher.classList.add('hidden');
-        }, 3000); // A mensagem desaparece após 3 segundos
-    }
+}
 
     // Função para redefinir o formulário
     function resetForm() {
