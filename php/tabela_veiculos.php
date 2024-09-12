@@ -115,9 +115,10 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                             <td><?php echo htmlspecialchars($registro['porteiro']); ?></td>
                             <td><?php echo htmlspecialchars($registro['veiculo']); ?></td>
                             <td><?php echo htmlspecialchars($registro['km_saida']); ?></td>
-                            <td class="km_chegada"><?php echo htmlspecialchars($registro['km_chegada']); ?></td>
-                            <td><?php echo htmlspecialchars($registro['horario_saida']); ?></td>
-                            <td class="horario_chegada"><?php echo htmlspecialchars($registro['horario_chegada']); ?></td>
+                            <td class="km_chegada"><?php echo htmlspecialchars(!empty($registro['km_chegada']) ? $registro['km_chegada'] : '0'); ?></td>
+                            <td><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_saida']))); ?></td>
+<td class="horario_chegada"><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_chegada']))); ?></td>
+
                             <td><?php echo htmlspecialchars($registro['destino']); ?></td>
                             <td><?php echo htmlspecialchars($registro['motivo']); ?></td>
                             <td>
@@ -195,8 +196,6 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                 </form>
             </div>
         </div>
-
-        <div class="message-container"></div>
 
 <!-- Contêiner para o launcher -->
 <div id="launcher" class="launcher hidden">

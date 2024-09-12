@@ -618,9 +618,10 @@ input[type="time"] {
                     <td><?php echo htmlspecialchars($registro['servico']); ?></td>
                     <td><?php echo htmlspecialchars($registro['empresa']); ?></td>
                     <td><?php echo htmlspecialchars($registro['estacionamento']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['placa']); ?></td>
-                    <td><?php echo htmlspecialchars($registro['horario_entrada']); ?></td>
-                    <td class="horario_saida"><?php echo htmlspecialchars($registro['horario_saida']); ?></td>
+                    <td><?php echo htmlspecialchars(!empty($registro['placa']) ? $registro['placa'] : '-'); ?></td>
+                    <td><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_entrada']))); ?></td>
+<td class="horario_saida"><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_saida']))); ?></td>
+
                     <td><?php echo htmlspecialchars($registro['colaborador']); ?></td>
                     <td><?php echo htmlspecialchars($registro['setor']); ?></td>
                     <td>
@@ -700,23 +701,31 @@ input[type="time"] {
 
 
     <script>
-// Abrir o modal de edição
+/// Função para abrir o modal e preencher o campo horario_saida com os dados mais recentes da linha
 document.querySelectorAll('.edit-button').forEach(button => {
     button.addEventListener('click', function() {
         const id = this.getAttribute('data-id');
-        const horarioSaida = this.getAttribute('data-horario_saida');
         
-        console.log('ID:', id); // Debug: Verificar se o ID está correto
-        console.log('Horário de Saída:', horarioSaida); // Debug: Verificar o valor do horário de saída
+        // Seleciona a linha correspondente pelo ID
+        const row = document.querySelector(`tr[data-id="${id}"]`);
+        
+        if (row) {
+            // Pegue o valor mais recente do campo horario_saida da linha da tabela
+            const horarioSaida = row.querySelector('.horario_saida').textContent.trim();
 
-        // Preencher os campos do modal com os dados do registro
-        document.getElementById('editId').value = id;
-        document.getElementById('editHorarioSaida').value = horarioSaida || '';
+            // Preenche o campo do modal com o valor mais recente
+            document.getElementById('editId').value = id;
+            document.getElementById('editHorarioSaida').value = horarioSaida || '';
 
-        // Abrir o modal
-        document.getElementById('editModal').style.display = 'flex';
+            // Abre o modal
+            document.getElementById('editModal').style.display = 'flex';
+        } else {
+            console.error(`Linha com ID ${id} não encontrada.`);
+        }
     });
 });
+
+
 
 // Fechar o modal ao clicar no botão de fechar
 document.getElementById('closeModal').addEventListener('click', function() {
@@ -756,7 +765,6 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
     })
     .then(response => response.json())
     .then(data => {
-        // Verificar o user-agent para determinar o navegador
         const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
         if (data.message.includes('sucesso')) {
@@ -764,17 +772,21 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
             const launcher = document.getElementById('launcher');
             launcher.classList.remove('hidden');
             launcher.classList.add('visible');
+            
+            // Atualizar a linha da tabela
+            updateTableRow(
+                formData.get('id'),
+                formData.get('horario_saida') // Atualiza o horário de saída
+            );
+            
             // Remover o launcher após 2 segundos
             setTimeout(() => {
                 launcher.classList.remove('visible');
                 launcher.classList.add('hidden');
             }, 2000);
-            // Fechar o modal e atualizar a linha da tabela
+
+            // Fechar o modal
             closeModalFunction();
-            updateTableRow(
-                formData.get('id'),
-                formData.get('horario_saida') // Atualiza o horário de saída
-            );
         } else {
             console.error('Falha ao editar o registro:', data.message);
         }
@@ -799,10 +811,13 @@ function updateTableRow(id, horarioSaida) {
     if (row) {
         console.log(`Atualizando a linha com ID ${id}`); // Log para depuração
 
+        // Formatar o horário de saída para remover os segundos
+        const formattedHorarioSaida = formatTime(horarioSaida);
+
         // Atualizar o conteúdo da célula de horario_saida
         const horarioSaidaCell = row.querySelector('.horario_saida');
         if (horarioSaidaCell) {
-            horarioSaidaCell.textContent = horarioSaida;
+            horarioSaidaCell.textContent = formattedHorarioSaida;
         } else {
             console.error('Célula horario_saida não encontrada.');
         }
@@ -810,6 +825,18 @@ function updateTableRow(id, horarioSaida) {
         console.error(`Linha com ID ${id} não encontrada.`);
     }
 }
+
+// Função para formatar o horário no formato HH:mm
+function formatTime(timeString) {
+    if (!timeString) return '';
+
+    // Cria um objeto Date com a string de tempo
+    const time = new Date(`1970-01-01T${timeString}Z`);
+    
+    // Formata o horário para HH:mm
+    return time.toISOString().substring(11, 16);
+}
+
 
 // Função para alterar o número de registros por página
 function changeRecordsPerPage() {

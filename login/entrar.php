@@ -263,22 +263,19 @@ iframe {
                 <ul>
                     <li><a href="../login/tabela_veiculos.php">Cadastros de Veiculos</a></li>
                     <li><a href="../login/tabela_visitantes.php">Cadastros de Visitantes</a></li>
-                    <li><a href="../login/tipo_visitante.php">Cadastros de Tipo de Visitante</a></li>
+                    <li><a href="../login/tipo_visitante.php">Cadastrar Tipo de Visitante</a></li>
 
                 </ul>
             </div>
             <div class="nav-column">
                 <ul>
-                    <li><a href="../login/porteiros.php">Cadastros de Porteiros</a></li>
-                    <li><a href="../login/setores.php">Cadastros de Setores</a></li>
-                    <li><a href="../login/veiculos.php">Cadastros de Veiculos</a></li>
+                    <li><a href="../login/porteiros.php">Cadastrar Porteiros</a></li>
+                    <li><a href="../login/setores.php">Cadastrar Setores</a></li>
+                    <li><a href="../login/veiculos.php">Cadastrar Veiculos</a></li>
 
                 </ul>
             </div>
         </nav>
-    </div>
-
-    
-
+    </div> 
 </body>
 </html>
