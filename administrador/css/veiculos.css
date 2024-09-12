@@ -1,0 +1,613 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Container principal para a tabela e o formulário */
+.setor-container {
+    width: 100%;
+    max-width: 500px; /* Ajuste conforme necessário */
+    margin: 0 auto;
+    padding: 10px 20px; /* Ajusta o padding para 10px no topo e embaixo, e 20px nas laterais */
+    background-color: rgba(51, 51, 51, 0.9); /* Cor de fundo */
+    border-radius: 4%; /* Bordas arredondadas */
+    box-shadow: none; /* Remove a sombra para garantir a consistência da cor */
+}
+
+
+
+/* Estilização do formulário de cadastro */
+.fixed-container {
+    background-color: rgba(46, 46, 46, 0.9); /* Mesma cor de fundo */
+    padding: 0px 20px 20px; /* Diminui o padding superior para 10px */
+    border-radius: 8px;
+    margin-bottom: 0;
+    text-align: center;
+    box-shadow: none; /* Remova a sombra para garantir que a cor seja consistente */
+    
+}
+
+
+/* Container para a tabela */
+.table-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(46, 46, 46, 0.9); /* Mesma cor de fundo */
+    
+}
+
+/* Container para a tabela com rolagem */
+.scrollable-container {
+    margin-top: 20px; /* Adiciona espaçamento acima da tabela */
+    margin-bottom: 20px; /* Adiciona espaçamento abaixo da tabela */
+}
+
+/* Estilização do cabeçalho da tabela */
+.table-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: rgba(46, 46, 46, 0.9); /* Mesma cor de fundo */
+    padding: 10px;
+    box-shadow: none; /* Remova a sombra para garantir que a cor seja consistente */
+}
+
+
+.scrollable-container th, 
+.scrollable-container td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #444; /* Linha horizontal abaixo de cada célula */
+    border-right: 1px solid #444; /* Linha vertical à direita de cada célula */
+    
+
+}
+
+/* Estilização das células de cabeçalho */
+.scrollable-container th {
+    background-color: #007BFF; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto do cabeçalho */
+}
+
+/* Estilização das células de dados */
+.scrollable-container td {
+    background-color: #333; /* Cor de fundo das células de dados */
+    color: #ddd; /* Cor do texto das células de dados */
+}
+
+/* Alterna as cores das linhas para melhor visualização */
+.scrollable-container tr:nth-child(even) td {
+    background-color: #2a2a2a; /* Cor de fundo para linhas pares */
+}
+
+/* Efeito de hover nas linhas da tabela */
+.scrollable-container tr:hover td {
+    background-color: #444; /* Cor de fundo ao passar o mouse sobre a linha */
+}
+
+/* Remove a borda direita da última coluna */
+.scrollable-container tr td:last-child {
+    border-right: none;
+}
+
+        /* Estilo do botão verde de voltar */
+.voltar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 0;
+    color: white;
+    line-height: 1.75;
+    padding: 0 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(0, 138, 143);
+    background-image: linear-gradient(
+        to top left,
+            rgb(0 0 0 / 20%),
+            rgb(0 0 0 / 20%) 30%,
+            rgb(0 0 0 / 0%));
+  box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.voltar:hover {
+  background-color: rgb(0, 209, 216);
+}
+
+.voltar:active {
+  box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 60%),
+    inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+/* Estilizando a barra de rolagem geral */
+.scrollable-container::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+    height: 12px; /* Altura da barra de rolagem horizontal */
+}
+
+/* Estilizando a trilha da barra de rolagem (o fundo) */
+.scrollable-container::-webkit-scrollbar-track {
+    background: #333; /* Cor de fundo da trilha */
+    border-radius: 10px; /* Cantos arredondados */
+}
+
+/* Estilizando o polegar (a parte móvel) da barra de rolagem */
+.scrollable-container::-webkit-scrollbar-thumb {
+    background-color: #555; /* Cor do polegar */
+    border-radius: 10px; /* Cantos arredondados */
+    border: 3px solid #333; /* Borda ao redor do polegar */
+}
+
+/* Estilizando o polegar ao passar o mouse sobre ele */
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+    background-color: #777; /* Cor do polegar ao passar o mouse */
+}
+
+/* Diminuir o campo de ações */
+.scrollable-container td:nth-child(2),
+.scrollable-container th:nth-child(2) {
+    width: 80px; /* Define a largura da coluna de ações */
+    text-align: center; /* Centraliza o conteúdo da coluna de ações */
+}
+
+.fixed-container h2 {
+    text-align: center; /* Centraliza o texto horizontalmente */
+    padding-top: 0px; /* Adiciona espaço interno acima do texto */
+    /* margin-bottom: 20px; Adiciona espaço abaixo do texto, se necessário */
+}
+
+
+.table-container .table-header h2 {
+    text-align: center; /* Alinha o texto à direita */
+    margin: 0; /* Remove margens externas, se necessário */
+}
+
+
+.scrollable-container td:last-child,
+.scrollable-container th:last-child {
+    border-right: none; /* Remove a linha da última coluna para evitar borda dupla */
+}
+
+.scrollable-container {
+    position: relative; /* Garante que o conteúdo da tabela fique dentro do container */
+    overflow-y: auto; /* Ativa o scroll vertical */
+    max-height: 535px; /* Altura máxima para a área de rolagem */
+}
+
+.scrollable-container th {
+    background-color: #111; /* Cor de fundo do cabeçalho (azul) */
+    color: white; /* Cor do texto */
+    border-top: none; /* Remove a linha superior */
+    position: -webkit-sticky; /* Para navegadores WebKit */
+    position: sticky; /* Para navegadores modernos */
+    top: 0; /* Fixa o cabeçalho no topo da tabela */
+    z-index: 1; /* Garante que o cabeçalho fique sobre o conteúdo da tabela */
+    padding: 8px; /* Adiciona espaçamento interno */
+    margin: 0; /* Remove margens externas */
+    
+}
+
+table {
+    border-collapse: collapse; /* Remove espaços entre as bordas das células */
+    width: 100%; /* Usa toda a largura disponível */
+}
+
+/* Estiliza o grupo de formulário */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Estiliza os rótulos dos grupos de formulário */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+/* Estiliza os campos de entrada e seleção com largura reduzida */
+.form-group input,
+.form-group select {
+    width: 70%; /* Ajuste a largura conforme necessário */
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #666;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    margin: 0 auto; /* Centraliza o campo horizontalmente */
+    display: block; /* Garante que o campo seja exibido como bloco */
+}
+
+/* Estiliza o select com aparência personalizada */
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 24px; /* Espaçamento para a seta */
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom, #555, #555);
+    background-position: right center;
+    background-size: 10px 10px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+/* Estiliza o select quando em foco */
+.form-group select:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 10px rgba(102, 175, 233, 0.6);
+}
+
+/* Estiliza as opções dentro do select */
+.form-group select option {
+    background-color: rgba(51, 51, 51, 0.9);
+    color: white;
+    padding: 8px;
+}
+
+/* Botão Salvar */
+.button-container .salvar-button {
+    border: 0;
+    color: white;
+    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
+    padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
+    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+    cursor: pointer;
+    background-color: rgb(0, 170, 23); /* Cor vermelha escura */
+    background-image: linear-gradient(
+        to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.button-container .salvar-button:hover {
+    background-color: rgb(6, 131, 2); /* Cor de fundo ao passar o mouse */
+}
+
+.button-container .salvar-button:active {
+    box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+/* Botão Excluir */
+.delete-button {
+    border: 0;
+    color: white;
+    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
+    padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
+    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+    cursor: pointer;
+    background-color: rgb(150, 0, 0); /* Cor vermelha escura */
+    background-image: linear-gradient(
+        to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.delete-button:hover {
+    background-color: rgb(120, 0, 0); /* Cor de fundo ao passar o mouse */
+}
+
+.delete-button:active {
+    box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+
+/* Estilização da paginação */
+.pagination {
+    display: flex; /* Utiliza flexbox para alinhar os botões */
+    margin-top: -42px; /* Move a paginação para cima */
+    margin-left: 200px; /* Ajuste o valor para mover para a direita */
+}
+
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 2px;
+    border: 1px solid #444; /* Borda escura para combinar com o fundo */
+    border-radius: 10px; /* Bordas arredondadas */
+    color: #ddd; /* Texto claro */
+    text-decoration: none;
+    font-size: 14px;
+    text-align: center;
+}
+
+.pagination a.active {
+    background-color: #555; /* Cor do fundo da página ativa */
+    color: #fff;
+}
+
+.pagination a.disabled {
+    color: #666; /* Texto desativado */
+    pointer-events: none; /* Desabilita o clique */
+    cursor: not-allowed; /* Muda o cursor para indicar que não é clicável */
+}
+
+.pagination a:hover {
+    background-color: #555; /* Cor de fundo ao passar o mouse */
+}
+
+/* Adiciona estilo ao número da página */
+.pagination span {
+    background-color: #555; /* Cor de fundo dos números de página */
+    color: #fff; /* Cor do texto */
+}
+
+.pagination span.active {
+    background-color: #333; /* Cor de fundo para o número da página ativa */
+}
+
+/* Container para o texto e o select */
+.select-container {
+    display: flex; /* Utiliza flexbox para alinhar o select e o texto */
+    align-items: center; /* Alinha verticalmente o select e o texto */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+    margin: 10px 0; /* Ajusta o espaço acima e abaixo do contêiner */
+}
+
+/* Estilização do texto */
+.select-container span {
+    font-size: 14px; /* Tamanho da fonte */
+    color: #ddd; /* Cor do texto */
+    margin-left: 10px; /* Espaço entre o select e o texto */
+    /* Remover margem superior para evitar empurrar o conteúdo para baixo */
+    margin-top: 0; /* Remover margem superior para evitar o deslocamento vertical */
+}
+
+/* Estilização do select */
+.select-container select {
+    padding: 5px;
+    font-size: 14px;
+    color: #fff; /* Cor do texto */
+    background-color: #444; /* Cor de fundo */
+    border: 1px solid #666; /* Cor da borda */
+    border-radius: 10px; /* Bordas arredondadas */
+    height: 32px; /* Ajusta a altura do select */
+    margin-left: -320px; /* Espaço entre o select e o texto */
+    margin-top: 0; /* Remover margem superior para evitar o deslocamento vertical */
+}
+
+/* Estilização para o estado do foco do select */
+.select-container select:focus {
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Sombra azul ao focar */
+}
+
+/* Estilo para o contêiner do launcher */
+.launcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999; /* Garante que esteja acima de outros elementos */
+    background-color: #4CAF50; /* Verde para sucesso */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo para a mensagem de erro */
+.launcher-error {
+    background-color: #f44336; /* Vermelho para erro */
+    color: white;
+}
+
+/* Animação para o launcher aparecer */
+.launcher-show {
+    transform: translateY(0);
+}
+
+/* Animação para o launcher desaparecer */
+.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.modal {
+    display: none; /* Oculta o modal por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;    /* Centraliza verticalmente */
+}
+
+.modal-content {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 80%;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+.modal-content input[type=text] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    font-size: 14px;
+    background-color: #222;
+    color: white;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    margin: 5px 10px;
+    padding: 10px 16px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+/* Botão de Exclusão */
+.modal-content .delete-button {
+    background-color: rgb(150, 0, 0); /* Cor vermelha escura */
+    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
+    padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
+    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+    background-image: linear-gradient(
+        to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.modal-content .delete-button:hover {
+    background-color: rgb(120, 0, 0); /* Cor de fundo ao passar o mouse */
+}
+
+.modal-content .delete-button:active {
+    box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+/* Botão de Cancelar */
+.modal-content .cancel {
+    background-color: rgb(100, 100, 100); /* Cor cinza escura */
+    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
+    padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
+    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+    cursor: pointer;
+    background-image: linear-gradient(
+        to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.modal-content .cancel:hover {
+    background-color: rgb(80, 80, 80); /* Cor de fundo ao passar o mouse */
+}
+
+.modal-content .cancel:active {
+    box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+/* Para telas pequenas, como smartphones */
+@media (max-width: 600px) {
+    .container {
+      width: 95%; /* Aumenta a largura para 95% da tela */
+      padding: 10px; /* Reduz o padding para telas menores */
+    }
+  
+    .image-center {
+      max-width: 150px;
+      max-height: 100px;
+      top: 350px; /* Ajusta a posição vertical */
+    }
+  
+    h2 {
+      font-size: 1.2em; /* Diminui o tamanho da fonte para títulos */
+    }
+  }
+  
+  /* Para telas médias, como tablets */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .container {
+      width: 80%; /* Ajusta a largura para 80% da tela */
+      padding: 15px; /* Padding intermediário */
+    }
+  
+    .image-center {
+      max-width: 180px;
+      max-height: 120px;
+    }
+  
+    h2 {
+      font-size: 1.5em; /* Ajusta o tamanho da fonte para títulos */
+    }
+  }
+  
+  /* Para telas grandes, como desktops */
+  @media (min-width: 1025px) {
+    .container {
+      width: 700px; /* Largura fixa para telas grandes */
+      padding: 20px;
+    }
+  }

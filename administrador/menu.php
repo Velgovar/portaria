@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['user_id'])) {
+    // Se não estiver logado, redireciona para a página de login
+    header('Location: login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -23,7 +34,7 @@ body {
 
 .title {
     position: absolute;
-    top: 24%; /* Ajuste conforme necessário */
+    top: 245px; /* Ajuste conforme necessário */
     left: 50%;
     transform: translateX(-50%);
     font-size: 3em;
@@ -108,7 +119,7 @@ nav {
     top: 20px;
     left: 20px;
     font-size: 2.5em;
-    color: #666; /* Texto preto */
+    color: black; /* Define a cor preta para o ícone */
     text-shadow: 1px 1px 3px white; /* Adiciona uma sombra branca */
     cursor: pointer;
     transition: color 0.3s, transform 0.3s;
@@ -157,41 +168,40 @@ nav {
     font-size: 1.2em;
 }
 
-        /* Estilo do botão verde de voltar */
-        .voltar {
-          position: absolute;
-          top: 10px;
-          left: 10px;
-          border: 0;
-          color: white;
-          line-height: 1.75;
-          padding: 0 40px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 0.95rem;
-          border-radius: 10px;
-          cursor: pointer;
-          background-color: rgb(0, 138, 143);
-          background-image: linear-gradient(
-              to top left,
-                  rgb(0 0 0 / 20%),
-                  rgb(0 0 0 / 20%) 30%,
-                  rgb(0 0 0 / 0%));
-        box-shadow:
-          inset 2px 2px 3px rgb(255 255 255 / 60%),
-          inset -2px -2px 3px rgb(0 0 0 / 60%);
-      }
-      
-      .voltar:hover {
-        background-color: rgb(0, 209, 216);
-      }
-      
-      .voltar:active {
-        box-shadow:
-          inset -2px -2px 3px rgb(255 255 255 / 60%),
-          inset 2px 2px 3px rgb(0 0 0 / 60%);
-      }
+.style {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 0;
+    color: white;
+    line-height: 1.75; /* Ajustado para um pouco mais de altura */
+    padding: 0 40px; /* Aumentado um pouco */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.95rem; /* Ajustado para um pouco maior */
+    border-radius: 10px; /* Ajustado para um pouco maior */
+    cursor: pointer;
+    background-color: rgb(0, 138, 143);
+    background-image: linear-gradient(
+      to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%));
+    box-shadow:
+      inset 2px 2px 3px rgb(255 255 255 / 60%),
+      inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.style:hover {
+    background-color: rgb(0, 209, 216);
+}
+
+.style:active {
+    box-shadow:
+      inset -2px -2px 3px rgb(255 255 255 / 60%),
+      inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
 
 /* Estilos do Modal */
 .modal {
@@ -239,11 +249,11 @@ iframe {
     height: calc(100% - 40px); /* Ajuste para deixar espaço para o botão de fechar */
     border: none;
 }
-
     </style>
 </head>
 <body>
-    <div class="title">Sistema Portaria</div>
+<a href="config/logout.php" class="style">Sair</a>
+    <div class="title">Bem-vindo ao Modo Administrador</div>
     <div class="container">
         <header>
             <!-- Removido o h1 de dentro da div com a mensagem -->
@@ -251,96 +261,21 @@ iframe {
         <nav>
             <div class="nav-column">
                 <ul>
-                    <li><a href="cadastros/veiculos.php">Cadastrar Veículos da Empresa</a></li>
-                    <li><a href="cadastros/tabela_veiculos.php">Editar Tabela de Veículos</a></li>
-                    <li><a href="#" onclick="handleCadastrarRamais()">Ramais</a></li> <!-- Atualizado -->
+                    <li><a href="tabela_veiculos.php">Cadastros de Veiculos</a></li>
+                    <li><a href="porteiros.php">Cadastrar Porteiros</a></li>
+                    <li><a href="tipo.php">Cadastrar Tipo de Visitante</a></li>
+
                 </ul>
             </div>
             <div class="nav-column">
                 <ul>
-                    <li><a href="cadastros/visitantes.php">Cadastrar Visitantes</a></li>
-                    <li><a href="cadastros/tabela_visitantes.php">Editar tabela de visitantes</a></li>
-                    <li><a href="https://inusitta.penso.com.br/">E-mail</a></li>
-
-                    
+                <li><a href="tabela_visitantes.php">Cadastros de Visitantes</a></li>
+                <li><a href="setores.php">Cadastrar Setores</a></li>
+                    <li><a href="veiculos.php">Cadastrar Veiculos</a></li>
                 </ul>
             </div>
         </nav>
-    </div>
-
-    <i class="fas fa-cog settings-icon" onclick="toggleAdminLauncher()"></i>
-    <div class="admin-launcher" id="adminLauncher">
-        <div class="admin" onclick="openAdmin()">Administrador</div>
-        <div class="ajuda" onclick="openAjuda()">Ajuda</div>
-    </div>
-    
-    <!-- Estrutura do Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Conteúdo do Modal -->
-        <div class="modal-content">
-            <a href="./menu.html" class="voltar">Voltar</a>
-
-            <span class="close">&times;</span>
-            
-            <iframe src="" id="modalIframe"></iframe>
-        </div>
-
-    </div>
-
-    <script>
-function toggleAdminLauncher() {
-    const adminLauncher = document.getElementById('adminLauncher');
-    if (adminLauncher.style.display === 'block') {
-        adminLauncher.style.display = 'none';
-    } else {
-        adminLauncher.style.display = 'block';
-    }
-}
-
-function openAdmin() {
-    window.location.href = './administrador/login.php';
-}
-
-function openRamaisModal() {
-    const modal = document.getElementById("myModal");
-    const iframe = document.getElementById("modalIframe");
-    iframe.src = "http://172.16.0.234/ramal/ramal.php"; // Substitua com o URL do conteúdo desejado
-    modal.style.display = "block";
-}
-
-function openAjuda() {
-    window.location.href = 'http://172.16.0.225/front/ticket.form.php';
-}
-
-function handleCadastrarRamais() {
-    toggleAdminLauncher(); // Mostra o painel de administração
-    openRamaisModal(); // Abre o modal de ramais
-}
-
-// Fechar o modal ao clicar no "x"
-document.querySelector('.close').addEventListener('click', function() {
-    document.getElementById('myModal').style.display = 'none';
-});
-
-// Fechar o modal ao clicar fora do conteúdo
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('myModal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-});
-
-// Fechar o painel de administração ao clicar fora dele
-window.addEventListener('click', function(event) {
-    const adminLauncher = document.getElementById('adminLauncher');
-    const settingsIcon = document.querySelector('.settings-icon');
-    
-    // Verifica se o clique foi fora do painel de administração e do ícone de configurações
-    if (event.target !== adminLauncher && event.target !== settingsIcon && !adminLauncher.contains(event.target)) {
-        adminLauncher.style.display = 'none';
-    }
-});
-    </script>
+    </div> 
 </body>
 </html>
+
