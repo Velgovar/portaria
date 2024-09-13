@@ -898,7 +898,7 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
 
     const formData = new FormData(this);
 
-    fetch('config/tabela_visitantes_config.php', {
+    fetch('config/editar_teste.php', {
         method: 'POST',
         body: formData
     })
@@ -994,7 +994,6 @@ function updateTableRow(id, data, porteiro, nome, cpf, tipovisitante, servico, e
     }
 }
 
-
 // Variável global para armazenar o ID do item a ser excluído
 let deleteId = null;
 
@@ -1018,7 +1017,7 @@ document.getElementById('confirmationForm').addEventListener('submit', function(
 
     const confirmationInput = document.getElementById('confirmationInput').value.trim().toLowerCase();
     if (confirmationInput === 'excluir') {
-        fetch('config/tabela_visitantes_config.php', {
+        fetch('config/excluir_teste.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
