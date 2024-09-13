@@ -32,12 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $destino = $_POST['destino'];
     $motivo = $_POST['motivo'];
 
-    // Validação simples do campo obrigatório
-    if (empty($km_saida)) {
-        http_response_code(400); // Código de erro de requisição inválida
-        echo json_encode(array('message' => 'Campo KM saída é obrigatório.'));
-        exit;
-    }
+// Validação simples do campo obrigatório
+if (!isset($km_saida) || $km_saida === '') {
+    http_response_code(400); // Código de erro de requisição inválida
+    echo json_encode(array('message' => 'Campo KM saída é obrigatório.'));
+    exit;
+}
 
     // Prepara a consulta SQL para inserir os dados
     $sql = "INSERT INTO registros_veiculos (data, porteiro, veiculo, motorista, km_saida, km_chegada, horario_saida, horario_chegada, destino, motivo)

@@ -248,8 +248,36 @@ document.addEventListener('DOMContentLoaded', function() {
             flatpickrInstance.setDate(currentDate, true); // Atualiza o valor no Flatpickr
         }
 
-        // Adiciona o ouvinte de evento de rotação do mouse ao campo de entrada
         flatpickrInstance._input.addEventListener('wheel', handleWheel);
+
+        flatpickrInstance._input.addEventListener('mousedown', function(event) {
+            event.stopPropagation(); // Previne que o clique seja interceptado por outros ouvintes
+        });
+
+        flatpickrInstance._input.addEventListener('focus', function(event) {
+            flatpickrInstance._input.setSelectionRange(0, flatpickrInstance._input.value.length);
+        });
+
+        flatpickrInstance._input.addEventListener('click', function(event) {
+            event.stopPropagation(); // Garante que o clique no campo seja tratado corretamente
+        });
+
+        flatpickrInstance._input.addEventListener('blur', function(event) {
+            // Verifica se o campo está vazio e limpa a data selecionada
+            if (flatpickrInstance._input.value.trim() === '') {
+                flatpickrInstance.clear(); // Limpa a data selecionada se o campo estiver vazio
+                flatpickrInstance.setDate('', false); // Define o valor do campo como vazio
+            }
+        });
+
+        // Detecta a abertura do seletor de hora e garante que o campo possa ficar vazio
+        flatpickrInstance.config.onOpen.push(function() {
+            // Limpa a data selecionada se o campo estiver vazio
+            if (flatpickrInstance._input.value.trim() === '') {
+                flatpickrInstance.clear();
+                flatpickrInstance.setDate('', false); // Define o valor do campo como vazio
+            }
+        });
     }
 
     flatpickr(horarioEntrada, {
@@ -258,6 +286,8 @@ document.addEventListener('DOMContentLoaded', function() {
         dateFormat: "H:i",
         time_24hr: true,
         minuteIncrement: 1,
+        defaultHour: null, // Remove o preenchimento automático com valor padrão
+        defaultMinute: null, // Remove o preenchimento automático com valor padrão
         onReady: function(selectedDates, dateStr, instance) {
             setupTimeScrollPlugin(instance);
         }
@@ -269,6 +299,8 @@ document.addEventListener('DOMContentLoaded', function() {
         dateFormat: "H:i",
         time_24hr: true,
         minuteIncrement: 1,
+        defaultHour: null, // Remove o preenchimento automático com valor padrão
+        defaultMinute: null, // Remove o preenchimento automático com valor padrão
         onReady: function(selectedDates, dateStr, instance) {
             setupTimeScrollPlugin(instance);
         }
