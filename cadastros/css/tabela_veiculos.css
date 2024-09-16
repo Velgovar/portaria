@@ -146,85 +146,165 @@ body {
         }
 
         .modal {
-            display: none;
+            display: none; /* Oculta o modal por padrão */
             position: fixed;
-            top: 0;
+            z-index: 1000;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.3);
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center;    /* Centraliza verticalmente */
         }
-        
         .modal-content {
-            background-color: rgba(51, 51, 51, 0.9);
+            background-color: #333;
+            color: white;
             padding: 20px;
             border-radius: 8px;
-            width: 500px;
-            max-width: 90%;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
-                        5px 5px 20px rgba(0, 0, 0, 0.2),
-                        10px 10px 25px rgba(0, 0, 0, 0.1);
-            color: white; /* Define a cor do texto para branco */
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 80%;
         }
+        
         
         .modal-content h2 {
             margin-top: 0;
             color: white; /* Garante que o título também esteja em branco */
-            font-size: 24px;
+            font-weight: arial;
+            font-size: 20px;
         }
         
-        .modal-content label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: white; /* Garante que os rótulos também estejam em branco */
-        }
+/* Estilo para os rótulos */
+.modal-content label {
+    display: block; /* Garante que o rótulo se comporte como um bloco */
+    margin-bottom: 8px; /* Espaço abaixo do rótulo */
+    font-weight: normal; /* Ajusta o peso da fonte (substitua por 'bold' se preferir) */
+    color: white; /* Garante que o texto do rótulo esteja em branco */
+    text-align: left; /* Alinha o texto do rótulo à esquerda */
+    width: 100%; /* Garante que o rótulo ocupe toda a largura disponível */
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+    margin-left: 3%; /* Ajusta o deslocamento para a direita */
+}
+
         
-        .modal-content input {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            background: #333;
-            color: white; /* Garante que o texto dentro dos campos de entrada seja branco */
-        }
+/* Estilo para todos os campos de entrada */
+.modal-content input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    font-size: 14px;
+    background-color: #222;
+    color: white;
+    box-sizing: border-box;
+}
+
+/* Estilo específico para o campo do tipo 'time' */
+.modal-content input[type="time"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    font-size: 14px;
+    background-color: #222;
+    color: white;
+    box-sizing: border-box;
+}
+
+/* Estilo específico para o campo do tipo 'text' (apenas para garantir consistência) */
+.modal-content input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    font-size: 14px;
+    background-color: #222;
+    color: white;
+    box-sizing: border-box;
+}
+
         
-        .modal-content button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            color: white; /* Garante que o texto dos botões seja branco */
-        }
         
-        .modal-content button.close {
-            background-color: #d30e00; /* Cor de fundo vermelho para o botão de cancelar */
-            color: white; /* Garante que o texto do botão de fechamento seja branco */
-        }
-        
-        .modal-content button.close:hover {
-            background-color: #b30000; /* Vermelho mais escuro quando o cursor está sobre o botão */
-        }
-        
-        .modal-content button[type="submit"] {
-            background-color: #4CAF50; /* Cor de fundo verde para o botão de submit */
-            color: white; /* Garante que o texto do botão de submit seja branco */
-        }
-        
-        .modal-content button[type="submit"]:hover {
-            background-color: #45a049; /* Verde mais escuro quando o cursor está sobre o botão de submit */
-        }
-        
-        /* Ocultar os campos que não devem aparecer no modal */
-        .modal-content .hidden {
-            display: none;
-        }
+.modal-content button {
+    margin: 5px 10px;
+    padding: 10px 16px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+/* Botão de Exclusão */
+.modal-content .cancelar {
+    background-color: rgb(150, 0, 0); /* Cor vermelha escura */
+    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
+    padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
+    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+    background-image: linear-gradient(
+        to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.modal-content .cancelar:hover {
+    background-color: rgb(120, 0, 0); /* Cor de fundo ao passar o mouse */
+}
+
+.modal-content .cancelar:active {
+    box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+/* Botão de Cancelar */
+.modal-content .salvar {
+    background-color: rgb(5, 143, 0); /* Cor verde */
+    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
+    padding: 0 15.5px; /* Aumenta o padding horizontal para tornar o botão mais largo */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
+    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+    cursor: pointer;
+    background-image: linear-gradient(
+        to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.modal-content .salvar:hover {
+    background-color: rgb(4, 115, 0); /* Verde mais escuro ao passar o mouse */
+}
+
+.modal-content .salvar:active {
+    box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+
 
                 /* Personalização do ícone do seletor de hora */
                 input[type="time"]::-webkit-calendar-picker-indicator {
@@ -685,3 +765,196 @@ body {
       padding: 20px;
     }
   }
+
+  .datepicker {
+    width: 150px;
+    padding: 10px; /* Aumenta o espaço interno */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+}
+
+/* Cor das setas de ano (anterior e próximo) */
+.flatpickr-calendar .flatpickr-prev-month,
+.flatpickr-calendar .flatpickr-next-month,
+.flatpickr-calendar .flatpickr-prev-month svg,
+.flatpickr-calendar .flatpickr-next-month svg,
+.flatpickr-calendar .flatpickr-prev-month svg path,
+.flatpickr-calendar .flatpickr-next-month svg path {
+fill: #fff !important; /* Define a cor das setas como branca */
+}
+
+/* Cor das setas de ano ao passar o mouse */
+.flatpickr-calendar .flatpickr-prev-month:hover svg,
+.flatpickr-calendar .flatpickr-next-month:hover svg {
+fill: #fff !important; /* Mantém a cor branca ao passar o mouse */
+}
+
+
+/* Ajusta o fundo do seletor de meses */
+.flatpickr-calendar .flatpickr-months select,
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-year {
+background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
+color: #fff !important; /* Cor do texto */
+}
+
+/* Ajusta o fundo das opções do seletor de meses */
+.flatpickr-calendar .flatpickr-months select option,
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-year {
+background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
+color: #fff !important; /* Cor do texto */
+}
+
+
+
+/* Ajusta a cor de fundo do calendário */
+.flatpickr-calendar {
+background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
+color: #fff !important;
+max-height: 230px; /* Limita a altura máxima do calendário */
+overflow: hidden; /* Esconde qualquer conteúdo excedente */
+}
+
+/* Cor dos dias */
+.flatpickr-calendar .flatpickr-day {
+color: #fff !important;
+line-height: 24px; /* Ajusta o espaçamento de linha para os dias */
+height: 24px; /* Reduz a altura das células dos dias */
+}
+
+/* Ocultar dias fora do mês atual mantendo o layout */
+.flatpickr-calendar.only-current-month .flatpickr-day.prevMonthDay,
+.flatpickr-calendar.only-current-month .flatpickr-day.nextMonthDay {
+visibility: hidden !important;
+}
+
+/* Cor de fundo dos dias quando o mouse passa sobre eles */
+.flatpickr-calendar .flatpickr-day:hover {
+background-color: #666 !important;
+}
+
+/* Cor das setas de navegação (botões) */
+.flatpickr-calendar .flatpickr-prev-month svg,
+.flatpickr-calendar .flatpickr-next-month svg {
+fill: #fff !important;
+}
+
+/* Cor do nome do mês e ano */
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-year {
+color: #fff !important;
+}
+
+/* Cor dos dias da semana */
+.flatpickr-calendar .flatpickr-weekday {
+color: #ccc !important;
+}
+
+/* Cor dos dias selecionados */
+.flatpickr-calendar .flatpickr-day.selected {
+background-color: #666 !important;
+color: #fff !important;
+}
+
+/* Cor dos dias do mês atual */
+.flatpickr-calendar .flatpickr-day.currentMonth {
+color: #fff !important;
+}
+
+/* Cor do ícone de fechar (se houver) */
+.flatpickr-calendar .flatpickr-close {
+color: #fff !important;
+}
+
+/* Ícone do calendário no campo de entrada */
+.fas.fa-calendar-alt {
+color: #fff;
+}
+
+/* Estilo para o contêiner do campo de entrada */
+.input-container {
+position: relative; /* Define a referência para o posicionamento absoluto do ícone */
+display: inline-block;
+}
+
+/* Estilo para o campo de entrada */
+.input-container input {
+padding-right: 30px; /* Espaçamento para o ícone na direita */
+width: 100%; /* Certifique-se de que o campo de entrada preencha o contêiner */
+}
+
+/* Estilo para o ícone do calendário */
+.calendar-icon {
+position: absolute;
+right: 10px; /* Ajusta a posição horizontal do ícone para a direita */
+top: 50%;
+transform: translateY(-50%); /* Centraliza o ícone verticalmente */
+color: #fff; /* Cor do ícone */
+pointer-events: none; /* O ícone não interfere com o clique do mouse */
+}
+
+/* Estilo para o ícone no rótulo, se desejar reposicionar também */
+.data-item label i {
+color: #fff; /* Cor do ícone */
+margin-right: 5px; /* Espaçamento entre o ícone e o texto do rótulo */
+}
+
+/* Estilos personalizados para o Flatpickr */
+.flatpickr-input {
+background-color: rgba(34, 34, 34, 0.5); /* Fundo semi-transparente com a cor #222 */
+color: #fff !important; /* Texto branco */
+background-color: rgba(34, 34, 34, 0.5); /* Fundo semi-transparente com a cor #222 */
+padding: 10px; /* Espaçamento interno */
+border-radius: 4px; /* Bordas arredondadas */
+font-size: 16px; /* Tamanho da fonte */
+}
+
+/* Fundo e texto das horas e minutos */
+.flatpickr-time .flatpickr-hour,
+.flatpickr-time .flatpickr-minute {
+background-color: transparent !important; /* Fundo transparente das horas e minutos */
+color: #fff !important; /* Texto branco das horas e minutos */
+}
+
+/* Cor do separador de horas e minutos */
+.flatpickr-time .flatpickr-time-separator {
+color: #fff !important; /* Cor do separador */
+}
+
+.input-icon {
+position: relative;
+display: inline-block;
+width: 100%;
+}
+
+.input-icon i {
+position: absolute;
+right: 10px; /* Move o ícone para a direita */
+top: 50%;
+transform: translateY(-50%);
+color: #fff; /* Cor branca para o ícone */
+pointer-events: none; /* O ícone não interfere na interação do usuário com o input */
+}
+
+.input-icon input {
+padding-right: 30px; /* Espaço para o ícone dentro do campo */
+width: 100%;
+box-sizing: border-box;
+}
+
+/* Remove as flechinhas dos campos tipo number no Chrome, Safari e Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+/* Remove as flechinhas dos campos tipo number em todos os navegadores */
+input[type="number"] {
+-moz-appearance: textfield; /* Firefox */
+-webkit-appearance: none; /* Chrome, Safari */
+appearance: none; /* Padrão */
+}

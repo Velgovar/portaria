@@ -8,52 +8,48 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Configurações de conexão com o banco de dados
-$host = '192.168.254.136';
-$dbname = 'cobra';
-$username = 'felipe';
-$password = 'Aranhas12@';
+require '../db_config.php'; // Ajuste o caminho conforme a localização do seu arquivo
 
 try {
-    // Conectar ao banco de dados
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // Conectar ao banco de dados usando as variáveis de configuração
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Definir o número de registros por página
-    $registrosPorPagina = isset($_GET['registrosPorPagina']) ? (int)$_GET['registrosPorPagina'] : 10;
-
-    // Capturar o número da página atual
-    $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-    $offset = ($paginaAtual - 1) * $registrosPorPagina;
-
-    // Capturar os critérios de busca
-    $criterio = isset($_GET['criterio']) ? $_GET['criterio'] : 'id';
-    $busca = isset($_GET['busca']) ? $_GET['busca'] : '';
-
-    // Validar o critério de busca
-    $criteriosValidos = ['id', 'data', 'porteiro', 'veiculo', 'km_saida', 'km_chegada', 'horario_saida', 'horario_chegada', 'destino', 'motivo', 'acao'];
-    if (!in_array($criterio, $criteriosValidos)) {
-        $criterio = 'id';
-    }
-
-    // Consultar o total de registros com base no critério de busca
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM registros_veiculos WHERE $criterio LIKE :busca");
-    $stmt->bindValue(':busca', "%$busca%", PDO::PARAM_STR);
-    $stmt->execute();
-    $totalRegistros = $stmt->fetchColumn();
-    $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
-
-    // Consultar os registros com base na página atual e critério de busca
-    $stmt = $pdo->prepare("SELECT * FROM registros_veiculos WHERE $criterio LIKE :busca ORDER BY id DESC LIMIT :offset, :limit");
-    $stmt->bindValue(':busca', "%$busca%", PDO::PARAM_STR);
-    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-    $stmt->bindValue(':limit', $registrosPorPagina, PDO::PARAM_INT);
-    $stmt->execute();
-    $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Erro de conexão: " . $e->getMessage();
     exit;
 }
+
+// Definir o número de registros por página
+$registrosPorPagina = isset($_GET['registrosPorPagina']) ? (int)$_GET['registrosPorPagina'] : 10;
+
+// Capturar o número da página atual
+$paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+$offset = ($paginaAtual - 1) * $registrosPorPagina;
+
+// Capturar os critérios de busca
+$criterio = isset($_GET['criterio']) ? $_GET['criterio'] : 'id';
+$busca = isset($_GET['busca']) ? $_GET['busca'] : '';
+
+// Validar o critério de busca
+$criteriosValidos = ['id', 'data', 'porteiro', 'veiculo', 'km_saida', 'km_chegada', 'horario_saida', 'horario_chegada', 'destino', 'motivo', 'acao'];
+if (!in_array($criterio, $criteriosValidos)) {
+    $criterio = 'id';
+}
+
+// Consultar o total de registros com base no critério de busca
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM registros_veiculos WHERE $criterio LIKE :busca");
+$stmt->bindValue(':busca', "%$busca%", PDO::PARAM_STR);
+$stmt->execute();
+$totalRegistros = $stmt->fetchColumn();
+$totalPaginas = ceil($totalRegistros / $registrosPorPagina);
+
+// Consultar os registros com base na página atual e critério de busca
+$stmt = $pdo->prepare("SELECT * FROM registros_veiculos WHERE $criterio LIKE :busca ORDER BY id DESC LIMIT :offset, :limit");
+$stmt->bindValue(':busca', "%$busca%", PDO::PARAM_STR);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->bindValue(':limit', $registrosPorPagina, PDO::PARAM_INT);
+$stmt->execute();
+$registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Verificar se há mensagem de sucesso
 $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
@@ -212,7 +208,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         <form id="editForm" action="config/tabela_veiculos_config.php" method="POST">
             <input type="hidden" id="editId" name="id">
             <label for="editData">DATA:</label>
-            <input type="text" id="editData" name="data" required autocomplete="off">
+            <input type="date" id="editData" name="data" required autocomplete="off">
             <label for="editPorteiro">PORTEIRO:</label>
             <input type="text" id="editPorteiro" name="porteiro" required autocomplete="off">
             <label for="editVeiculo">VEICULO:</label>

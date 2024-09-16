@@ -1,50 +1,46 @@
 <?php
-// Configurações de conexão com o banco de dados
-$host = '192.168.254.136';
-$dbname = 'cobra';
-$username = 'felipe';
-$password = 'Aranhas12@';
+require '../db_config.php'; // Ajuste o caminho conforme a localização do seu arquivo
 
 try {
-    // Conectar ao banco de dados
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // Conectar ao banco de dados usando as variáveis de configuração
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Definir o número de registros por página
-    $registrosPorPagina = isset($_GET['registrosPorPagina']) ? (int)$_GET['registrosPorPagina'] : 10;
-
-    // Capturar o número da página atual
-    $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-    $offset = ($paginaAtual - 1) * $registrosPorPagina;
-
-    // Capturar os critérios de busca
-    $criterio = isset($_GET['criterio']) ? $_GET['criterio'] : 'id';
-    $busca = isset($_GET['busca']) ? $_GET['busca'] : '';
-
-    // Validar o critério de busca
-    $criteriosValidos = ['id', 'data', 'porteiro', 'veiculo', 'km_saida', 'km_chegada', 'horario_saida', 'horario_chegada', 'destino', 'motivo', 'acao'];
-    if (!in_array($criterio, $criteriosValidos)) {
-        $criterio = 'id';
-    }
-
-    // Consultar o total de registros com base no critério de busca
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM registros_veiculos WHERE $criterio LIKE :busca");
-    $stmt->bindValue(':busca', "%$busca%", PDO::PARAM_STR);
-    $stmt->execute();
-    $totalRegistros = $stmt->fetchColumn();
-    $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
-
-    // Consultar os registros com base na página atual e critério de busca
-    $stmt = $pdo->prepare("SELECT * FROM registros_veiculos WHERE $criterio LIKE :busca ORDER BY id DESC LIMIT :offset, :limit");
-    $stmt->bindValue(':busca', "%$busca%", PDO::PARAM_STR);
-    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-    $stmt->bindValue(':limit', $registrosPorPagina, PDO::PARAM_INT);
-    $stmt->execute();
-    $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Erro de conexão: " . $e->getMessage();
     exit;
 }
+
+// Definir o número de registros por página
+$registrosPorPagina = isset($_GET['registrosPorPagina']) ? (int)$_GET['registrosPorPagina'] : 10;
+
+// Capturar o número da página atual
+$paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+$offset = ($paginaAtual - 1) * $registrosPorPagina;
+
+// Capturar os critérios de busca
+$criterio = isset($_GET['criterio']) ? $_GET['criterio'] : 'id';
+$busca = isset($_GET['busca']) ? $_GET['busca'] : '';
+
+// Validar o critério de busca
+$criteriosValidos = ['id', 'data', 'porteiro', 'veiculo', 'km_saida', 'km_chegada', 'horario_saida', 'horario_chegada', 'destino', 'motivo', 'acao'];
+if (!in_array($criterio, $criteriosValidos)) {
+    $criterio = 'id';
+}
+
+// Consultar o total de registros com base no critério de busca
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM registros_veiculos WHERE $criterio LIKE :busca");
+$stmt->bindValue(':busca', "%$busca%", PDO::PARAM_STR);
+$stmt->execute();
+$totalRegistros = $stmt->fetchColumn();
+$totalPaginas = ceil($totalRegistros / $registrosPorPagina);
+
+// Consultar os registros com base na página atual e critério de busca
+$stmt = $pdo->prepare("SELECT * FROM registros_veiculos WHERE $criterio LIKE :busca ORDER BY id DESC LIMIT :offset, :limit");
+$stmt->bindValue(':busca', "%$busca%", PDO::PARAM_STR);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->bindValue(':limit', $registrosPorPagina, PDO::PARAM_INT);
+$stmt->execute();
+$registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Verificar se há mensagem de sucesso
 $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
@@ -57,6 +53,8 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Veículos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <link rel="stylesheet" href="css/tabela_veiculos.css">
 
 </head>
@@ -65,7 +63,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
 
     <div class="container_table1">
         <div class="header">
-            <h2>Dados da Tabela</h2>
+            <h2>Tabela Veículos</h2>
         </div>
         <!-- Formulário de Busca -->
         <form class="search-form" method="get" action="">
@@ -74,7 +72,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         <option value="id">ID</option>
         <option value="data">DATA</option>
         <option value="porteiro">PORTEIRO</option>
-        <option value="veiculo">VEICULO</option>
+        <option value="veiculo">VEÍCULO</option>
         <option value="km_saida">KM SAIDA</option>
         <option value="km_chegada">KM CHEGADA</option>
         <option value="horario_saida">HORARIO SAIDA</option>
@@ -97,7 +95,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                         <th>ID</th>
                         <th>DATA</th>
                         <th>PORTEIRO</th>
-                        <th>VEICULO</th>
+                        <th>VEÍCULO</th>
                         <th>KM SAIDA</th>
                         <th>KM CHEGADA</th>
                         <th>HORARIO SAIDA</th>
@@ -177,25 +175,32 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         </div>
 
         <div class="modal" id="editModal">
-            <div class="modal-content">
-                <h2>Editar Registro</h2>
-                <form id="editForm" action="../config/editar_table_veiculos.php" method="POST">
-                    <input type="hidden" id="editId" name="id">
-                    <label for="editKmChegada">KM Chegada:</label>
-                    <input type="text" id="editKmChegada" name="km_chegada" required>
-                    <label for="editHorarioChegada">Horário Chegada:</label>
-                    <input type="time" id="editHorarioChegada" name="horario_chegada" required>
-                    <input type="text" class="hidden" id="editData" name="data">
-                    <input type="text" class="hidden" id="editPorteiro" name="porteiro">
-                    <input type="text" class="hidden" id="editVeiculo" name="veiculo">
-                    <input type="text" class="hidden" id="editKmSaida" name="km_saida">
-                    <input type="text" class="hidden" id="editDestino" name="destino">
-                    <input type="text" class="hidden" id="editMotivo" name="motivo">
-                    <button type="submit" class="save-button">Salvar</button>
-                    <button type="button" class="close" onclick="closeModal()">Cancelar</button>
-                </form>
-            </div>
-        </div>
+    <div class="modal-content">
+        <h2>Editar Registro</h2>
+        <form id="editForm" action="../config/editar_table_veiculos.php" method="POST">
+            <input type="hidden" id="editId" name="id">
+            
+            <label for="editKmChegada">KM Chegada</label>
+            <input type="text" id="editKmChegada" name="km_chegada" required>
+            
+            <label for="editHorarioChegada">Horário Chegada</label>
+            <!-- Mudando o input para text para usar Flatpickr -->
+            <input type="number" id="editHorarioChegada" name="horario_chegada" required>
+            
+            <!-- Outros campos ocultos -->
+            <input type="text" class="hidden" id="editData" name="data">
+            <input type="text" class="hidden" id="editPorteiro" name="porteiro">
+            <input type="text" class="hidden" id="editVeiculo" name="veiculo">
+            <input type="text" class="hidden" id="editKmSaida" name="km_saida">
+            <input type="text" class="hidden" id="editDestino" name="destino">
+            <input type="text" class="hidden" id="editMotivo" name="motivo">
+            
+            <button type="submit" class="salvar">Salvar</button>
+            <button type="button" class="cancelar" onclick="closeModal()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
 
 <!-- Contêiner para o launcher -->
 <div id="launcher" class="launcher hidden">
@@ -203,6 +208,9 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
 </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
     <script src="js/tabela_Veiculos.js"></script>
 
 </body>

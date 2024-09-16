@@ -1,9 +1,9 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $servername = "192.168.254.136";
-    $username = "felipe";
-    $password = "Aranhas12@";
-    $dbname = "cobra";
+    $servername = "172.16.0.225";
+    $username = "root";
+    $password = "Meunome1@";
+    $dbname = "portaria";
 
     // Criação da conexão
     $conn = new mysqli($servername, $username, $password, $dbname);

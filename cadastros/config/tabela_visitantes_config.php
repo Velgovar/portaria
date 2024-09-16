@@ -2,10 +2,10 @@
 header('Content-Type: application/json');
 
 // Configurações de conexão com o banco de dados
-$host = '192.168.254.136';
-$dbname = 'cobra';
-$username = 'felipe';
-$password = 'Aranhas12@';
+$host = '172.16.0.225';
+$dbname = 'portaria';
+$username = 'root';
+$password = 'Meunome1@';
 $options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
 );

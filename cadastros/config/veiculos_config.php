@@ -1,9 +1,9 @@
 <?php
 // Configurações do banco de dados
-$host = '192.168.254.136'; // Host do banco de dados
-$dbname = 'cobra'; // Nome do banco de dados
-$username = 'felipe'; // Nome de usuário do banco de dados
-$password = 'Aranhas12@'; // Senha do banco de dados
+$host = '172.16.0.225'; // Host do banco de dados
+$dbname = 'portaria'; // Nome do banco de dados
+$username = 'root'; // Nome de usuário do banco de dados
+$password = 'Meunome1@'; // Senha do banco de dados
 
 // Configuração do charset para conexão
 $options = array(

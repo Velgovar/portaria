@@ -38,10 +38,7 @@
                         error_reporting(E_ALL);
 
                         // Conexão com o banco de dados
-                        $servername = "192.168.254.136";
-                        $username = "felipe";
-                        $password = "Aranhas12@";
-                        $dbname = "cobra";
+                        require '../db_config.php'; // Ajuste o caminho conforme a localização do seu arquivo
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -88,10 +85,10 @@
                         error_reporting(E_ALL);
 
                         // Conexão com o banco de dados
-                        $servername = "192.168.254.136";
-                        $username = "felipe";
-                        $password = "Aranhas12@";
-                        $dbname = "cobra";
+                        $servername = "172.16.0.225";
+                        $username = "root";
+                        $password = "Meunome1@";
+                        $dbname = "portaria";
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -176,10 +173,10 @@
                         error_reporting(E_ALL);
 
                         // Conexão com o banco de dados
-                        $servername = "192.168.254.136";
-                        $username = "felipe";
-                        $password = "Aranhas12@";
-                        $dbname = "cobra";
+                        $servername = "172.16.0.225";
+                        $username = "root";
+                        $password = "Meunome1@";
+                        $dbname = "portaria";
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
 

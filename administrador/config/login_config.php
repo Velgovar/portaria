@@ -2,9 +2,9 @@
 session_start();
 
 // Configurações de conexão com o banco de dados
-$dsn = 'mysql:host=192.168.254.136;dbname=cobra';
-$dbUsername = 'felipe';
-$dbPassword = 'Aranhas12@';
+$dsn = 'mysql:host=172.16.0.225;dbname=portaria';
+$dbUsername = 'root';
+$dbPassword = 'Meunome1@';
 
 // Conexão com o banco de dados
 try {

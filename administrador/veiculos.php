@@ -52,10 +52,8 @@ if (!isset($_SESSION['user_id'])) {
                 <tbody id="setor-list">
                 <?php
                 // Conexão com o banco de dados
-                    $servername = "192.168.254.136";
-                    $username = "felipe";
-                    $password = "Aranhas12@";
-                    $dbname = "cobra";
+                    require '../db_config.php';
+
 
                     $conn = new mysqli($servername, $username, $password, $dbname);
 
