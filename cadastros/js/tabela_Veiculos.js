@@ -126,7 +126,7 @@ document.getElementById('editForm').addEventListener('submit', handleFormSubmit)
 document.getElementById('registrosPorPagina').addEventListener('change', changeRecordsPerPage);
 
 document.addEventListener('DOMContentLoaded', function() {
-    const horarioChegada = document.getElementById('editHorarioChegada');
+    const horarioSaida = document.getElementById('editHorarioChegada');
 
     function setupTimeScrollPlugin(flatpickrInstance) {
         function handleWheel(event) {
@@ -171,6 +171,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Desabilita a confirmação com a tecla Enter
+        flatpickrInstance._input.addEventListener('keydown', function(event) {
+            if (event.keyCode === 13) { // Verifica se a tecla pressionada é o Enter
+                event.preventDefault(); // Previne o comportamento padrão de confirmar
+            }
+        });
+
         flatpickrInstance.config.onOpen.push(function() {
             if (flatpickrInstance._input.value.trim() === '') {
                 flatpickrInstance.clear();
@@ -179,8 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Aplicando o Flatpickr ao campo "Horário Chegada"
-    flatpickr(horarioChegada, {
+    // Aplicando o Flatpickr ao campo "Horário de Saída"
+    flatpickr(horarioSaida, {
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i",

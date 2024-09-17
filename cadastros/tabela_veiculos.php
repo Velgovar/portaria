@@ -180,13 +180,18 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         <form id="editForm" action="../config/editar_table_veiculos.php" method="POST">
             <input type="hidden" id="editId" name="id">
             
-            <label for="editKmChegada">KM Chegada</label>
-            <input type="text" id="editKmChegada" name="km_chegada" required>
-            
+            <label for="editKmChegada">KM Chegada </label>
+        <div class="input-icon">
+            <input type="text" id="editKmChegada" name="km_chegada"  required>
+            <i class="fas fa-tachometer-alt"></i> 
+        </div>
+                        
             <label for="editHorarioChegada">Horário Chegada</label>
-            <!-- Mudando o input para text para usar Flatpickr -->
+        <div class="input-icon">
+            <i class="fas fa-clock"></i> 
             <input type="number" id="editHorarioChegada" name="horario_chegada" required>
-            
+        </div>
+
             <!-- Outros campos ocultos -->
             <input type="text" class="hidden" id="editData" name="data">
             <input type="text" class="hidden" id="editPorteiro" name="porteiro">

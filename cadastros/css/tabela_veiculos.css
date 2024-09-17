@@ -63,119 +63,119 @@ body {
 }
 
 
-        .header {
-            text-align: center;
-            padding: 10px;
-            color: white;
-        }
+.header {
+    text-align: center;
+    padding: 10px;
+    color: white;
+}
 
-        .table-container {
-            height: calc(80vh - 100px); /* Ajusta a altura da tabela para dar mais espaço para a parte inferior */
-            max-height: 600px; /* Define uma altura máxima para a tabela */
-            overflow-y: auto; /* Adiciona barra de rolagem se necessário */
-            margin-top: 10px; /* Diminui o espaço superior */
-        }
+.table-container {
+    height: calc(80vh - 100px); /* Ajusta a altura da tabela para dar mais espaço para a parte inferior */
+    max-height: 600px; /* Define uma altura máxima para a tabela */
+    overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+    margin-top: 10px; /* Diminui o espaço superior */
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-            border: 2px solid #333;
-            margin-bottom: 0; /* Remove o espaço extra na parte inferior da tabela */
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: 2px solid #333;
+    margin-bottom: 0; /* Remove o espaço extra na parte inferior da tabela */
+}
 
-        thead th {
-            background-color: #222;
-            color: #eee;
-            position: sticky;
-            top: 0;
-            z-index: 2;
-            word-wrap: break-word; /* Força a quebra de linha se necessário */
-            white-space: normal; /* Permite a quebra de linha */
-        }
-        
-        th, td {
-            padding: 10px; /* Reduzido o padding para 10px */
-            border: 2px solid #444;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: normal; /* Permite a quebra de linha em células */
-            color: #ddd;
-            font-size: 0.9em; /* Reduzido o tamanho da fonte para 0.9em */
-        }
-        
+thead th {
+    background-color: #222;
+    color: #eee;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    word-wrap: break-word; /* Força a quebra de linha se necessário */
+    white-space: normal; /* Permite a quebra de linha */
+}
 
-        tbody tr:nth-child(even) {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Larguras específicas das colunas */
-        th:nth-child(1), td:nth-child(1) { width: 30px; }
-        th:nth-child(2), td:nth-child(2) { width: 90px; }
-        th:nth-child(3), td:nth-child(3) { width: 100px; }
-        th:nth-child(4), td:nth-child(4) { width: 60px; }
-        th:nth-child(5), td:nth-child(5) { width: 80px; }
-        th:nth-child(6), td:nth-child(6) { width: 80px; }
-        th:nth-child(7), td:nth-child(7) { width: 100px; }
-        th:nth-child(8), td:nth-child(8) { width: 100px; }
-        th:nth-child(9), td:nth-child(9) { width: 96px; }
-        th:nth-child(10), td:nth-child(10) { width: 130px; }
-        th:nth-child(11), td:nth-child(11) { width: 85px; }
-        th:nth-child(12), td:nth-child(11) { width: 90px; }
-        th:nth-child(13), td:nth-child(11) { width: 90px; }
-        th:nth-child(14), td:nth-child(11) { width: 90px; }
-        th:nth-child(15), td:nth-child(11) { width: 90px; }
+th, td {
+    padding: 10px; /* Reduzido o padding para 10px */
+    border: 2px solid #444;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Permite a quebra de linha em células */
+    color: #ddd;
+    font-size: 0.9em; /* Reduzido o tamanho da fonte para 0.9em */
+}
 
 
-        /* Container da paginação */
-        .pagination-container {
-            position: absolute; /* Fixa o container de paginação na parte inferior da página */
-            bottom: 3px; /* Ajusta a posição para estar um pouco acima da borda inferior da página */
-            left: -20px; /* Ajusta a posição horizontal para a esquerda, movendo 40px para a esquerda (20px - 40px) */
-            width: calc(100% - 60px); /* Ajusta a largura para acomodar o padding e o deslocamento */
-            padding: 15px 0; /* Adiciona algum espaço acima e abaixo do conteúdo */
-            z-index: 1000; /* Garante que a paginação fique acima do conteúdo */
-            display: flex; /* Utiliza flexbox para alinhar o conteúdo */
-            justify-content: space-between; /* Espaça os itens para a esquerda e direita */
-            align-items: center; /* Alinha o conteúdo verticalmente */
-        }
+tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
 
-        .modal {
-            display: none; /* Oculta o modal por padrão */
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            justify-content: center; /* Centraliza horizontalmente */
-            align-items: center;    /* Centraliza verticalmente */
-        }
-        .modal-content {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
-            width: 80%;
-        }
-        
-        
-        .modal-content h2 {
-            margin-top: 0;
-            color: white; /* Garante que o título também esteja em branco */
-            font-weight: arial;
-            font-size: 20px;
-        }
-        
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Larguras específicas das colunas */
+th:nth-child(1), td:nth-child(1) { width: 30px; }
+th:nth-child(2), td:nth-child(2) { width: 90px; }
+th:nth-child(3), td:nth-child(3) { width: 100px; }
+th:nth-child(4), td:nth-child(4) { width: 60px; }
+th:nth-child(5), td:nth-child(5) { width: 80px; }
+th:nth-child(6), td:nth-child(6) { width: 80px; }
+th:nth-child(7), td:nth-child(7) { width: 100px; }
+th:nth-child(8), td:nth-child(8) { width: 100px; }
+th:nth-child(9), td:nth-child(9) { width: 96px; }
+th:nth-child(10), td:nth-child(10) { width: 130px; }
+th:nth-child(11), td:nth-child(11) { width: 85px; }
+th:nth-child(12), td:nth-child(11) { width: 90px; }
+th:nth-child(13), td:nth-child(11) { width: 90px; }
+th:nth-child(14), td:nth-child(11) { width: 90px; }
+th:nth-child(15), td:nth-child(11) { width: 90px; }
+
+
+/* Container da paginação */
+.pagination-container {
+    position: absolute; /* Fixa o container de paginação na parte inferior da página */
+    bottom: 3px; /* Ajusta a posição para estar um pouco acima da borda inferior da página */
+    left: -20px; /* Ajusta a posição horizontal para a esquerda, movendo 40px para a esquerda (20px - 40px) */
+    width: calc(100% - 60px); /* Ajusta a largura para acomodar o padding e o deslocamento */
+    padding: 15px 0; /* Adiciona algum espaço acima e abaixo do conteúdo */
+    z-index: 1000; /* Garante que a paginação fique acima do conteúdo */
+    display: flex; /* Utiliza flexbox para alinhar o conteúdo */
+    justify-content: space-between; /* Espaça os itens para a esquerda e direita */
+    align-items: center; /* Alinha o conteúdo verticalmente */
+}
+
+.modal {
+    display: none; /* Oculta o modal por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;    /* Centraliza verticalmente */
+}
+
+.modal-content {
+    background-color: #333;
+    color: white;
+    padding: 20px 10px; /* Padding de 20px no topo/baixo e 10px nas laterais */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px; /* Ajuste para um valor menor se necessário */
+    width: 80%; /* Ajuste para 80% da largura da tela */
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: white; /* Garante que o título também esteja em branco */
+    font-weight: arial;
+    font-size: 20px;
+}
+
 /* Estilo para os rótulos */
 .modal-content label {
     display: block; /* Garante que o rótulo se comporte como um bloco */
@@ -185,7 +185,7 @@ body {
     text-align: left; /* Alinha o texto do rótulo à esquerda */
     width: 100%; /* Garante que o rótulo ocupe toda a largura disponível */
     box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
-    margin-left: 3%; /* Ajusta o deslocamento para a direita */
+    margin-left: 13%; /* Ajusta o deslocamento para a direita */
 }
 
         
@@ -927,13 +927,13 @@ color: #fff !important; /* Cor do separador */
 .input-icon {
 position: relative;
 display: inline-block;
-width: 100%;
+width: 80%;
 }
 
 .input-icon i {
 position: absolute;
-right: 10px; /* Move o ícone para a direita */
-top: 50%;
+right: 35px; /* Move o ícone para a direita */
+top: 40%;
 transform: translateY(-50%);
 color: #fff; /* Cor branca para o ícone */
 pointer-events: none; /* O ícone não interfere na interação do usuário com o input */
@@ -958,3 +958,4 @@ input[type="number"] {
 -webkit-appearance: none; /* Chrome, Safari */
 appearance: none; /* Padrão */
 }
+
