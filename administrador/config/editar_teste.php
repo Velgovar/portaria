@@ -1,181 +1,130 @@
-<<<<<<< HEAD
 <?php
-header('Content-Type: application/json');
+// Configurações do banco de dados
+$host = '172.16.0.225'; // Host do banco de dados
+$dbname = 'portaria'; // Nome do banco de dados
+$username = 'root'; // Nome de usuário do banco de dados
+$password = 'Meunome1@'; // Senha do banco de dados
 
-// Configurações de conexão com o banco de dados
-$host = '172.16.0.225';
-$dbname = 'portaria';
-$username = 'root';
-$password = 'Meunome1@';
+// Configuração do charset para conexão
 $options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
 );
 
+// Tentativa de conexão com o banco de dados usando PDO
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Modo de erros para Exception
+    echo "Conexão realizada com sucesso!"; // Debug de conexão
 } catch (PDOException $e) {
-    echo json_encode(array('message' => 'Erro ao conectar ao banco de dados: ' . $e->getMessage()));
-    exit;
-}
-
-// Função para validar dados
-function validate_data($data) {
-    return htmlspecialchars(strip_tags($data));
+    die("Erro ao conectar ao banco de dados: " . $e->getMessage());
 }
 
 // Verifica se os dados do formulário foram enviados
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recebe e valida os dados do formulário
-    $id = isset($_POST['id']) ? validate_data($_POST['id']) : null;
-    $data = isset($_POST['data']) ? validate_data($_POST['data']) : null;
-    $porteiro = isset($_POST['porteiro']) ? validate_data($_POST['porteiro']) : null;
-    $nome = isset($_POST['nome']) ? validate_data($_POST['nome']) : null;
-    $cpf = isset($_POST['cpf']) ? validate_data($_POST['cpf']) : null;
-    $tipovisitante = isset($_POST['tipovisitante']) ? validate_data($_POST['tipovisitante']) : null;
-    $servico = isset($_POST['servico']) ? validate_data($_POST['servico']) : null;
-    $empresa = isset($_POST['empresa']) ? validate_data($_POST['empresa']) : null;
-    $estacionamento = isset($_POST['estacionamento']) ? validate_data($_POST['estacionamento']) : null;
-    $placa = isset($_POST['placa']) ? validate_data($_POST['placa']) : null;
-    $horarioEntrada = isset($_POST['horario_entrada']) ? validate_data($_POST['horario_entrada']) : null;
-    $horarioSaida = isset($_POST['horario_saida']) ? validate_data($_POST['horario_saida']) : null;
-    $colaborador = isset($_POST['colaborador']) ? validate_data($_POST['colaborador']) : null;
-    $setor = isset($_POST['setor']) ? validate_data($_POST['setor']) : null;
+    // Verificação de recebimento de dados
+    if (!empty($_POST)) {
+        echo "Dados recebidos: ";
+        var_dump($_POST); // Exibe os dados recebidos para debug
+    }
 
-    // Prepara a consulta SQL para atualizar os dados
-    $sql = "UPDATE registro SET 
-                data = :data, 
-                porteiro = :porteiro, 
-                nome = :nome, 
-                cpf = :cpf, 
-                tipovisitante = :tipovisitante, 
-                servico = :servico, 
-                empresa = :empresa, 
-                estacionamento = :estacionamento, 
-                placa = :placa, 
-                horario_entrada = :horario_entrada, 
-                horario_saida = :horario_saida, 
-                colaborador = :colaborador, 
-                setor = :setor 
-            WHERE id = :id";
+    // Recebe os dados do formulário
+    $data = $_POST['data'] ?? null;
+    $porteiro = $_POST['porteiro'] ?? null;
+    $nome = $_POST['nome'] ?? null;
+    $cpf = $_POST['cpf'] ?? null; // Utilizando CPF como identificador único
+    $tipovisitante = $_POST['tipovisitante'] ?? null;
+    $servico = $_POST['servico'] ?? null;
+    $empresa = $_POST['empresa'] ?? null;
+    $estacionamento = $_POST['estacionamento'] ?? null;
+    $placa = $_POST['placa'] ?? null;
+    $horario_entrada = $_POST['horario_entrada'] ?? null;
+    $horario_saida = !empty($_POST['horario_saida']) ? $_POST['horario_saida'] : null;
+    $colaborador = $_POST['colaborador'] ?? null;
+    $setor = $_POST['setor'] ?? null;
 
-    $stmt = $pdo->prepare($sql);
+    // Verifica se o CPF foi enviado
+    if (empty($cpf)) {
+        echo "Erro: CPF não fornecido.";
+        exit;
+    }
 
-    try {
-        $stmt->execute(array(
-            ':data' => $data,
-            ':porteiro' => $porteiro,
-            ':nome' => $nome,
-            ':cpf' => $cpf,
-            ':tipovisitante' => $tipovisitante,
-            ':servico' => $servico,
-            ':empresa' => $empresa,
-            ':estacionamento' => $estacionamento,
-            ':placa' => $placa,
-            ':horario_entrada' => $horarioEntrada,
-            ':horario_saida' => $horarioSaida,
-            ':colaborador' => $colaborador,
-            ':setor' => $setor,
-            ':id' => $id,
-        ));
+    // Primeiro, verificamos se já existe um registro com o mesmo CPF
+    $sql_check = "SELECT COUNT(*) FROM registro WHERE cpf = :cpf";
+    $stmt_check = $pdo->prepare($sql_check);
+    $stmt_check->execute([':cpf' => $cpf]);
 
-        echo json_encode(array('message' => 'Registro atualizado com sucesso!'));
-    } catch (PDOException $e) {
-        http_response_code(500);
-        echo json_encode(array('message' => 'Erro ao atualizar o registro: ' . $e->getMessage(), 'sql' => $sql));
+    if ($stmt_check->fetchColumn() > 0) {
+        // Se o registro já existe, fazemos uma atualização
+        $sql = "UPDATE registro SET 
+                    data = :data, 
+                    porteiro = :porteiro, 
+                    nome = :nome, 
+                    tipovisitante = :tipovisitante, 
+                    servico = :servico, 
+                    empresa = :empresa, 
+                    estacionamento = :estacionamento, 
+                    placa = :placa, 
+                    horario_entrada = :horario_entrada, 
+                    horario_saida = :horario_saida, 
+                    colaborador = :colaborador, 
+                    setor = :setor
+                WHERE cpf = :cpf";
+
+        $stmt = $pdo->prepare($sql);
+
+        try {
+            // Executa a atualização
+            $stmt->execute(array(
+                ':data' => $data,
+                ':porteiro' => $porteiro,
+                ':nome' => $nome,
+                ':cpf' => $cpf,
+                ':tipovisitante' => $tipovisitante,
+                ':servico' => $servico,
+                ':empresa' => $empresa,
+                ':estacionamento' => $estacionamento,
+                ':placa' => $placa,
+                ':horario_entrada' => $horario_entrada,
+                ':horario_saida' => $horario_saida,
+                ':colaborador' => $colaborador,
+                ':setor' => $setor,
+            ));
+            echo json_encode(array('message' => 'Registro atualizado com sucesso!'));
+        } catch (PDOException $e) {
+            http_response_code(500); // Código de erro interno do servidor
+            echo json_encode(array('message' => 'Erro ao atualizar o registro: ' . $e->getMessage()));
+        }
+    } else {
+        // Se o registro não existe, fazemos a inserção
+        $sql = "INSERT INTO registro (data, porteiro, nome, cpf, tipovisitante, servico, empresa, estacionamento, placa, horario_entrada, horario_saida, colaborador, setor)
+                VALUES (:data, :porteiro, :nome, :cpf, :tipovisitante, :servico, :empresa, :estacionamento, :placa, :horario_entrada, :horario_saida, :colaborador, :setor)";
+
+        $stmt = $pdo->prepare($sql);
+
+        try {
+            // Executa a inserção
+            $stmt->execute(array(
+                ':data' => $data,
+                ':porteiro' => $porteiro,
+                ':nome' => $nome,
+                ':cpf' => $cpf,
+                ':tipovisitante' => $tipovisitante,
+                ':servico' => $servico,
+                ':empresa' => $empresa,
+                ':estacionamento' => $estacionamento,
+                ':placa' => $placa,
+                ':horario_entrada' => $horario_entrada,
+                ':horario_saida' => $horario_saida,
+                ':colaborador' => $colaborador,
+                ':setor' => $setor,
+            ));
+            echo json_encode(array('message' => 'Cadastro realizado com sucesso!'));
+        } catch (PDOException $e) {
+            http_response_code(500); // Código de erro interno do servidor
+            echo json_encode(array('message' => 'Erro ao cadastrar visitante: ' . $e->getMessage()));
+        }
     }
 } else {
-    echo json_encode(array('message' => 'Método de requisição inválido.'));
+    echo "Nenhum dado foi enviado!";
 }
 ?>
-=======
-<?php
-header('Content-Type: application/json');
-
-// Configurações de conexão com o banco de dados
-$host = '192.168.254.136';
-$dbname = 'cobra';
-$username = 'felipe';
-$password = 'Aranhas12@';
-$options = array(
-    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-);
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo json_encode(array('message' => 'Erro ao conectar ao banco de dados: ' . $e->getMessage()));
-    exit;
-}
-
-// Função para validar dados
-function validate_data($data) {
-    return htmlspecialchars(strip_tags($data));
-}
-
-// Verifica se os dados do formulário foram enviados
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recebe e valida os dados do formulário
-    $id = isset($_POST['id']) ? validate_data($_POST['id']) : null;
-    $data = isset($_POST['data']) ? validate_data($_POST['data']) : null;
-    $porteiro = isset($_POST['porteiro']) ? validate_data($_POST['porteiro']) : null;
-    $nome = isset($_POST['nome']) ? validate_data($_POST['nome']) : null;
-    $cpf = isset($_POST['cpf']) ? validate_data($_POST['cpf']) : null;
-    $tipovisitante = isset($_POST['tipovisitante']) ? validate_data($_POST['tipovisitante']) : null;
-    $servico = isset($_POST['servico']) ? validate_data($_POST['servico']) : null;
-    $empresa = isset($_POST['empresa']) ? validate_data($_POST['empresa']) : null;
-    $estacionamento = isset($_POST['estacionamento']) ? validate_data($_POST['estacionamento']) : null;
-    $placa = isset($_POST['placa']) ? validate_data($_POST['placa']) : null;
-    $horarioEntrada = isset($_POST['horario_entrada']) ? validate_data($_POST['horario_entrada']) : null;
-    $horarioSaida = isset($_POST['horario_saida']) ? validate_data($_POST['horario_saida']) : null;
-    $colaborador = isset($_POST['colaborador']) ? validate_data($_POST['colaborador']) : null;
-    $setor = isset($_POST['setor']) ? validate_data($_POST['setor']) : null;
-
-    // Prepara a consulta SQL para atualizar os dados
-    $sql = "UPDATE registro SET 
-                data = :data, 
-                porteiro = :porteiro, 
-                nome = :nome, 
-                cpf = :cpf, 
-                tipovisitante = :tipovisitante, 
-                servico = :servico, 
-                empresa = :empresa, 
-                estacionamento = :estacionamento, 
-                placa = :placa, 
-                horario_entrada = :horario_entrada, 
-                horario_saida = :horario_saida, 
-                colaborador = :colaborador, 
-                setor = :setor 
-            WHERE id = :id";
-
-    $stmt = $pdo->prepare($sql);
-
-    try {
-        $stmt->execute(array(
-            ':data' => $data,
-            ':porteiro' => $porteiro,
-            ':nome' => $nome,
-            ':cpf' => $cpf,
-            ':tipovisitante' => $tipovisitante,
-            ':servico' => $servico,
-            ':empresa' => $empresa,
-            ':estacionamento' => $estacionamento,
-            ':placa' => $placa,
-            ':horario_entrada' => $horarioEntrada,
-            ':horario_saida' => $horarioSaida,
-            ':colaborador' => $colaborador,
-            ':setor' => $setor,
-            ':id' => $id,
-        ));
-
-        echo json_encode(array('message' => 'Registro atualizado com sucesso!'));
-    } catch (PDOException $e) {
-        http_response_code(500);
-        echo json_encode(array('message' => 'Erro ao atualizar o registro: ' . $e->getMessage(), 'sql' => $sql));
-    }
-} else {
-    echo json_encode(array('message' => 'Método de requisição inválido.'));
-}
-?>
->>>>>>> origin/master
