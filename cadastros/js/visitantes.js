@@ -96,7 +96,7 @@ function validateInput(input) {
             input.classList.remove('valid');
             setTimeout(function() {
                 input.classList.remove('error');
-            }, 3000); // Remove a borda vermelha após 3 segundos
+            }, 3000);
             return false;
         } else {
             input.classList.remove('error');
@@ -114,7 +114,7 @@ function validateInput(input) {
                 input.classList.remove('valid');
                 setTimeout(function() {
                     input.classList.remove('error');
-                }, 3000); // Remove a borda vermelha após 3 segundos
+                }, 3000);
                 return false;
             } else {
                 input.classList.remove('error');
@@ -126,13 +126,26 @@ function validateInput(input) {
             input.classList.add('valid');
             return true;
         }
+    } else if (input.id === 'cpf') {
+        if (!isValidCPF(input.value)) {
+            input.classList.add('error');
+            input.classList.remove('valid');
+            setTimeout(function() {
+                input.classList.remove('error');
+            }, 3000);
+            return false;
+        } else {
+            input.classList.remove('error');
+            input.classList.add('valid');
+            return true;
+        }
     } else {
         if (input.value.trim() === '') {
             input.classList.add('error');
             input.classList.remove('valid');
             setTimeout(function() {
                 input.classList.remove('error');
-            }, 3000); // Remove a borda vermelha após 3 segundos
+            }, 3000);
             return false;
         } else {
             input.classList.remove('error');

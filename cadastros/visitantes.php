@@ -71,7 +71,7 @@
 
             <div class="form-group">
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf" placeholder="Formato xxx.xxx.xxx-xx">
+                <input type="text" id="cpf" name="cpf" placeholder="Ex: 123.456.789-00">
             </div>
 
             <div class="form-group">
