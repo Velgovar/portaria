@@ -180,7 +180,12 @@ function validateInput(input) {
 let previousCPFValue = '';
 
 // Variáveis para armazenar os valores antigos dos campos
-let previousFormValues = {};
+let previousFormValues = {
+    nome: '',
+    tipovisitante: '',
+    servico: '',
+    empresa: ''
+};
 
 // Função para formatar o CPF
 function formatCPF(value) {
@@ -192,7 +197,7 @@ function formatCPF(value) {
     return value;
 }
 
-// Função para verificar se o CPF é válido
+// Função para verificar se o CPF é válido (precisa de 11 dígitos)
 function isValidCPF(cpf) {
     const cleanedCPF = cpf.replace(/\D/g, '');
     return cleanedCPF.length === 11;
@@ -201,10 +206,10 @@ function isValidCPF(cpf) {
 // Função para armazenar os valores atuais dos campos
 function storeCurrentFormValues() {
     previousFormValues = {
-        nome: document.getElementById('nome').value,
-        tipovisitante: document.getElementById('tipovisitante').value,
-        servico: document.getElementById('servico').value,
-        empresa: document.getElementById('empresa').value
+        nome: document.getElementById('nome').value || '',
+        tipovisitante: document.getElementById('tipovisitante').value || '',
+        servico: document.getElementById('servico').value || '',
+        empresa: document.getElementById('empresa').value || ''
     };
 }
 
@@ -220,6 +225,7 @@ function restorePreviousFormValues() {
 var cpfInput = document.getElementById('cpf');
 cpfInput.addEventListener('input', function(event) {
     const value = event.target.value;
+    const cleanedValue = value.replace(/\D/g, ''); // Remover caracteres não numéricos
     event.target.value = formatCPF(value);
 
     // Se o CPF for válido (11 dígitos), buscar as informações
@@ -228,9 +234,12 @@ cpfInput.addEventListener('input', function(event) {
         storeCurrentFormValues();
         fetchVisitorInfo(value);
     } 
-    // Se o CPF estiver incompleto ou sendo apagado, restaurar os valores antigos
-    else if (value.replace(/\D/g, '').length < previousCPFValue.replace(/\D/g, '').length) {
-        restorePreviousFormValues();
+    // Se o CPF está incompleto ou sendo apagado, restaurar os valores antigos
+    else if (cleanedValue.length < previousCPFValue.replace(/\D/g, '').length) {
+        // Apenas restaurar se o CPF anterior tinha 11 dígitos
+        if (previousCPFValue.replace(/\D/g, '').length === 11) {
+            restorePreviousFormValues();
+        }
     }
 
     // Atualizar o valor anterior do CPF
@@ -261,18 +270,18 @@ function fetchVisitorInfo(cpf) {
                         document.getElementById('servico').value = data.servico;
                         document.getElementById('empresa').value = data.empresa;
                     } else {
-                        restorePreviousFormValues(); // Restaurar os valores antigos se não houver dados
+                        restorePreviousFormValues();
                     }
                 } catch (e) {
                     console.error('Erro ao processar a resposta:', e);
                     displayErrorMessage('Erro ao processar os dados do visitante.');
-                    restorePreviousFormValues(); // Restaurar em caso de erro
+                    restorePreviousFormValues();
                 }
             })
             .catch(function(error) {
                 console.error('Erro:', error);
                 displayErrorMessage('Erro ao buscar informações.');
-                restorePreviousFormValues(); // Restaurar em caso de erro
+                restorePreviousFormValues();
             });
     }
 }
