@@ -111,14 +111,14 @@
     <div class="km-item">
         <label for="km_saida">KM saída</label>
         <div class="input-icon">
-            <input type="number" id="km_saida" name="km_saida" placeholder="">
+            <input type="number" id="km_saida" name="km_saida" placeholder="Ex: 23456">
             <i class="fas fa-tachometer-alt"></i> <!-- Ícone de carro -->
         </div>
     </div>
     <div class="km-item">
         <label for="km_chegada">KM chegada</label>
         <div class="input-icon">
-            <input type="number" id="km_chegada" name="km_chegada">
+            <input type="number" id="km_chegada" name="km_chegada" placeholder="Ex: 23456">
             <i class="fas fa-tachometer-alt"></i> <!-- Ícone de painel -->
         </div>
     </div>
@@ -130,14 +130,14 @@
         <label for="horario_saida"> Horário saída</label>
         <div class="input-icon">
             <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
-            <input type="text" id="horario_saida" name="horario_saida" placeholder="">
+            <input type="text" id="horario_saida" name="horario_saida" placeholder="Ex: 12:00">
         </div>
     </div>
     <div class="horario-item">
         <label for="horario_entrada"> Horário chegada</label>
         <div class="input-icon">
             <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
-            <input type="text" id="horario_entrada" name="horario_entrada" placeholder="">
+            <input type="text" id="horario_entrada" name="horario_entrada" placeholder="Ex: 12:00">
         </div>
     </div>
 </div>
