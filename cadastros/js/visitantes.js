@@ -176,81 +176,107 @@ function validateInput(input) {
         document.getElementById('horario_entrada').value = time;
     }
 
-    // Função para formatar o CPF
-    function formatCPF(value) {
-        const cleanedValue = value.replace(/\D/g, '').slice(0, 11);
-        const match = cleanedValue.match(/^(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})$/);
-        if (match) {
-            return `${match[1]}${match[2] ? '.' : ''}${match[2]}${match[3] ? '.' : ''}${match[3]}${match[4] ? '-' : ''}${match[4]}`;
-        }
-        return value;
+// Variável para armazenar o valor anterior do CPF
+let previousCPFValue = '';
+
+// Variáveis para armazenar os valores antigos dos campos
+let previousFormValues = {};
+
+// Função para formatar o CPF
+function formatCPF(value) {
+    const cleanedValue = value.replace(/\D/g, '').slice(0, 11);
+    const match = cleanedValue.match(/^(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})$/);
+    if (match) {
+        return `${match[1]}${match[2] ? '.' : ''}${match[2]}${match[3] ? '.' : ''}${match[3]}${match[4] ? '-' : ''}${match[4]}`;
+    }
+    return value;
+}
+
+// Função para verificar se o CPF é válido
+function isValidCPF(cpf) {
+    const cleanedCPF = cpf.replace(/\D/g, '');
+    return cleanedCPF.length === 11;
+}
+
+// Função para armazenar os valores atuais dos campos
+function storeCurrentFormValues() {
+    previousFormValues = {
+        nome: document.getElementById('nome').value,
+        tipovisitante: document.getElementById('tipovisitante').value,
+        servico: document.getElementById('servico').value,
+        empresa: document.getElementById('empresa').value
+    };
+}
+
+// Função para restaurar os valores antigos dos campos
+function restorePreviousFormValues() {
+    document.getElementById('nome').value = previousFormValues.nome;
+    document.getElementById('tipovisitante').value = previousFormValues.tipovisitante;
+    document.getElementById('servico').value = previousFormValues.servico;
+    document.getElementById('empresa').value = previousFormValues.empresa;
+}
+
+// Manipulador de evento para o campo CPF
+var cpfInput = document.getElementById('cpf');
+cpfInput.addEventListener('input', function(event) {
+    const value = event.target.value;
+    event.target.value = formatCPF(value);
+
+    // Se o CPF for válido (11 dígitos), buscar as informações
+    if (isValidCPF(value)) {
+        // Armazenar os valores atuais antes de buscar novos
+        storeCurrentFormValues();
+        fetchVisitorInfo(value);
+    } 
+    // Se o CPF estiver incompleto ou sendo apagado, restaurar os valores antigos
+    else if (value.replace(/\D/g, '').length < previousCPFValue.replace(/\D/g, '').length) {
+        restorePreviousFormValues();
     }
 
-    // Função para verificar se o CPF é válido
-    function isValidCPF(cpf) {
-        const cleanedCPF = cpf.replace(/\D/g, '');
-        return cleanedCPF.length === 11;
-    }
+    // Atualizar o valor anterior do CPF
+    previousCPFValue = value;
+});
 
-    // Função para limpar os campos do formulário
-    function clearFormFields() {
-        document.getElementById('nome').value = '';
-        document.getElementById('tipovisitante').value = '';
-        document.getElementById('servico').value = '';
-        document.getElementById('empresa').value = '';
-    }
-
-    // Manipulador de evento para o campo CPF
-    var cpfInput = document.getElementById('cpf');
-    cpfInput.addEventListener('input', function(event) {
-        const value = event.target.value;
-        event.target.value = formatCPF(value);
-
-        if (isValidCPF(value)) {
-            fetchVisitorInfo(value);
-        } else {
-            clearFormFields(); // Limpa os campos se o CPF não for válido
-        }
-    });
-
-    // Função para buscar informações do visitante
-    function fetchVisitorInfo(cpf) {
-        // Remove caracteres especiais do CPF para a consulta
-        const cleanedCPF = cpf.replace(/\D/g, '');
-        if (cleanedCPF.length === 11) {
-            const url = 'config/cpf_config.php?cpf=' + encodeURIComponent(cpf);
-            console.log('Buscando informações com URL:', url); // Verifique no console
-            fetch(url)
-                .then(function(response) {
-                    if (!response.ok) {
-                        throw new Error('Erro ao buscar informações.');
+// Função para buscar informações do visitante
+function fetchVisitorInfo(cpf) {
+    // Remove caracteres especiais do CPF para a consulta
+    const cleanedCPF = cpf.replace(/\D/g, '');
+    if (cleanedCPF.length === 11) {
+        const url = 'config/cpf_config.php?cpf=' + encodeURIComponent(cpf);
+        console.log('Buscando informações com URL:', url); // Verifique no console
+        fetch(url)
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar informações.');
+                }
+                return response.text(); // Recebe a resposta como texto
+            })
+            .then(function(text) {
+                try {
+                    const data = JSON.parse(text); // Tenta converter o texto para JSON
+                    console.log('Dados recebidos:', data); // Verifique no console
+                    if (data.nome) { // Ajuste a verificação conforme a resposta esperada
+                        document.getElementById('nome').value = data.nome;
+                        document.getElementById('tipovisitante').value = data.tipovisitante;
+                        document.getElementById('servico').value = data.servico;
+                        document.getElementById('empresa').value = data.empresa;
+                    } else {
+                        restorePreviousFormValues(); // Restaurar os valores antigos se não houver dados
                     }
-                    return response.text(); // Recebe a resposta como texto
-                })
-                .then(function(text) {
-                    try {
-                        const data = JSON.parse(text); // Tenta converter o texto para JSON
-                        console.log('Dados recebidos:', data); // Verifique no console
-                        if (data.nome) { // Ajuste a verificação conforme a resposta esperada
-                            document.getElementById('nome').value = data.nome;
-                            document.getElementById('tipovisitante').value = data.tipovisitante;
-                            document.getElementById('servico').value = data.servico;
-                            document.getElementById('empresa').value = data.empresa;
-                        } else {
-                            clearFormFields();
-                        }
-                    } catch (e) {
-                        console.error('Erro ao processar a resposta:', e);
-                        displayErrorMessage('Erro ao processar os dados do visitante.');
-                    }
-                })
-                .catch(function(error) {
-                    console.error('Erro:', error);
-                    displayErrorMessage('Erro ao buscar informações.');
-                });
-        }
+                } catch (e) {
+                    console.error('Erro ao processar a resposta:', e);
+                    displayErrorMessage('Erro ao processar os dados do visitante.');
+                    restorePreviousFormValues(); // Restaurar em caso de erro
+                }
+            })
+            .catch(function(error) {
+                console.error('Erro:', error);
+                displayErrorMessage('Erro ao buscar informações.');
+                restorePreviousFormValues(); // Restaurar em caso de erro
+            });
     }
-    
+}
+
     // Manipulador de evento para o campo de estacionamento
     var estacionamentoSelect = document.getElementById('estacionamento');
     estacionamentoSelect.addEventListener('change', function() {

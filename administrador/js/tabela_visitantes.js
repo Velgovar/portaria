@@ -60,35 +60,35 @@ function resetModalFields() {
     document.getElementById('editForm').reset();
 }
 
-// Enviar a atualização via AJAX
-// Lidar com o envio do formulário de edição
 document.getElementById('editForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
 
     const formData = new FormData(this);
+    const data = new URLSearchParams(formData).toString();
+
+    console.log('Dados do formulário:', data); // Verifique os dados antes do envio
 
     fetch('config/editar_teste.php', {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: data
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Resposta do servidor:', data); // Verifique a resposta
+        console.log('Dados JSON do servidor:', data); // Verifique a resposta
 
-        // Ocultar a notificação padrão (em alguns navegadores, isso não pode ser feito diretamente, mas vamos garantir que só a nossa notificação seja exibida)
-        const launcher = document.getElementById('launcher');
-        if (data.message.includes('sucesso')) {
-            // Mostrar a notificação personalizada
+        if (data.success) {
+            const launcher = document.getElementById('launcher');
             launcher.classList.remove('hidden');
             launcher.classList.add('visible');
 
-            // Remover a notificação personalizada após 2 segundos
             setTimeout(() => {
                 launcher.classList.remove('visible');
                 launcher.classList.add('hidden');
             }, 2000);
 
-            // Fechar o modal e atualizar a linha da tabela
             closeModalFunction();
             updateTableRow(
                 formData.get('id'),
@@ -115,6 +115,7 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
         alert('Erro ao enviar a atualização.');
     });
 });
+
 
 // Função para atualizar a linha da tabela com os novos dados
 function updateTableRow(id, data, porteiro, nome, cpf, tipovisitante, servico, empresa, estacionamento, placa, horarioEntrada, horarioSaida, colaborador, setor) {

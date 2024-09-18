@@ -287,11 +287,17 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     <div class="confirmation-modal-content">
         <h3>Confirmação de Exclusão</h3>
         <p>Você tem certeza que deseja excluir este cadastro?</p>
+        
+        <!-- Formulário de confirmação -->
         <form id="confirmationForm">
-<!-- Campo de texto para confirmação -->
-<input type="text" id="confirmationInput" autocomplete="off" placeholder="Digite 'excluir' para confirmar">
-            <button type="submit">Excluir</button>
-            <button type="button" class="cancel" onclick="closeConfirmationModal()">Cancelar</button>
+            <!-- Campo de texto para confirmação -->
+            <input type="text" id="confirmationInput" autocomplete="off" placeholder="Digite 'excluir' para confirmar" required>
+            
+            <!-- Botões de ação -->
+            <div class="modal-buttons">
+                <button type="submit" class="confirm-delete">Excluir</button>
+                <button type="button" class="cancel" onclick="closeConfirmationModal()">Cancelar</button>
+            </div>
         </form>
     </div>
 </div>
