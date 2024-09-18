@@ -135,7 +135,7 @@
                 </div>
                 <div class="km-item" style="display: none;">
                 <label for="placa">Qual placa?</label>
-                <input type="text" id="placa" name="placa" class="placa">
+                <input type="text" id="placa" maxlength="8" placeholder="ABC-1234 ou ABC1D23">
 
                 </div>
             </div>

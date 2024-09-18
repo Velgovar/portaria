@@ -385,4 +385,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+// Função para formatar a placa com base na presença do hífen
+function formatPlaca(value) {
+    // Remove tudo que não seja letra, número ou hífen
+    const cleanedValue = value.replace(/[^A-Za-z0-9-]/g, '').toUpperCase();
+    
+    let formattedPlaca = '';
+    
+    if (cleanedValue.includes('-')) {
+        // Remove hífen para processamento
+        const parts = cleanedValue.split('-');
+        const letras = parts[0].slice(0, 3).replace(/[^A-Z]/g, '');
+        const numeros = parts[1].slice(0, 4).replace(/[^0-9]/g, '');
+        formattedPlaca = `${letras}-${numeros}`;
+    } else {
+        // Processa sem hífen
+        const letras = cleanedValue.slice(0, 3).replace(/[^A-Z]/g, '');
+        const numero1 = cleanedValue.slice(3, 4).replace(/[^0-9]/g, '');
+        const letra = cleanedValue.slice(4, 5).replace(/[^A-Z]/g, '');
+        const numerosRestantes = cleanedValue.slice(5, 7).replace(/[^0-9]/g, '');
+        formattedPlaca = `${letras}${numero1}${letra}${numerosRestantes}`;
+    }
+    
+    // Garantir que o formato tenha exatamente 7 caracteres ou 8 com hífen
+    return formattedPlaca.slice(0, 8);
+}
+
+// Manipulador de evento para o campo de placa
+var placaInput = document.getElementById('placa');
+placaInput.addEventListener('input', function(event) {
+    const value = event.target.value;
+    event.target.value = formatPlaca(value);
+});
+
+    
 });
