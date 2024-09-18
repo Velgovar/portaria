@@ -121,7 +121,7 @@
 
             <div class="form-group">
                 <label for="servico">Motivo da Visita</label>
-                <input type="text" id="servico" name="servico" placeholder="Ex: Manutenção de Impressoras">
+                <input type="text" id="servico" name="servico" placeholder="Ex: Visitante">
             </div>
 
             <div class="form-group km">
@@ -135,7 +135,7 @@
                 </div>
                 <div class="km-item" style="display: none;">
                     <label for="placa">Digite a Placa</label>
-                    <input type="text" id="placa" name="placa" maxlength="8" placeholder="Mercosul (ABC1D23) ou Antiga (ABC-1234)">
+                    <input type="text" id="placa" name="placa" maxlength="8" placeholder="Mercosul (ABC1D23) ou Padrão Antiga (ABC-1234)">
                 </div>
             </div>
 
