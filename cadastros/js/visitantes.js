@@ -416,7 +416,5 @@ var placaInput = document.getElementById('placa');
 placaInput.addEventListener('input', function(event) {
     const value = event.target.value;
     event.target.value = formatPlaca(value);
-});
-
-    
+   });   
 });

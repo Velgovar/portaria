@@ -134,9 +134,8 @@
                     </select>
                 </div>
                 <div class="km-item" style="display: none;">
-                <label for="placa">Qual placa?</label>
-                <input type="text" id="placa" maxlength="8" placeholder="ABC-1234 ou ABC1D23">
-
+                    <label for="placa">Digite a Placa</label>
+                    <input type="text" id="placa" name="placa" maxlength="8" placeholder="Mercosul (ABC1D23) ou Antiga (ABC-1234)">
                 </div>
             </div>
 
