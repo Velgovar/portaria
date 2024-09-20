@@ -22,18 +22,9 @@ document.querySelectorAll('.edit-button').forEach(button => {
     });
 });
 
-
-
 // Fechar o modal ao clicar no botão de fechar
 document.getElementById('closeModal').addEventListener('click', function() {
     closeModalFunction();
-});
-
-// Fechar o modal ao clicar fora dele
-window.addEventListener('click', function(event) {
-    if (event.target === document.getElementById('editModal')) {
-        closeModalFunction();
-    }
 });
 
 // Função para fechar o modal e resetar os campos
@@ -93,8 +84,6 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
         alert('Erro ao enviar a atualização.');
     });
 });
-
-
 
 // Função para atualizar a linha da tabela com os novos dados
 function updateTableRow(id, horarioSaida) {

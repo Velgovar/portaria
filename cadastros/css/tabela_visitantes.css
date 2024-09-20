@@ -238,7 +238,7 @@ th:nth-child(15), td:nth-child(11) { width: 90px; }
         rgb(0 0 0 / 20%),
         rgb(0 0 0 / 20%) 30%,
         rgb(0 0 0 / 0%)
-    );
+        );
     box-shadow:
         inset 2px 2px 3px rgb(255 255 255 / 60%),
         inset -2px -2px 3px rgb(0 0 0 / 60%);
@@ -269,7 +269,7 @@ th:nth-child(15), td:nth-child(11) { width: 90px; }
         rgb(0 0 0 / 20%),
         rgb(0 0 0 / 20%) 30%,
         rgb(0 0 0 / 0%)
-    );
+        );
     box-shadow:
         inset 2px 2px 3px rgb(255 255 255 / 60%),
         inset -2px -2px 3px rgb(0 0 0 / 60%);
@@ -283,16 +283,6 @@ th:nth-child(15), td:nth-child(11) { width: 90px; }
     box-shadow:
         inset -2px -2px 3px rgb(255 255 255 / 60%),
         inset 2px 2px 3px rgb(0 0 0 / 60%);
-}
-
-input[type="time"]::-webkit-calendar-picker-indicator {
-    filter: invert(1); 
-}
-
-
-input[type="time"] {
-    color: white; 
-    background: #333; 
 }
 
 .edit-button {
@@ -312,21 +302,21 @@ input[type="time"] {
         rgb(0 0 0 / 20%),
         rgb(0 0 0 / 20%) 30%,
         rgb(0 0 0 / 0%)
-);
+        );
     box-shadow:
-    inset 2px 2px 3px rgb(255 255 255 / 60%),
-    inset -2px -2px 3px rgb(0 0 0 / 60%);
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
 }
 
 .edit-button:hover {
         background-color: rgb(100, 100, 100);
-    }
+}
 
 .edit-button:active {
-        box-shadow:
+    box-shadow:
         inset -2px -2px 3px rgb(255 255 255 / 60%),
         inset 2px 2px 3px rgb(0 0 0 / 60%);
-    }
+}
 
 .voltar {
     position: absolute;
@@ -347,7 +337,8 @@ input[type="time"] {
         to top left,
         rgb(0 0 0 / 20%),
         rgb(0 0 0 / 20%) 30%,
-        rgb(0 0 0 / 0%));
+        rgb(0 0 0 / 0%)
+        );
     box-shadow:
         inset 2px 2px 3px rgb(255 255 255 / 60%),
         inset -2px -2px 3px rgb(0 0 0 / 60%);
@@ -587,6 +578,72 @@ input[type="time"] {
     transform: translateY(-20px);
 }
 
+.datepicker {
+    width: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; 
+}
+
+.flatpickr-calendar {
+    background-color: rgba(51, 51, 51, 0.8) !important; 
+    color: #fff !important;
+    max-height: 230px; 
+    overflow: hidden; 
+}
+
+.flatpickr-input {
+    background-color: rgba(34, 34, 34, 0.5); 
+    color: #fff !important; 
+    background-color: rgba(34, 34, 34, 0.5); 
+    padding: 10px; 
+    border-radius: 4px; 
+    font-size: 16px; 
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); 
+}
+
+
+input[type="time"] {
+    color: white; 
+    background: #333; 
+}
+
+.flatpickr-time .flatpickr-hour,
+.flatpickr-time .flatpickr-minute {
+    background-color: transparent !important; 
+    color: #fff !important; 
+}
+
+.flatpickr-time .flatpickr-time-separator {
+    color: #fff !important; 
+}
+
+.input-icon {
+    position: relative;
+    display: inline-block;
+    width: 80%;
+}
+
+.input-icon i {
+    position: absolute;
+    right: 25px; 
+    top: 61%;
+    transform: translateY(-50%);
+    color: #fff; 
+    pointer-events: none; 
+}
+
+.input-icon input {
+    padding-right: 30px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
 @media (max-width: 600px) {
     .container {
       width: 95%; 
@@ -626,60 +683,3 @@ input[type="time"] {
       padding: 20px;
     }
   }
-
-.datepicker {
-    width: 150px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box; 
-}
-
-
-.flatpickr-calendar {
-    background-color: rgba(51, 51, 51, 0.8) !important; 
-    color: #fff !important;
-    max-height: 230px; 
-    overflow: hidden; 
-}
-
-.flatpickr-input {
-    background-color: rgba(34, 34, 34, 0.5); 
-    color: #fff !important; 
-    background-color: rgba(34, 34, 34, 0.5); 
-    padding: 10px; 
-    border-radius: 4px; 
-    font-size: 16px; 
-}
-
-.flatpickr-time .flatpickr-hour,
-.flatpickr-time .flatpickr-minute {
-    background-color: transparent !important; 
-    color: #fff !important; 
-}
-
-.flatpickr-time .flatpickr-time-separator {
-    color: #fff !important; 
-}
-
-.input-icon {
-    position: relative;
-    display: inline-block;
-    width: 80%;
-}
-
-.input-icon i {
-    position: absolute;
-    right: 25px; 
-    top: 61%;
-    transform: translateY(-50%);
-    color: #fff; 
-    pointer-events: none; 
-}
-
-.input-icon input {
-    padding-right: 30px; 
-    width: 100%;
-    box-sizing: border-box;
-}
