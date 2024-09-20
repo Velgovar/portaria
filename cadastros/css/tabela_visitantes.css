@@ -12,11 +12,10 @@ body {
     background-position: center;
 }
 
-
 .container_table1 {
     position: fixed;
-    width: 95%; /* Aumenta a largura do container */
-    max-width: 1800px; /* Ajusta o tamanho máximo do container */
+    width: 95%; 
+    max-width: 1800px; 
     height: 90%;
     max-height: 85vh;
     padding: 20px;
@@ -27,27 +26,56 @@ body {
                 10px 10px 25px rgba(0, 0, 0, 0.1);
 }
 
+.table-container {
+    overflow-y: auto; 
+    max-height: 400px; 
+}
+
+.table-container::-webkit-scrollbar {
+    width: 12px; 
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #333; 
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #777; 
+}
+
+.table-container {
+    scrollbar-width: thin; 
+    scrollbar-color: #555 #333; 
+}
+
+.table-container {
+    -ms-overflow-style: -ms-autohiding-scrollbar; 
+}
+
 .header {
     text-align: center;
     padding: 10px;
     color: white;
 }
 
-/* Ajusta o estilo da tabela para exibir mais linhas visíveis */
 .table-container {
-    height: calc(100% - 60px); /* Ajusta a altura para caber no container */
-    overflow-y: auto;
-    overflow-x: hidden; /* Remove a barra de rolagem horizontal */
-    margin-top: 10px;
+    height: calc(80vh - 100px); 
+    max-height: 600px; 
+    overflow-y: auto; 
+    margin-top: 10px; 
 }
 
-/* Ajusta a tabela e aplica zoom para aumentar o tamanho do texto e espaçamento */
 table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
     border: 2px solid #333;
-    table-layout: fixed; /* Garante que as colunas tenham largura fixa */
-    font-size: 0.9em; /* Reduzido o tamanho da fonte para 0.9em */
+    margin-bottom: 0; 
 }
 
 thead th {
@@ -56,19 +84,19 @@ thead th {
     position: sticky;
     top: 0;
     z-index: 2;
-    word-wrap: break-word; /* Força a quebra de linha se necessário */
-    white-space: normal; /* Permite a quebra de linha */
+    word-wrap: break-word; 
+    white-space: normal;
 }
 
 th, td {
-    padding: 10px; /* Reduzido o padding para 10px */
+    padding: 10px; 
     border: 2px solid #444;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: normal; /* Permite a quebra de linha em células */
+    white-space: normal; 
     color: #ddd;
-    font-size: 0.9em; /* Reduzido o tamanho da fonte para 0.9em */
+    font-size: 0.9em; 
 }
 
 tbody tr:nth-child(even) {
@@ -79,296 +107,163 @@ tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-th, td {
-    min-width: 80px; /* Garante que as colunas não fiquem muito estreitas */
+th:nth-child(1), td:nth-child(1) { width: 30px; }
+th:nth-child(2), td:nth-child(2) { width: 90px; }
+th:nth-child(3), td:nth-child(3) { width: 100px; }
+th:nth-child(4), td:nth-child(4) { width: 60px; }
+th:nth-child(5), td:nth-child(5) { width: 100px; }
+th:nth-child(6), td:nth-child(6) { width: 80px; }
+th:nth-child(7), td:nth-child(7) { width: 100px; }
+th:nth-child(8), td:nth-child(8) { width: 100px; }
+th:nth-child(9), td:nth-child(9) { width: 96px; }
+th:nth-child(10), td:nth-child(10) { width: 130px; }
+th:nth-child(11), td:nth-child(11) { width: 85px; }
+th:nth-child(12), td:nth-child(11) { width: 90px; }
+th:nth-child(13), td:nth-child(11) { width: 90px; }
+th:nth-child(14), td:nth-child(11) { width: 90px; }
+th:nth-child(15), td:nth-child(11) { width: 90px; }
+
+.pagination-container {
+    position: absolute; 
+    bottom: 3px; 
+    left: -20px; 
+    width: calc(100% - 60px); 
+    padding: 15px 0; 
+    z-index: 1000; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
 }
 
-        
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    justify-content: center; 
+    align-items: center;
+}
 
-        tbody tr:nth-child(even) {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-/* Opcional: Ajusta o estilo das colunas específicas */
-th:nth-child(1), td:nth-child(1) { width: 40px; } 
-th:nth-child(2), td:nth-child(2) { width: 81px; }
-th:nth-child(3), td:nth-child(3) { width: 120px; }
-th:nth-child(4), td:nth-child(4) { width: 120px; }
-th:nth-child(5), td:nth-child(5) { width: 100px; }
-th:nth-child(6), td:nth-child(6) { width: 100px; }
-th:nth-child(7), td:nth-child(7) { width: 120px; }
-th:nth-child(8), td:nth-child(8) { width: 120px; } 
-th:nth-child(9), td:nth-child(9) { width: 93px; }
-th:nth-child(10), td:nth-child(10) { width: 60px; }
-th:nth-child(11), td:nth-child(11) { width: 70px; }
-th:nth-child(12), td:nth-child(12) { width: 70px; }
-th:nth-child(13), td:nth-child(13) { width: 100px; }
-th:nth-child(14), td:nth-child(14) { width: 100px; }
-th:nth-child(15), td:nth-child(15) { width: 60px; }
-
-
-        /* Container da paginação */
-        .pagination-container {
-            position: absolute; /* Fixa o container de paginação na parte inferior da página */
-            bottom: 3px; /* Ajusta a posição para estar um pouco acima da borda inferior da página */
-            left: -20px; /* Ajusta a posição horizontal para a esquerda, movendo 40px para a esquerda (20px - 40px) */
-            width: calc(100% - 60px); /* Ajusta a largura para acomodar o padding e o deslocamento */
-            padding: 15px 0; /* Adiciona algum espaço acima e abaixo do conteúdo */
-            z-index: 1000; /* Garante que a paginação fique acima do conteúdo */
-            display: flex; /* Utiliza flexbox para alinhar o conteúdo */
-            justify-content: space-between; /* Espaça os itens para a esquerda e direita */
-            align-items: center; /* Alinha o conteúdo verticalmente */
-        }
-
-        .modal {
-            display: none; /* Oculta o modal por padrão */
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            justify-content: center; /* Centraliza horizontalmente */
-            align-items: center;    /* Centraliza verticalmente */
-        }
-        
-        .modal-content {
-            background-color: #333;
-            color: white;
-            padding: 20px 10px; /* Padding de 20px no topo/baixo e 10px nas laterais */
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            max-width: 400px; /* Ajuste para um valor menor se necessário */
-            width: 80%; /* Ajuste para 80% da largura da tela */
-        }
-        
-        .modal-content h2 {
-            margin-top: 0;
-            color: white; /* Garante que o título também esteja em branco */
-            font-weight: arial;
-            font-size: 20px;
-        }
-        
-        /* Estilo para os rótulos */
-        .modal-content label {
-            display: block; /* Garante que o rótulo se comporte como um bloco */
-            margin-bottom: 8px; /* Espaço abaixo do rótulo */
-            font-weight: normal; /* Ajusta o peso da fonte (substitua por 'bold' se preferir) */
-            color: white; /* Garante que o texto do rótulo esteja em branco */
-            text-align: left; /* Alinha o texto do rótulo à esquerda */
-            width: 100%; /* Garante que o rótulo ocupe toda a largura disponível */
-            box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
-            margin-left: 13%; /* Ajusta o deslocamento para a direita */
-        }
-        
-                
-        /* Estilo para todos os campos de entrada */
-        .modal-content input {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #666;
-            border-radius: 4px;
-            width: calc(100% - 22px);
-            font-size: 14px;
-            background-color: #222;
-            color: white;
-            box-sizing: border-box;
-        }
-        
-        /* Estilo específico para o campo do tipo 'time' */
-        .modal-content input[type="time"] {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #666;
-            border-radius: 4px;
-            width: calc(100% - 22px);
-            font-size: 14px;
-            background-color: #222;
-            color: white;
-            box-sizing: border-box;
-        }
-        
-        /* Estilo específico para o campo do tipo 'text' (apenas para garantir consistência) */
-        .modal-content input[type="text"] {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #666;
-            border-radius: 4px;
-            width: calc(100% - 22px);
-            font-size: 14px;
-            background-color: #222;
-            color: white;
-            box-sizing: border-box;
-        }
-        
-                
-                
-        .modal-content button {
-            margin: 5px 10px;
-            padding: 10px 16px;
-            border: none;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 14px;
-        }
-        
-        /* Botão de Exclusão */
-        .modal-content .cancelar {
-            background-color: rgb(150, 0, 0); /* Cor vermelha escura */
-            line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-            padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-            border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
-            background-image: linear-gradient(
-                to top left,
-                rgb(0 0 0 / 20%),
-                rgb(0 0 0 / 20%) 30%,
-                rgb(0 0 0 / 0%)
-            );
-            box-shadow:
-                inset 2px 2px 3px rgb(255 255 255 / 60%),
-                inset -2px -2px 3px rgb(0 0 0 / 60%);
-        }
-        
-        .modal-content .cancelar:hover {
-            background-color: rgb(120, 0, 0); /* Cor de fundo ao passar o mouse */
-        }
-        
-        .modal-content .cancelar:active {
-            box-shadow:
-                inset -2px -2px 3px rgb(255 255 255 / 60%),
-                inset 2px 2px 3px rgb(0 0 0 / 60%);
-        }
-        
-        /* Botão de Cancelar */
-        .modal-content .salvar {
-            background-color: rgb(5, 143, 0); /* Cor verde */
-            line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-            padding: 0 15.5px; /* Aumenta o padding horizontal para tornar o botão mais largo */
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-            border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
-            cursor: pointer;
-            background-image: linear-gradient(
-                to top left,
-                rgb(0 0 0 / 20%),
-                rgb(0 0 0 / 20%) 30%,
-                rgb(0 0 0 / 0%)
-            );
-            box-shadow:
-                inset 2px 2px 3px rgb(255 255 255 / 60%),
-                inset -2px -2px 3px rgb(0 0 0 / 60%);
-        }
-        
-        .modal-content .salvar:hover {
-            background-color: rgb(4, 115, 0); /* Verde mais escuro ao passar o mouse */
-        }
-        
-        .modal-content .salvar:active {
-            box-shadow:
-                inset -2px -2px 3px rgb(255 255 255 / 60%),
-                inset 2px 2px 3px rgb(0 0 0 / 60%);
-        }
-                /* Personalização do ícone do seletor de hora */
-                input[type="time"]::-webkit-calendar-picker-indicator {
-                    filter: invert(1); /* Inverte as cores do ícone, tornando-o branco em um fundo escuro */
-                }
-        
-                /* Para navegadores Firefox e outros */
-                input[type="time"] {
-                    color: white; /* Garante que o texto dos campos de entrada seja branco */
-                    background: #333; /* Garante o fundo dos campos de entrada */
-                }
-        
-                .success-message {
-                    position: fixed;
-                    left: 50%; /* Posiciona o início da mensagem no meio da tela */
-                    top: 831px; /* Espaço a partir do topo da página */
-                    transform: translateX(-50%); /* Move a mensagem 50% da sua largura para a esquerda para centralizar */
-                    background-color: #d4edda; /* Cor de fundo verde claro */
-                    color: #155724; /* Cor do texto verde escuro */
-                    border: 1px solid #c3e6cb; /* Borda verde claro */
-                    padding: 10px;
-                    border-radius: 5px;
-                    display: none; /* Inicialmente oculto */
-                    z-index: 1000; /* Garante que a mensagem fique acima do conteúdo */
-                }
-         
-                /* Estilo para a mensagem de cancelamento */
-                .cancel-message {
-                    position: fixed;
-                    left: 50%;
-                    top: 831px;
-                    transform: translateX(-50%);
-                    background-color: #f8d7da; /* Cor de fundo vermelho claro */
-                    color: #721c24; /* Cor do texto vermelho escuro */
-                    border: 1px solid #f5c6cb; /* Borda vermelha clara */
-                    padding: 10px;
-                    border-radius: 5px;
-                    display: none; /* Inicialmente oculto */
-                    z-index: 1000; /* Garante que a mensagem fique acima do conteúdo */
-                }
-        
-                .edit-button {
-                    border: 0;
-                    color: white;
-                    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-                    padding: 0 10px; /* Reduz o padding horizontal para diminuir a largura */
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-                    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
-                    cursor: pointer;
-                    background-color: rgb(100, 100, 100);
-                    background-image: linear-gradient(
-                    to top left,
-                        rgb(0 0 0 / 20%),
-                        rgb(0 0 0 / 20%) 30%,
-                        rgb(0 0 0 / 0%)
-                );
-                    box-shadow:
-                    inset 2px 2px 3px rgb(255 255 255 / 60%),
-                    inset -2px -2px 3px rgb(0 0 0 / 60%);
-                }
-        
-                .edit-button:hover {
-                        background-color: rgb(100, 100, 100);
-                    }
-        
-                .edit-button:active {
-                        box-shadow:
-                        inset -2px -2px 3px rgb(255 255 255 / 60%),
-                        inset 2px 2px 3px rgb(0 0 0 / 60%);
-                    }
-        
-
-/* Botão Excluir */
-.delete-button {
-    border: 0;
+.modal-content {
+    background-color: #333;
     color: white;
-    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-    padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+    padding: 20px 10px; 
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px; 
+    width: 80%; 
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: white; 
+    font-weight: arial;
+    font-size: 20px;
+}
+
+.modal-content label {
+    display: block; 
+    margin-bottom: 8px; 
+    font-weight: normal; 
+    color: white; 
+    text-align: left; 
+    width: 100%; 
+    box-sizing: border-box; 
+    margin-left: 4%; 
+}
+        
+.modal-content input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    font-size: 14px;
+    background-color: #222;
+    color: white;
+    box-sizing: border-box;
+}
+
+.modal-content input[type="time"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    font-size: 14px;
+    background-color: #222;
+    color: white;
+    box-sizing: border-box;
+}
+
+.modal-content input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    font-size: 14px;
+    background-color: #222;
+    color: white;
+    box-sizing: border-box;
+}
+     
+.modal-content button {
+    margin: 5px 10px;
+    padding: 10px 16px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.modal-content .cancelar {
+    background-color: rgb(150, 0, 0); 
+    line-height: 2; 
+    padding: 0 7px; 
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+    font-size: 0.9rem; 
+    border-radius: 5px; 
+    background-image: linear-gradient(
+        to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+    );
+    box-shadow:
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+        
+.modal-content .cancelar:hover {
+    background-color: rgb(120, 0, 0);
+}
+
+.modal-content .cancelar:active {
+    box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+.modal-content .salvar {
+    background-color: rgb(5, 143, 0); 
+    line-height: 2; 
+    padding: 0 15.5px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; 
+    border-radius: 5px; 
     cursor: pointer;
-    background-color: rgb(150, 0, 0); /* Cor vermelha escura */
     background-image: linear-gradient(
         to top left,
         rgb(0 0 0 / 20%),
@@ -380,194 +275,219 @@ th:nth-child(15), td:nth-child(15) { width: 60px; }
         inset -2px -2px 3px rgb(0 0 0 / 60%);
 }
 
-.delete-button:hover {
-    background-color: rgb(120, 0, 0); /* Cor de fundo ao passar o mouse */
+.modal-content .salvar:hover {
+    background-color: rgb(4, 115, 0); 
 }
 
-.delete-button:active {
+.modal-content .salvar:active {
     box-shadow:
         inset -2px -2px 3px rgb(255 255 255 / 60%),
         inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
-                                
-                    
-                    
-                    
 
-                    .style {
-                        position: absolute;
-                        top: 10px;
-                        left: 10px;
-                        border: 0;
-                        color: white;
-                        line-height: 1.75; /* Ajustado para um pouco mais de altura */
-                        padding: 0 40px; /* Aumentado um pouco */
-                        text-align: center;
-                        text-decoration: none;
-                        display: inline-block;
-                        font-size: 0.95rem; /* Ajustado para um pouco maior */
-                        border-radius: 10px; /* Ajustado para um pouco maior */
-                        cursor: pointer;
-                        background-color: rgb(0, 138, 143);
-                        background-image: linear-gradient(
-                          to top left,
-                            rgb(0 0 0 / 20%),
-                            rgb(0 0 0 / 20%) 30%,
-                            rgb(0 0 0 / 0%));
-                        box-shadow:
-                          inset 2px 2px 3px rgb(255 255 255 / 60%),
-                          inset -2px -2px 3px rgb(0 0 0 / 60%);
-                    }
-                    
-                    .style:hover {
-                        background-color: rgb(0, 209, 216);
-                    }
-                    
-                    .style:active {
-                        box-shadow:
-                          inset -2px -2px 3px rgb(255 255 255 / 60%),
-                          inset 2px 2px 3px rgb(0 0 0 / 60%);
-                    }
-                    
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); 
+}
+
+
+input[type="time"] {
+    color: white; 
+    background: #333; 
+}
+
+.edit-button {
+    border: 0;
+    color: white;
+    line-height: 2; 
+    padding: 0 10px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem; 
+    border-radius: 5px; 
+    cursor: pointer;
+    background-color: rgb(100, 100, 100);
+    background-image: linear-gradient(
+    to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%)
+);
+    box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.edit-button:hover {
+        background-color: rgb(100, 100, 100);
+    }
+
+.edit-button:active {
+        box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+    }
+
+.voltar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 0;
+    color: white;
+    line-height: 1.75; 
+    padding: 0 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.95rem; 
+    border-radius: 10px; 
+    cursor: pointer;
+    background-color: rgb(0, 138, 143);
+    background-image: linear-gradient(
+        to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%));
+    box-shadow:
+        inset 2px 2px 3px rgb(255 255 255 / 60%),
+        inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.voltar:hover {
+    background-color: rgb(0, 209, 216);
+}
+
+.voltar:active {
+    box-shadow:
+        inset -2px -2px 3px rgb(255 255 255 / 60%),
+        inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
         
-                    .search-container {
-            margin-bottom: 20px;
-        }
-        /* Estilo do formulário de busca */
+.search-container {
+    margin-bottom: 20px;
+}
+
 .search-form {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* Espaçamento entre os campos */
+    gap: 10px; 
     width: 80%;
     margin: 0 auto;
     padding: 15px;
-    background-color: rgba(255, 255, 255, 0); /* Fundo transparente para o contêiner */
+    background-color: rgba(255, 255, 255, 0); 
     border-radius: 10px;
 }
 
-/* Estilo dos rótulos */
 .search-form label {
     font-size: 16px;
-    color: #ffffff; /* Cor do texto em branco */
+    color: #ffffff; 
     font-weight: bold;
     margin-right: 10px;
 }
 
-/* Estilo do seletor de critérios */
 .search-form select {
     padding: 8px;
     font-size: 14px;
     border: 1px solid #b0b0b0;
     border-radius: 5px;
-    background-color: rgba(51, 51, 51, 0.9); /* Fundo escuro com 90% de opacidade */
-    color: #ffffff; /* Texto em branco */
-    width: 120px; /* Ajustado para largura menor */
+    background-color: rgba(51, 51, 51, 0.9); 
+    color: #ffffff;
+    width: 120px; 
 }
 
-/* Estilo do campo de busca */
 .search-form .input-container {
-    position: relative; /* Para posicionar o ícone de busca dentro do campo */
-    width: 200px; /* Largura ajustada do campo de busca */
+    position: relative; 
+    width: 200px; 
 }
 
 .search-form input[type="text"] {
-    padding: 8px 40px 8px 10px; /* Aumentado o espaço à direita para o ícone */
+    padding: 8px 40px 8px 10px; 
     font-size: 14px;
     border: 1px solid #b0b0b0;
     border-radius: 5px;
-    background-color: rgba(51, 51, 51, 0.9); /* Fundo escuro com 90% de opacidade */
-    color: #ffffff; /* Texto em branco */
-    width: 100%; /* Ocupa toda a largura do contêiner */
+    background-color: rgba(51, 51, 51, 0.9); 
+    color: #ffffff; 
+    width: 100%; 
 }
 
-/* Estilo do botão de busca */
 .search-form button[type="submit"] {
     position: absolute;
-    right: -45px; /* Move a lupa 20px para a direita */
-    top: 50%; /* Centralizado verticalmente */
-    transform: translateY(-50%); /* Ajusta o ícone para o centro vertical */
-    background: none; /* Remove o fundo do botão */
-    border: none; /* Remove a borda do botão */
-    cursor: pointer; /* Cursor de ponteiro ao passar sobre o ícone */
+    right: -45px; 
+    top: 50%; 
+    transform: translateY(-50%);
+    background: none; 
+    border: none; 
+    cursor: pointer; 
 }
 
-/* Estilo do ícone de busca */
 .search-form .search-icon {
     font-size: 16px;
-    color: #ffffff; /* Cor do ícone */
+    color: #ffffff; 
 }
 
+.pagination {
+    display: flex; 
+}
 
-        /* Estilização da paginação */
-        .pagination {
-            display: flex; /* Utiliza flexbox para alinhar os botões */
-        }
+.pagination a {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 2px;
+    border: 1px solid #444; 
+    border-radius: 10px;
+    color: #ddd; 
+    text-decoration: none;
+    font-size: 14px;
+    text-align: center;
+}
 
-        .pagination a {
-            display: inline-block;
-            padding: 8px 12px;
-            margin: 0 2px;
-            border: 1px solid #444; /* Borda escura para combinar com o fundo */
-            border-radius: 10px; /* Bordas arredondadas */
-            color: #ddd; /* Texto claro */
-            text-decoration: none;
-            font-size: 14px;
-            text-align: center;
-        }
+.pagination a.active {
+    background-color: #555; 
+    color: #fff;
+}
 
-        .pagination a.active {
-            background-color: #555; /* Cor do fundo da página ativa */
-            color: #fff;
-        }
+.pagination a.disabled {
+    color: #666; 
+    pointer-events: none; 
+    cursor: not-allowed; 
+}
 
-        .pagination a.disabled {
-            color: #666; /* Texto desativado */
-            pointer-events: none; /* Desabilita o clique */
-            cursor: not-allowed; /* Muda o cursor para indicar que não é clicável */
-        }
+.pagination a:hover {
+    background-color: #555; 
+}
 
-        .pagination a:hover {
-            background-color: #555; /* Cor de fundo ao passar o mouse */
-        }
+.select-container {
+    display: flex; 
+    align-items: center; 
+    margin-left: 83px; 
+    margin-bottom: -5px; 
+    margin-right: 20px; 
+}
 
-        
-        /* Container para o texto e o select */
-        .select-container {
-            display: flex; /* Utiliza flexbox para alinhar o texto e o select */
-            align-items: center; /* Alinha verticalmente o texto e o select */
-            margin-left: 83px; /* Ajusta a margem à esquerda para mover o conteúdo 20px para a direita */
-            margin-bottom: -5px; /* Ajusta a margem inferior para alinhar melhor */
-            margin-right: 20px; /* Ajusta a margem à direita para a distância do texto */
-        }
+.select-container span {
+    font-size: 14px; 
+    color: #ddd; 
+    margin-left: 10px; 
+}
 
-        /* Estilização do texto */
-        .select-container span {
-            font-size: 14px; /* Tamanho da fonte */
-            color: #ddd; /* Cor do texto */
-            margin-left: 10px; /* Espaço entre o select e o texto */
-        }
+.select-container select {
+    padding: 5px;
+    font-size: 14px;
+    color: #fff; 
+    background-color: #444; 
+    border: 1px solid #666; 
+    border-radius: 10px; 
+    height: 32px; 
+}
 
-        /* Estilização do select */
-        .select-container select {
-            padding: 5px;
-            font-size: 14px;
-            color: #fff; /* Cor do texto */
-            background-color: #444; /* Cor de fundo azul */
-            border: 1px solid #666; /* Cor da borda azul mais escura */
-            border-radius: 10px; /* Bordas arredondadas iguais aos botões de paginação */
-            height: 32px; /* Ajusta a altura do select para corresponder aos botões de paginação */
-        }
+.select-container select:focus {
+    outline: none; 
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); 
+}
 
-        /* Estilização para o estado do foco do select */
-        .select-container select:focus {
-            outline: none; /* Remove o contorno padrão */
-            box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Sombra azul ao focar */
-        }
-
-/* Estilos para o modal de confirmação */
 .confirmation-modal {
-    display: none; /* Oculta o modal por padrão */
+    display: none; 
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -575,8 +495,8 @@ th:nth-child(15), td:nth-child(15) { width: 60px; }
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center;    /* Centraliza verticalmente */
+    justify-content: center; 
+    align-items: center; 
 }
 
 .confirmation-modal-content {
@@ -635,13 +555,12 @@ th:nth-child(15), td:nth-child(15) { width: 60px; }
     background-color: #999;
 }
 
-/* Estilo para o contêiner do launcher */
 .launcher {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 9999; /* Garante que esteja acima de outros elementos */
-    background-color: #4CAF50; /* Verde para sucesso */
+    z-index: 9999; 
+    background-color: #4CAF50; 
     color: white;
     padding: 15px 25px;
     border-radius: 8px;
@@ -655,75 +574,40 @@ th:nth-child(15), td:nth-child(15) { width: 60px; }
     justify-content: center;
 }
 
-/* Estilo para a mensagem dentro do launcher */
 .launcher-message {
     margin: 0;
 }
 
-/* Animação para o launcher aparecer */
 .launcher-show {
     transform: translateY(0);
 }
 
-/* Animação para o launcher desaparecer */
 .hidden {
     opacity: 0;
     transform: translateY(-20px);
 }
 
-/* Estilos para o launcher de exclusão */
-.launcher-delete {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #f44336; /* Cor de fundo vermelho para o launcher de exclusão */
-    color: #fff; /* Cor do texto branco */
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    display: none; /* Oculto por padrão */
-    z-index: 1000; /* Garantir que esteja acima de outros elementos */
-    text-align: center;
-    font-family: Arial, sans-serif;
-}
-
-.launcher-delete-message {
-    font-size: 16px;
-}
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-}
-
-
-
-/* Para telas pequenas, como smartphones */
 @media (max-width: 600px) {
     .container {
-      width: 95%; /* Aumenta a largura para 95% da tela */
-      padding: 10px; /* Reduz o padding para telas menores */
+      width: 95%; 
+      padding: 10px; 
     }
   
     .image-center {
       max-width: 150px;
       max-height: 100px;
-      top: 350px; /* Ajusta a posição vertical */
+      top: 350px; 
     }
   
     h2 {
-      font-size: 1.2em; /* Diminui o tamanho da fonte para títulos */
+      font-size: 1.2em; 
     }
   }
   
-  /* Para telas médias, como tablets */
   @media (min-width: 601px) and (max-width: 1024px) {
     .container {
-      width: 80%; /* Ajusta a largura para 80% da tela */
-      padding: 15px; /* Padding intermediário */
+      width: 80%; 
+      padding: 15px; 
     }
   
     .image-center {
@@ -732,208 +616,70 @@ th:nth-child(15), td:nth-child(15) { width: 60px; }
     }
   
     h2 {
-      font-size: 1.5em; /* Ajusta o tamanho da fonte para títulos */
+      font-size: 1.5em; 
     }
   }
   
-  /* Para telas grandes, como desktops */
   @media (min-width: 1025px) {
     .container {
-      width: 700px; /* Largura fixa para telas grandes */
+      width: 700px; 
       padding: 20px;
     }
   }
 
-  .datepicker {
+.datepicker {
     width: 150px;
-    padding: 10px; /* Aumenta o espaço interno */
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
-}
-
-/* Cor das setas de ano (anterior e próximo) */
-.flatpickr-calendar .flatpickr-prev-month,
-.flatpickr-calendar .flatpickr-next-month,
-.flatpickr-calendar .flatpickr-prev-month svg,
-.flatpickr-calendar .flatpickr-next-month svg,
-.flatpickr-calendar .flatpickr-prev-month svg path,
-.flatpickr-calendar .flatpickr-next-month svg path {
-fill: #fff !important; /* Define a cor das setas como branca */
-}
-
-/* Cor das setas de ano ao passar o mouse */
-.flatpickr-calendar .flatpickr-prev-month:hover svg,
-.flatpickr-calendar .flatpickr-next-month:hover svg {
-fill: #fff !important; /* Mantém a cor branca ao passar o mouse */
+    box-sizing: border-box; 
 }
 
 
-/* Ajusta o fundo do seletor de meses */
-.flatpickr-calendar .flatpickr-months select,
-.flatpickr-calendar .flatpickr-months .flatpickr-month,
-.flatpickr-calendar .flatpickr-months .flatpickr-year {
-background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
-color: #fff !important; /* Cor do texto */
-}
-
-/* Ajusta o fundo das opções do seletor de meses */
-.flatpickr-calendar .flatpickr-months select option,
-.flatpickr-calendar .flatpickr-months .flatpickr-month,
-.flatpickr-calendar .flatpickr-months .flatpickr-year {
-background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
-color: #fff !important; /* Cor do texto */
-}
-
-
-
-/* Ajusta a cor de fundo do calendário */
 .flatpickr-calendar {
-background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
-color: #fff !important;
-max-height: 230px; /* Limita a altura máxima do calendário */
-overflow: hidden; /* Esconde qualquer conteúdo excedente */
+    background-color: rgba(51, 51, 51, 0.8) !important; 
+    color: #fff !important;
+    max-height: 230px; 
+    overflow: hidden; 
 }
 
-/* Cor dos dias */
-.flatpickr-calendar .flatpickr-day {
-color: #fff !important;
-line-height: 24px; /* Ajusta o espaçamento de linha para os dias */
-height: 24px; /* Reduz a altura das células dos dias */
-}
-
-/* Ocultar dias fora do mês atual mantendo o layout */
-.flatpickr-calendar.only-current-month .flatpickr-day.prevMonthDay,
-.flatpickr-calendar.only-current-month .flatpickr-day.nextMonthDay {
-visibility: hidden !important;
-}
-
-/* Cor de fundo dos dias quando o mouse passa sobre eles */
-.flatpickr-calendar .flatpickr-day:hover {
-background-color: #666 !important;
-}
-
-/* Cor das setas de navegação (botões) */
-.flatpickr-calendar .flatpickr-prev-month svg,
-.flatpickr-calendar .flatpickr-next-month svg {
-fill: #fff !important;
-}
-
-/* Cor do nome do mês e ano */
-.flatpickr-calendar .flatpickr-months .flatpickr-month,
-.flatpickr-calendar .flatpickr-months .flatpickr-year {
-color: #fff !important;
-}
-
-/* Cor dos dias da semana */
-.flatpickr-calendar .flatpickr-weekday {
-color: #ccc !important;
-}
-
-/* Cor dos dias selecionados */
-.flatpickr-calendar .flatpickr-day.selected {
-background-color: #666 !important;
-color: #fff !important;
-}
-
-/* Cor dos dias do mês atual */
-.flatpickr-calendar .flatpickr-day.currentMonth {
-color: #fff !important;
-}
-
-/* Cor do ícone de fechar (se houver) */
-.flatpickr-calendar .flatpickr-close {
-color: #fff !important;
-}
-
-/* Ícone do calendário no campo de entrada */
-.fas.fa-calendar-alt {
-color: #fff;
-}
-
-/* Estilo para o contêiner do campo de entrada */
-.input-container {
-position: relative; /* Define a referência para o posicionamento absoluto do ícone */
-display: inline-block;
-}
-
-/* Estilo para o campo de entrada */
-.input-container input {
-padding-right: 30px; /* Espaçamento para o ícone na direita */
-width: 100%; /* Certifique-se de que o campo de entrada preencha o contêiner */
-}
-
-/* Estilo para o ícone do calendário */
-.calendar-icon {
-position: absolute;
-right: 10px; /* Ajusta a posição horizontal do ícone para a direita */
-top: 50%;
-transform: translateY(-50%); /* Centraliza o ícone verticalmente */
-color: #fff; /* Cor do ícone */
-pointer-events: none; /* O ícone não interfere com o clique do mouse */
-}
-
-/* Estilo para o ícone no rótulo, se desejar reposicionar também */
-.data-item label i {
-color: #fff; /* Cor do ícone */
-margin-right: 5px; /* Espaçamento entre o ícone e o texto do rótulo */
-}
-
-/* Estilos personalizados para o Flatpickr */
 .flatpickr-input {
-background-color: rgba(34, 34, 34, 0.5); /* Fundo semi-transparente com a cor #222 */
-color: #fff !important; /* Texto branco */
-background-color: rgba(34, 34, 34, 0.5); /* Fundo semi-transparente com a cor #222 */
-padding: 10px; /* Espaçamento interno */
-border-radius: 4px; /* Bordas arredondadas */
-font-size: 16px; /* Tamanho da fonte */
+    background-color: rgba(34, 34, 34, 0.5); 
+    color: #fff !important; 
+    background-color: rgba(34, 34, 34, 0.5); 
+    padding: 10px; 
+    border-radius: 4px; 
+    font-size: 16px; 
 }
 
-/* Fundo e texto das horas e minutos */
 .flatpickr-time .flatpickr-hour,
 .flatpickr-time .flatpickr-minute {
-background-color: transparent !important; /* Fundo transparente das horas e minutos */
-color: #fff !important; /* Texto branco das horas e minutos */
+    background-color: transparent !important; 
+    color: #fff !important; 
 }
 
-/* Cor do separador de horas e minutos */
 .flatpickr-time .flatpickr-time-separator {
-color: #fff !important; /* Cor do separador */
+    color: #fff !important; 
 }
 
 .input-icon {
-position: relative;
-display: inline-block;
-width: 80%;
+    position: relative;
+    display: inline-block;
+    width: 80%;
 }
 
 .input-icon i {
-position: absolute;
-right: 35px; /* Move o ícone para a direita */
-top: 61%;
-transform: translateY(-50%);
-color: #fff; /* Cor branca para o ícone */
-pointer-events: none; /* O ícone não interfere na interação do usuário com o input */
+    position: absolute;
+    right: 25px; 
+    top: 61%;
+    transform: translateY(-50%);
+    color: #fff; 
+    pointer-events: none; 
 }
 
 .input-icon input {
-padding-right: 30px; /* Espaço para o ícone dentro do campo */
-width: 100%;
-box-sizing: border-box;
+    padding-right: 30px; 
+    width: 100%;
+    box-sizing: border-box;
 }
-
-/* Remove as flechinhas dos campos tipo number no Chrome, Safari e Edge */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
--webkit-appearance: none;
-margin: 0;
-}
-
-/* Remove as flechinhas dos campos tipo number em todos os navegadores */
-input[type="number"] {
--moz-appearance: textfield; /* Firefox */
--webkit-appearance: none; /* Chrome, Safari */
-appearance: none; /* Padrão */
-}
-

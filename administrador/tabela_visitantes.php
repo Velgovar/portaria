@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 ?>
 
 <?php
-require '../db_config.php'; // Ajuste o caminho conforme a localização do seu arquivo
+require '../db_config.php'; 
 
 try {
     // Conectar ao banco de dados usando as variáveis de configuração
@@ -220,7 +220,6 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                 </div>
     </div>
 
-<!-- Modal -->
 <div id="editModal" class="modal">
     <div class="modal-content">
         <h2>Editar Registro</h2>
@@ -301,9 +300,6 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         </form>
     </div>
 </div>
-
-<div class="message-container"></div>
-
 
 <script src="js/tabela_visitantes.js"></script>
 

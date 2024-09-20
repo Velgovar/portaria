@@ -932,7 +932,7 @@ width: 80%;
 
 .input-icon i {
 position: absolute;
-right: 35px; /* Move o ícone para a direita */
+right: 25px; /* Move o ícone para a direita */
 top: 40%;
 transform: translateY(-50%);
 color: #fff; /* Cor branca para o ícone */

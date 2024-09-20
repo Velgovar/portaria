@@ -53,16 +53,16 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Veículos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="css/tabela_visitantes.css">
+
 </head>
 <body>
-    <a href="../menu.html" class="style">Voltar</a>
+    <a href="../menu.html" class="voltar">Voltar</a>
 
     <div class="container_table1">
         <div class="header">
-            <h2>Tabela Visitantes</h2>
+        <h2>Tabela Visitantes</h2>
         </div>
 
         <!-- Formulário de Busca -->
@@ -215,10 +215,9 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
 <div id="launcher" class="launcher hidden">
     <div class="launcher-message">Cadastro editado com sucesso!</div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
-<script src="js/tabela_visitantes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script><script src="js/tabela_visitantes.js"></script>
+
 
 </body>
 </html>
