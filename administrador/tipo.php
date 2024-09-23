@@ -16,7 +16,9 @@ if (!isset($_SESSION['user_id'])) {
         <title>Cadastrar Tipo de Visitante</title>
 
         <link rel="stylesheet" href="css/tipo.css">
+        
     </head>
+    
         <body>
             <div class="setor-container">
                 <div class="fixed-container">

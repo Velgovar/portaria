@@ -108,8 +108,14 @@ function validateInput(input) {
         input.classList.add('valid');
         return true;
     } else if (input.id === 'placa') {
+        // Só validar se o campo estiver visível
         if (placaField.style.display !== 'none') {
-            if (input.value.trim() === '') {
+            // Expressões regulares para os dois formatos de placa
+            const mercosulRegex = /^[A-Z]{3}\d[A-Z]\d{2}$/; // ABC1D23
+            const antigoRegex = /^[A-Z]{3}-\d{4}$/; // ABC-1234 (com hífen)
+            
+            // Verifica se o valor corresponde a um dos dois formatos
+            if (!mercosulRegex.test(input.value.trim()) && !antigoRegex.test(input.value.trim())) {
                 input.classList.add('error');
                 input.classList.remove('valid');
                 setTimeout(function() {

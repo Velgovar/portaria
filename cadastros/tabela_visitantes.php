@@ -59,6 +59,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
 </head>
 <body>
     <a href="../menu.html" class="voltar">Voltar</a>
+    <img src="../images/inusitta.png" class="image-center" alt="icone central">
 
     <div class="container_table1">
         <div class="header">
