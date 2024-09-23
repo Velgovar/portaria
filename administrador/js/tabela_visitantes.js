@@ -68,18 +68,23 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
 
     console.log('Dados do formulário:', data); // Verifique os dados antes do envio
 
-    fetch('config/editar_teste.php', {
+    fetch('config/tabela_visitantes_config.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: data
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na resposta da rede: ' + response.statusText);
+        }
+        return response.json();
+    })
     .then(data => {
         console.log('Dados JSON do servidor:', data); // Verifique a resposta
 
-        if (data.success) {
+        if (data.message === 'Registro atualizado com sucesso!') {
             const launcher = document.getElementById('launcher');
             launcher.classList.remove('hidden');
             launcher.classList.add('visible');
@@ -89,7 +94,7 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
                 launcher.classList.add('hidden');
             }, 2000);
 
-            closeModalFunction();
+            closeModalFunction(); // Certifique-se que essa função fecha o modal
             updateTableRow(
                 formData.get('id'),
                 formData.get('data'),
@@ -108,14 +113,14 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
             );
         } else {
             console.error('Falha ao editar o registro:', data.message);
+            alert(data.message); // Exibir mensagem de erro ao usuário
         }
     })
     .catch(error => {
         console.error('Erro:', error);
-        alert('Erro ao enviar a atualização.');
+        alert('Erro ao enviar a atualização: ' + error.message);
     });
 });
-
 
 // Função para atualizar a linha da tabela com os novos dados
 function updateTableRow(id, data, porteiro, nome, cpf, tipovisitante, servico, empresa, estacionamento, placa, horarioEntrada, horarioSaida, colaborador, setor) {
@@ -187,13 +192,13 @@ document.getElementById('confirmationForm').addEventListener('submit', function(
 
     const confirmationInput = document.getElementById('confirmationInput').value.trim().toLowerCase();
     if (confirmationInput === 'excluir') {
-        fetch('config/excluir_teste.php', {
+        fetch('config/tabela_visitantes_config.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams({
-                'id': deleteId
+                'id': deleteId // Certifique-se de que deleteId está definido
             })
         })
         .then(response => response.json())
@@ -219,7 +224,8 @@ document.getElementById('confirmationForm').addEventListener('submit', function(
             showMessage('Erro ao excluir o registro.', 'error');
         });
 
-        closeConfirmationModal(); // Fecha o modal após a confirmação
+        // Fecha o modal após a confirmação
+        closeConfirmationModal();
     } else {
         showMessage('Você deve digitar "excluir" para confirmar.', 'warning');
     }
