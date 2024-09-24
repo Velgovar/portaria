@@ -61,7 +61,8 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Veículos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="css/tabela_veiculos.css">
 
 </head>
@@ -128,14 +129,13 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                             <td><?php echo htmlspecialchars($registro['destino']); ?></td>
                             <td><?php echo htmlspecialchars($registro['motivo']); ?></td>
                             <td>
-    <button class="edit-button" onclick="openModal(
-        <?php echo htmlspecialchars($registro['id']); ?>, 
-        '<?php echo htmlspecialchars($registro['km_chegada']); ?>', 
-        '<?php echo htmlspecialchars($registro['horario_chegada']); ?>'
-    )">Editar</button>
-                    <button class="delete-button" onclick="openConfirmationModal(<?php echo htmlspecialchars($registro['id']); ?>)">Excluir</button>
-                    </td>
-
+                                <button class="edit-button" onclick="openModal(
+                                    <?php echo htmlspecialchars($registro['id']); ?>, 
+                                    '<?php echo htmlspecialchars($registro['km_chegada']); ?>', 
+                                    '<?php echo htmlspecialchars($registro['horario_chegada']); ?>'
+                                    )">Editar</button>
+                                 <button class="delete-button" onclick="openConfirmationModal(<?php echo htmlspecialchars($registro['id']); ?>)">Excluir</button>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -151,7 +151,6 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                         <option value="10000" <?php echo $registrosPorPagina == 10000 ? 'selected' : ''; ?>>10000</option>
                         <option value="100000" <?php echo $registrosPorPagina == 100000 ? 'selected' : ''; ?>>100000</option>
                         <option value="1000000" <?php echo $registrosPorPagina == 1000000 ? 'selected' : ''; ?>>1000000</option>
-
                     </select>
                     <span>Linhas / Paginas</span>
                 </div>
@@ -197,55 +196,48 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         </form>
     </div>
 </div>
-
-<!-- Container para mensagens -->
-<div class="message-container"></div>
-
-
-
-
-        <div class="modal" id="editModal">
+   
+<div class="modal" id="editModal">
     <div class="modal-content">
         <h2>Editar Registro</h2>
         <form id="editForm" action="config/tabela_veiculos_config.php" method="POST">
             <input type="hidden" id="editId" name="id">
-            <label for="editData">DATA:</label>
-            <input type="date" id="editData" name="data" required autocomplete="off">
+<label for="editData">DATA:</label>
+<input type="text" id="editData" name="data" autocomplete="off" class="datepicker">
+
             <label for="editPorteiro">PORTEIRO:</label>
-            <input type="text" id="editPorteiro" name="porteiro" required autocomplete="off">
+            <input type="text" id="editPorteiro" name="porteiro" autocomplete="off">
             <label for="editVeiculo">VEICULO:</label>
-            <input type="text" id="editVeiculo" name="veiculo" required autocomplete="off">
+            <input type="text" id="editVeiculo" name="veiculo" autocomplete="off">
             <label for="editKmSaida">KM SAIDA:</label>
-            <input type="text" id="editKmSaida" name="km_saida" required autocomplete="off">
+            <input type="text" id="editKmSaida" name="km_saida" autocomplete="off">
             <label for="editKmChegada">KM Chegada:</label>
-            <input type="text" id="editKmChegada" name="km_chegada" required autocomplete="off">
+            <input type="text" id="editKmChegada" name="km_chegada" autocomplete="off">
             <label for="editHorarioSaida">Horário Saída:</label>
-            <input type="time" id="editHorarioSaida" name="horario_saida" required autocomplete="off">            
+            <input type="time" id="editHorarioSaida" name="horario_saida" autocomplete="off">            
             <label for="editHorarioChegada">Horário Chegada:</label>
-            <input type="time" id="editHorarioChegada" name="horario_chegada" required autocomplete="off">
+            <input type="time" id="editHorarioChegada" name="horario_chegada" autocomplete="off">
             <label for="editDestino">DESTINO:</label>
-            <input type="text" id="editDestino" name="destino" required autocomplete="off">
+            <input type="text" id="editDestino" name="destino" autocomplete="off">
             <label for="editMotivo">MOTIVO:</label>
-            <input type="text" id="editMotivo" name="motivo" required autocomplete="off">
+            <input type="text" id="editMotivo" name="motivo" autocomplete="off">
             <button type="submit" class="save-button">Salvar</button>
             <button type="button" class="close" onclick="closeModal()">Cancelar</button>
         </form>
     </div>
 </div>
 
-<!-- Contêiner para o launcher -->
+
 <div id="launcher" class="launcher hidden">
     <div class="launcher-message">Cadastro editado com sucesso!</div>
 </div>
 
-<!-- Contêiner para o launcher de exclusão -->
 <div id="launcherDelete" class="launcher-delete hidden">
     <div class="launcher-delete-message">Item excluído com sucesso!</div>
 </div>
 </div>
-
-
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
         <script src="js/tabela_veiculos.js"></script>
-
 </body>
 </html>

@@ -63,7 +63,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Visitantes</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/tabela_visitantes.css">
 
 </head>
@@ -220,7 +220,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                         <a href="?pagina=<?php echo $totalPaginas; ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == $totalPaginas) echo 'class="disabled"'; ?>>&raquo;</a>
                     </div>
                 </div>
-    </div>
+            </div>
 
 <div id="editModal" class="modal">
     <div class="modal-content">
@@ -229,48 +229,48 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
             <input type="hidden" name="id" id="editId">
             
             <label for="editData">Data</label>
-            <input type="date" name="data" id="editData" required>
+            <input type="date" name="data" id="editData" >
 
             <label for="editPorteiro">Porteiro</label>
-            <input type="text" name="porteiro" id="editPorteiro" required>
+            <input type="text" name="porteiro" id="editPorteiro" >
 
             <label for="editNome">Nome</label>
-            <input type="text" name="nome" id="editNome" required>
+            <input type="text" name="nome" id="editNome" >
 
             <label for="editCpf">CPF</label>
-            <input type="text" name="cpf" id="editCpf" required>
+            <input type="text" name="cpf" id="editCpf" >
 
             <label for="editTipoVisitante">Tipo Visitante</label>
-            <input type="text" name="tipovisitante" id="editTipoVisitante" required>
+            <input type="text" name="tipovisitante" id="editTipoVisitante" >
 
             <label for="editServico">Serviço</label>
-            <input type="text" name="servico" id="editServico" required>
+            <input type="text" name="servico" id="editServico" >
 
             <label for="editEmpresa">Empresa</label>
-            <input type="text" name="empresa" id="editEmpresa" required>
+            <input type="text" name="empresa" id="editEmpresa" >
 
             <label for="editEstacionamento">Estacionamento</label>
-            <input type="text" name="estacionamento" id="editEstacionamento" required>
+            <input type="text" name="estacionamento" id="editEstacionamento" >
 
             <label for="editPlaca">Placa</label>
-            <input type="text" name="placa" id="editPlaca" required>
+            <input type="text" name="placa" id="editPlaca" >
 
             <div class="input-group">
                 <div>
                     <label for="editHorarioEntrada">Horário de Entrada</label>
-                    <input type="time" name="horario_entrada" id="editHorarioEntrada" required>
+                    <input type="time" name="horario_entrada" id="editHorarioEntrada" >
                 </div>
                 <div>
                     <label for="editHorarioSaida">Horário de Saída</label>
-                    <input type="time" name="horario_saida" id="editHorarioSaida" required>
+                    <input type="time" name="horario_saida" id="editHorarioSaida" >
                 </div>
             </div>
 
             <label for="editColaborador">Colaborador</label>
-            <input type="text" name="colaborador" id="editColaborador" required>
+            <input type="text" name="colaborador" id="editColaborador" >
 
             <label for="editSetor">Setor</label>
-            <input type="text" name="setor" id="editSetor" required>
+            <input type="text" name="setor" id="editSetor" >
 
             <button type="submit">Salvar</button>
             <button type="button" id="cancelButton">Cancelar</button>
@@ -292,7 +292,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         <!-- Formulário de confirmação -->
         <form id="confirmationForm">
             <!-- Campo de texto para confirmação -->
-            <input type="text" id="confirmationInput" autocomplete="off" placeholder="Digite 'excluir' para confirmar" required>
+            <input type="text" id="confirmationInput" autocomplete="off" placeholder="Digite 'excluir' para confirmar" >
             
             <!-- Botões de ação -->
             <div class="modal-buttons">

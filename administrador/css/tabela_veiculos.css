@@ -643,6 +643,198 @@ body {
     display: block;
 }
 
+.datepicker {
+    width: 150px;
+    padding: 10px; /* Aumenta o espaço interno */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+}
+
+/* Cor das setas de ano (anterior e próximo) */
+.flatpickr-calendar .flatpickr-prev-month,
+.flatpickr-calendar .flatpickr-next-month,
+.flatpickr-calendar .flatpickr-prev-month svg,
+.flatpickr-calendar .flatpickr-next-month svg,
+.flatpickr-calendar .flatpickr-prev-month svg path,
+.flatpickr-calendar .flatpickr-next-month svg path {
+fill: #fff !important; /* Define a cor das setas como branca */
+}
+
+/* Cor das setas de ano ao passar o mouse */
+.flatpickr-calendar .flatpickr-prev-month:hover svg,
+.flatpickr-calendar .flatpickr-next-month:hover svg {
+fill: #fff !important; /* Mantém a cor branca ao passar o mouse */
+}
+
+
+/* Ajusta o fundo do seletor de meses */
+.flatpickr-calendar .flatpickr-months select,
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-year {
+background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
+color: #fff !important; /* Cor do texto */
+}
+
+/* Ajusta o fundo das opções do seletor de meses */
+.flatpickr-calendar .flatpickr-months select option,
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-year {
+background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
+color: #fff !important; /* Cor do texto */
+}
+
+
+
+/* Ajusta a cor de fundo do calendário */
+.flatpickr-calendar {
+background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
+color: #fff !important;
+max-height: 230px; /* Limita a altura máxima do calendário */
+overflow: hidden; /* Esconde qualquer conteúdo excedente */
+}
+
+/* Cor dos dias */
+.flatpickr-calendar .flatpickr-day {
+color: #fff !important;
+line-height: 24px; /* Ajusta o espaçamento de linha para os dias */
+height: 24px; /* Reduz a altura das células dos dias */
+}
+
+/* Ocultar dias fora do mês atual mantendo o layout */
+.flatpickr-calendar.only-current-month .flatpickr-day.prevMonthDay,
+.flatpickr-calendar.only-current-month .flatpickr-day.nextMonthDay {
+visibility: hidden !important;
+}
+
+/* Cor de fundo dos dias quando o mouse passa sobre eles */
+.flatpickr-calendar .flatpickr-day:hover {
+background-color: #666 !important;
+}
+
+/* Cor das setas de navegação (botões) */
+.flatpickr-calendar .flatpickr-prev-month svg,
+.flatpickr-calendar .flatpickr-next-month svg {
+fill: #fff !important;
+}
+
+/* Cor do nome do mês e ano */
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-year {
+color: #fff !important;
+}
+
+/* Cor dos dias da semana */
+.flatpickr-calendar .flatpickr-weekday {
+color: #ccc !important;
+}
+
+/* Cor dos dias selecionados */
+.flatpickr-calendar .flatpickr-day.selected {
+background-color: #666 !important;
+color: #fff !important;
+}
+
+/* Cor dos dias do mês atual */
+.flatpickr-calendar .flatpickr-day.currentMonth {
+color: #fff !important;
+}
+
+/* Cor do ícone de fechar (se houver) */
+.flatpickr-calendar .flatpickr-close {
+color: #fff !important;
+}
+
+/* Ícone do calendário no campo de entrada */
+.fas.fa-calendar-alt {
+color: #fff;
+}
+
+/* Estilo para o contêiner do campo de entrada */
+.input-container {
+position: relative; /* Define a referência para o posicionamento absoluto do ícone */
+display: inline-block;
+}
+
+/* Estilo para o campo de entrada */
+.input-container input {
+padding-right: 30px; /* Espaçamento para o ícone na direita */
+width: 100%; /* Certifique-se de que o campo de entrada preencha o contêiner */
+}
+
+/* Estilo para o ícone do calendário */
+.calendar-icon {
+position: absolute;
+right: 10px; /* Ajusta a posição horizontal do ícone para a direita */
+top: 50%;
+transform: translateY(-50%); /* Centraliza o ícone verticalmente */
+color: #fff; /* Cor do ícone */
+pointer-events: none; /* O ícone não interfere com o clique do mouse */
+}
+
+/* Estilo para o ícone no rótulo, se desejar reposicionar também */
+.data-item label i {
+color: #fff; /* Cor do ícone */
+margin-right: 5px; /* Espaçamento entre o ícone e o texto do rótulo */
+}
+
+/* Estilos personalizados para o Flatpickr */
+.flatpickr-input {
+background-color: rgba(34, 34, 34, 0.5); /* Fundo semi-transparente com a cor #222 */
+color: #fff !important; /* Texto branco */
+background-color: rgba(34, 34, 34, 0.5); /* Fundo semi-transparente com a cor #222 */
+padding: 10px; /* Espaçamento interno */
+border-radius: 4px; /* Bordas arredondadas */
+font-size: 16px; /* Tamanho da fonte */
+}
+
+/* Fundo e texto das horas e minutos */
+.flatpickr-time .flatpickr-hour,
+.flatpickr-time .flatpickr-minute {
+background-color: transparent !important; /* Fundo transparente das horas e minutos */
+color: #fff !important; /* Texto branco das horas e minutos */
+}
+
+/* Cor do separador de horas e minutos */
+.flatpickr-time .flatpickr-time-separator {
+color: #fff !important; /* Cor do separador */
+}
+
+.input-icon {
+position: relative;
+display: inline-block;
+width: 100%;
+}
+
+.input-icon i {
+position: absolute;
+right: 10px; /* Move o ícone para a direita */
+top: 50%;
+transform: translateY(-50%);
+color: #fff; /* Cor branca para o ícone */
+pointer-events: none; /* O ícone não interfere na interação do usuário com o input */
+}
+
+.input-icon input {
+padding-right: 30px; /* Espaço para o ícone dentro do campo */
+width: 100%;
+box-sizing: border-box;
+}
+
+/* Remove as flechinhas dos campos tipo number no Chrome, Safari e Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+/* Remove as flechinhas dos campos tipo number em todos os navegadores */
+input[type="number"] {
+-moz-appearance: textfield; /* Firefox */
+-webkit-appearance: none; /* Chrome, Safari */
+appearance: none; /* Padrão */
+}
 /* Para telas pequenas, como smartphones */
 @media (max-width: 600px) {
     .container {

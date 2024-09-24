@@ -238,3 +238,130 @@ document.getElementById('editForm').addEventListener('submit', handleFormSubmit)
 
 // Adicionar event listener para mudança no número de registros por página
 document.getElementById('registrosPorPagina').addEventListener('change', changeRecordsPerPage);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const horarioSaida = document.getElementById('editHorarioSaida');
+    const horarioChegada = document.getElementById('editHorarioChegada'); // Campo Horário Chegada
+
+    function setupTimeScrollPlugin(flatpickrInstance) {
+        function handleWheel(event) {
+            event.preventDefault(); // Previne o comportamento padrão do scroll
+
+            const currentDate = flatpickrInstance.selectedDates[0] || new Date();
+            const increment = event.deltaY < 0 ? 1 : -1; // Determina a direção do scroll
+            const minutes = currentDate.getMinutes() + increment;
+
+            if (minutes >= 60) {
+                currentDate.setHours(currentDate.getHours() + 1);
+                currentDate.setMinutes(0);
+            } else if (minutes < 0) {
+                currentDate.setHours(currentDate.getHours() - 1);
+                currentDate.setMinutes(59);
+            } else {
+                currentDate.setMinutes(minutes);
+            }
+
+            flatpickrInstance.setDate(currentDate, true); // Atualiza o valor no Flatpickr
+        }
+
+        flatpickrInstance._input.addEventListener('wheel', handleWheel);
+
+        flatpickrInstance._input.addEventListener('mousedown', function(event) {
+            event.stopPropagation(); // Previne que o clique seja interceptado por outros ouvintes
+        });
+
+        flatpickrInstance._input.addEventListener('focus', function(event) {
+            flatpickrInstance._input.setSelectionRange(0, flatpickrInstance._input.value.length);
+        });
+
+        flatpickrInstance._input.addEventListener('click', function(event) {
+            event.stopPropagation(); // Garante que o clique no campo seja tratado corretamente
+        });
+
+        flatpickrInstance._input.addEventListener('blur', function(event) {
+            // Verifica se o campo está vazio e limpa a data selecionada
+            if (flatpickrInstance._input.value.trim() === '') {
+                flatpickrInstance.clear(); // Limpa a data selecionada se o campo estiver vazio
+                flatpickrInstance.setDate('', false); // Define o valor do campo como vazio
+            }
+        });
+
+        // Desabilita a confirmação com a tecla Enter
+        flatpickrInstance._input.addEventListener('keydown', function(event) {
+            if (event.keyCode === 13) { // Verifica se a tecla pressionada é o Enter
+                event.preventDefault(); // Previne o comportamento padrão de confirmar
+            }
+        });
+
+        flatpickrInstance.config.onOpen.push(function() {
+            if (flatpickrInstance._input.value.trim() === '') {
+                flatpickrInstance.clear();
+                flatpickrInstance.setDate('', false); // Define o valor do campo como vazio
+            }
+        });
+    }
+
+    // Aplicando o Flatpickr ao campo "Horário de Saída"
+    flatpickr(horarioSaida, {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minuteIncrement: 1,
+        defaultHour: null, // Remove o preenchimento automático com valor padrão
+        defaultMinute: null, // Remove o preenchimento automático com valor padrão
+        onReady: function(selectedDates, dateStr, instance) {
+            setupTimeScrollPlugin(instance);
+        }
+    });
+
+    // Aplicando o Flatpickr ao campo "Horário de Chegada"
+    flatpickr(horarioChegada, {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minuteIncrement: 1,
+        defaultHour: null, // Remove o preenchimento automático com valor padrão
+        defaultMinute: null, // Remove o preenchimento automático com valor padrão
+        onReady: function(selectedDates, dateStr, instance) {
+            setupTimeScrollPlugin(instance);
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('editData'); // Mudando para o campo de data do modal
+    let isCalendarOpen = false; // Variável de controle para o estado do calendário
+    let preventImmediateClose = false; // Variável para prevenir fechamento imediato
+
+    const flatpickrInstance = flatpickr(dateInput, {
+        locale: "pt", // Define o idioma para português
+        dateFormat: "Y/m/d", // Formato de data
+        showMonths: 1, // Mostra apenas um mês por vez
+        disableMonthNav: true, // Desabilita a navegação entre meses
+        defaultDate: "today", // Define a data padrão como hoje
+        onReady: function(selectedDates, dateStr, instance) {
+            instance.calendarContainer.classList.add('only-current-month');
+        },
+        onOpen: function() {
+            isCalendarOpen = true; // Atualiza o estado quando o calendário abre
+            preventImmediateClose = true; // Impede fechamento imediato ao abrir
+            setTimeout(() => preventImmediateClose = false, 200); // Libera após 200ms
+        },
+        onClose: function() {
+            isCalendarOpen = false; // Atualiza o estado quando o calendário fecha
+        }
+    });
+
+    // Função para alternar a exibição do calendário
+    dateInput.addEventListener('click', function(event) {
+        if (preventImmediateClose) return; // Previne o fechamento imediato
+
+        if (isCalendarOpen) {
+            flatpickrInstance.close(); // Fecha o calendário se estiver aberto
+        } else {
+            flatpickrInstance.open(); // Abre o calendário se estiver fechado
+        }
+    });
+});

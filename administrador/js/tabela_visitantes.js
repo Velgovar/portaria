@@ -149,6 +149,7 @@ function updateTableRow(id, data, porteiro, nome, cpf, tipovisitante, servico, e
         const colaboradorCell = row.querySelector('.colaborador');
         const setorCell = row.querySelector('.setor');
 
+        // Atualizar os valores das células
         if (dataCell) dataCell.textContent = data;
         if (porteiroCell) porteiroCell.textContent = porteiro;
         if (nomeCell) nomeCell.textContent = nome;
@@ -163,11 +164,30 @@ function updateTableRow(id, data, porteiro, nome, cpf, tipovisitante, servico, e
         if (colaboradorCell) colaboradorCell.textContent = colaborador;
         if (setorCell) setorCell.textContent = setor;
 
-        console.log('Linha atualizada com sucesso.');
+        // Atualizar os atributos data-* do botão de edição correspondente
+        const editButton = row.querySelector('.edit-button');
+        if (editButton) {
+            editButton.setAttribute('data-data', data);
+            editButton.setAttribute('data-porteiro', porteiro);
+            editButton.setAttribute('data-nome', nome);
+            editButton.setAttribute('data-cpf', cpf);
+            editButton.setAttribute('data-tipovisitante', tipovisitante);
+            editButton.setAttribute('data-servico', servico);
+            editButton.setAttribute('data-empresa', empresa);
+            editButton.setAttribute('data-estacionamento', estacionamento);
+            editButton.setAttribute('data-placa', placa);
+            editButton.setAttribute('data-horario_entrada', horarioEntrada);
+            editButton.setAttribute('data-horario_saida', horarioSaida);
+            editButton.setAttribute('data-colaborador', colaborador);
+            editButton.setAttribute('data-setor', setor);
+        }
+
+        console.log('Linha e atributos do botão de edição atualizados com sucesso.');
     } else {
         console.error(`Linha com ID ${id} não encontrada.`);
     }
 }
+
 
 // Variável global para armazenar o ID do item a ser excluído
 let deleteId = null;

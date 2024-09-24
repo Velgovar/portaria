@@ -53,7 +53,8 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Veículos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="css/tabela_visitantes.css">
 
 </head>
@@ -135,8 +136,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                     <td><?php echo htmlspecialchars($registro['estacionamento']); ?></td>
                     <td><?php echo htmlspecialchars(!empty($registro['placa']) ? $registro['placa'] : '-'); ?></td>
                     <td><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_entrada']))); ?></td>
-<td class="horario_saida"><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_saida']))); ?></td>
-
+                    <td class="horario_saida"><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_saida']))); ?></td>
                     <td><?php echo htmlspecialchars($registro['colaborador']); ?></td>
                     <td><?php echo htmlspecialchars($registro['setor']); ?></td>
                     <td>
@@ -153,43 +153,43 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
 </div>
 
 
-        <div class="pagination-container">
-                    <div class="select-container">
-                        <select id="registrosPorPagina" onchange="changeRecordsPerPage()">
-                            <option value="10" <?php echo $registrosPorPagina == 10 ? 'selected' : ''; ?>>10</option>
-                            <option value="25" <?php echo $registrosPorPagina == 25 ? 'selected' : ''; ?>>25</option>
-                            <option value="50" <?php echo $registrosPorPagina == 50 ? 'selected' : ''; ?>>50</option>
-                            <option value="100" <?php echo $registrosPorPagina == 100 ? 'selected' : ''; ?>>100</option>
-                            <option value="1000" <?php echo $registrosPorPagina == 1000 ? 'selected' : ''; ?>>1000</option>
-                            <option value="10000" <?php echo $registrosPorPagina == 10000 ? 'selected' : ''; ?>>10000</option>
-                            <option value="100000" <?php echo $registrosPorPagina == 100000 ? 'selected' : ''; ?>>100000</option>
-                            <option value="1000000" <?php echo $registrosPorPagina == 1000000 ? 'selected' : ''; ?>>1000000</option>
-                        </select>
-                        <span>Linhas / Páginas</span>
-                    </div>
+<div class="pagination-container">
+        <div class="select-container">
+            <select id="registrosPorPagina" onchange="changeRecordsPerPage()">
+                <option value="10" <?php echo $registrosPorPagina == 10 ? 'selected' : ''; ?>>10</option>
+                <option value="25" <?php echo $registrosPorPagina == 25 ? 'selected' : ''; ?>>25</option>
+                <option value="50" <?php echo $registrosPorPagina == 50 ? 'selected' : ''; ?>>50</option>
+                <option value="100" <?php echo $registrosPorPagina == 100 ? 'selected' : ''; ?>>100</option>
+                <option value="1000" <?php echo $registrosPorPagina == 1000 ? 'selected' : ''; ?>>1000</option>
+                <option value="10000" <?php echo $registrosPorPagina == 10000 ? 'selected' : ''; ?>>10000</option>
+                <option value="100000" <?php echo $registrosPorPagina == 100000 ? 'selected' : ''; ?>>100000</option>
+                <option value="1000000" <?php echo $registrosPorPagina == 1000000 ? 'selected' : ''; ?>>1000000</option>
+            </select>
+            <span>Linhas / Páginas</span>
+        </div>
 
-                    <div class="pagination">
-                        <a href="?pagina=1&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == 1) echo 'class="disabled"'; ?>>&laquo;</a>
-                        <a href="?pagina=<?php echo max(1, $paginaAtual - 1); ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == 1) echo 'class="disabled"'; ?>>&lt;</a>
-                        
-                        <?php
-                        $numLinks = 3;
-                        $startPage = max(1, $paginaAtual - floor($numLinks / 2));
-                        $endPage = min($totalPaginas, $startPage + $numLinks - 1);
-                        
-                        if ($endPage - $startPage + 1 < $numLinks) {
-                            $startPage = max(1, $endPage - $numLinks + 1);
-                        }
-                        
-                        for ($i = $startPage; $i <= $endPage; $i++): ?>
-                            <a href="?pagina=<?php echo $i; ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($i == $paginaAtual) echo 'class="active"'; ?>><?php echo $i; ?></a>
-                        <?php endfor; ?>
+        <div class="pagination">
+            <a href="?pagina=1&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == 1) echo 'class="disabled"'; ?>>&laquo;</a>
+            <a href="?pagina=<?php echo max(1, $paginaAtual - 1); ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == 1) echo 'class="disabled"'; ?>>&lt;</a>
+            
+            <?php
+            $numLinks = 3;
+            $startPage = max(1, $paginaAtual - floor($numLinks / 2));
+            $endPage = min($totalPaginas, $startPage + $numLinks - 1);
+            
+            if ($endPage - $startPage + 1 < $numLinks) {
+                $startPage = max(1, $endPage - $numLinks + 1);
+            }
+            
+            for ($i = $startPage; $i <= $endPage; $i++): ?>
+                <a href="?pagina=<?php echo $i; ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($i == $paginaAtual) echo 'class="active"'; ?>><?php echo $i; ?></a>
+            <?php endfor; ?>
 
-                        <a href="?pagina=<?php echo min($totalPaginas, $paginaAtual + 1); ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == $totalPaginas) echo 'class="disabled"'; ?>>&gt;</a>
-                        <a href="?pagina=<?php echo $totalPaginas; ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == $totalPaginas) echo 'class="disabled"'; ?>>&raquo;</a>
-                    </div>
-                </div>
+            <a href="?pagina=<?php echo min($totalPaginas, $paginaAtual + 1); ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == $totalPaginas) echo 'class="disabled"'; ?>>&gt;</a>
+            <a href="?pagina=<?php echo $totalPaginas; ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == $totalPaginas) echo 'class="disabled"'; ?>>&raquo;</a>
+        </div>
     </div>
+</div>
 
 <!-- Modal -->
 <div id="editModal" class="modal">
