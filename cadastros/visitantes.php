@@ -35,8 +35,7 @@
                         ini_set('display_startup_errors', 1);
                         error_reporting(E_ALL);
 
-                        // Conexão com o banco de dados
-                        require '../db_config.php'; // Ajuste o caminho conforme a localização do seu arquivo
+                        require '../db_config.php';
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -44,7 +43,6 @@
                             die("Erro na conexão com o banco de dados: " . $conn->connect_error);
                         }
 
-                        // Query para buscar os porteiro/vigias cadastrados
                         $sql = "SELECT id, nome FROM porteiros";
                         $result = $conn->query($sql);
 
@@ -77,16 +75,11 @@
                 <select type="text" id="tipovisitante" name="tipovisitante">
                 <option value="">Selecione o Tipo de Visitante</option>
                         <?php
-                        // Exibir erros de PHP
                         ini_set('display_errors', 1);
                         ini_set('display_startup_errors', 1);
                         error_reporting(E_ALL);
 
-                        // Conexão com o banco de dados
-                        $servername = "172.16.0.225";
-                        $username = "root";
-                        $password = "Meunome1@";
-                        $dbname = "portaria";
+                        require '../db_config.php'; 
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -94,7 +87,6 @@
                             die("Erro na conexão com o banco de dados: " . $conn->connect_error);
                         }
 
-                        // Query para buscar os porteiro/vigias cadastrados
                         $sql = "SELECT id, nome FROM tipovisitante";
                         $result = $conn->query($sql);
 
@@ -141,14 +133,14 @@
             <div class="horario-item">
                 <label for="horario_saida"> Horário saída</label>
                 <div class="input-icon">
-                    <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
+                    <i class="fas fa-clock"></i> 
                     <input type="text" id="horario_entrada" name="horario_entrada" placeholder="Ex: 12:00">
                 </div>
             </div>
             <div class="horario-item">
                 <label for="horario_entrada"> Horário chegada</label>
                 <div class="input-icon">
-                    <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
+                    <i class="fas fa-clock"></i> 
                     <input type="text" id="horario_saida" name="horario_saida" placeholder="Ex: 12:00">
                 </div>
             </div>
@@ -164,37 +156,31 @@
                     <select type="text" id="setor" name="setor">
                     <option value="">Selecione um setor</option>
                         <?php
-                        // Exibir erros de PHP
-                        ini_set('display_errors', 1);
-                        ini_set('display_startup_errors', 1);
-                        error_reporting(E_ALL);
+                            ini_set('display_errors', 1);
+                            ini_set('display_startup_errors', 1);
+                            error_reporting(E_ALL);
 
-                        // Conexão com o banco de dados
-                        $servername = "172.16.0.225";
-                        $username = "root";
-                        $password = "Meunome1@";
-                        $dbname = "portaria";
+                            require '../db_config.php'; 
 
-                        $conn = new mysqli($servername, $username, $password, $dbname);
+                            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                        if ($conn->connect_error) {
-                            die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-                        }
-
-                        // Query para buscar os setores cadastrados
-                        $sql = "SELECT id, nome FROM setores";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<option value="' . $row['nome'] . '">' . $row['nome'] . '</option>';
+                            if ($conn->connect_error) {
+                                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
                             }
-                        } else {
-                            echo '<option value="">Nenhum Setor encontrado</option>';
-                        }
 
-                        $conn->close();
-                        ?>
+                            $sql = "SELECT id, nome FROM setores";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<option value="' . $row['nome'] . '">' . $row['nome'] . '</option>';
+                                }
+                            } else {
+                                echo '<option value="">Nenhum Setor encontrado</option>';
+                            }
+
+                            $conn->close();
+                            ?>
                   </select>
               </div>
             </div>
@@ -206,7 +192,6 @@
         </form>
     </div>
 
-        <!-- Contêiner para o launcher -->
         <div id="launcher" class="launcher hidden">
             <div class="launcher-message">Cadastro editado com sucesso!</div>
         </div>

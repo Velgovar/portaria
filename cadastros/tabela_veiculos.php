@@ -67,7 +67,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         <div class="header">
             <h2>Tabela Veículos</h2>
         </div>
-        <!-- Formulário de Busca -->
+
         <form class="search-form" method="get" action="">
     <label for="campo-busca">Buscar por</label>
     <select name="criterio" id="criterio">
@@ -117,8 +117,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                             <td><?php echo htmlspecialchars($registro['km_saida']); ?></td>
                             <td class="km_chegada"><?php echo htmlspecialchars(!empty($registro['km_chegada']) ? $registro['km_chegada'] : '0'); ?></td>
                             <td><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_saida']))); ?></td>
-<td class="horario_chegada"><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_chegada']))); ?></td>
-
+                            <td class="horario_chegada"><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_chegada']))); ?></td>
                             <td><?php echo htmlspecialchars($registro['destino']); ?></td>
                             <td><?php echo htmlspecialchars($registro['motivo']); ?></td>
                             <td>
@@ -177,10 +176,10 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         </div>
 
         <div class="modal" id="editModal">
-    <div class="modal-content">
-        <h2>Editar Registro</h2>
-        <form id="editForm" action="../config/editar_table_veiculos.php" method="POST">
-            <input type="hidden" id="editId" name="id">
+            <div class="modal-content">
+                <h2>Editar Registro</h2>
+                <form id="editForm" action="../config/editar_table_veiculos.php" method="POST">
+                <input type="hidden" id="editId" name="id">
             
             <label for="editKmChegada">KM Chegada </label>
         <div class="input-icon">
@@ -194,7 +193,6 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
             <input type="number" id="editHorarioChegada" name="horario_chegada" required>
         </div>
 
-            <!-- Outros campos ocultos -->
             <input type="text" class="hidden" id="editData" name="data">
             <input type="text" class="hidden" id="editPorteiro" name="porteiro">
             <input type="text" class="hidden" id="editVeiculo" name="veiculo">
@@ -208,13 +206,10 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     </div>
 </div>
 
-
-<!-- Contêiner para o launcher -->
 <div id="launcher" class="launcher hidden">
     <div class="launcher-message">Cadastro editado com sucesso!</div>
 </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>

@@ -30,12 +30,11 @@
                     <select id="porteiro" name="porteiro">
                         <option value="">Selecione um porteiro</option>
                         <?php
-                        // Exibir erros de PHP
                         ini_set('display_errors', 1);
                         ini_set('display_startup_errors', 1);
                         error_reporting(E_ALL);
 
-                        require '../db_config.php'; // Ajuste o caminho conforme a localização do seu arquivo
+                        require '../db_config.php'; 
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -43,7 +42,6 @@
                             die("Erro na conexão com o banco de dados: " . $conn->connect_error);
                         }
 
-                        // Query para buscar os porteiro/vigias cadastrados
                         $sql = "SELECT id, nome FROM porteiros";
                         $result = $conn->query($sql);
 
@@ -62,44 +60,37 @@
             </div>
 
             <div class="form-group">
-    <label for="veiculo">Veículo</label>
-    <select id="veiculo" name="veiculo">
-        <option value="">Selecione um veículo</option>
-        <?php
-        // Exibir erros de PHP
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
+                <label for="veiculo">Veículo</label>
+                <select id="veiculo" name="veiculo">
+                    <option value="">Selecione um veículo</option>
+                    <?php
+                    ini_set('display_errors', 1);
+                    ini_set('display_startup_errors', 1);
+                    error_reporting(E_ALL);
 
-        // Conexão com o banco de dados
-        $servername = "172.16.0.225";
-        $username = "root";
-        $password = "Meunome1@";
-        $dbname = "portaria";
+                    require '../db_config.php'; 
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
+                    $conn = new mysqli($servername, $username, $password, $dbname);
 
-        if ($conn->connect_error) {
-            die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-        }
+                    if ($conn->connect_error) {
+                        die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+                    }
 
-        // Query para buscar os veículos cadastrados
-        $sql = "SELECT id, nome FROM veiculos";
-        $result = $conn->query($sql);
+                    $sql = "SELECT id, nome FROM veiculos";
+                    $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                // Exibe o nome do veículo e usa o nome como valor da opção
-                echo '<option value="' . htmlspecialchars($row['nome']) . '">' . htmlspecialchars($row['nome']) . '</option>';
-            }
-        } else {
-            echo '<option value="">Nenhum veículo encontrado</option>';
-        }
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . htmlspecialchars($row['nome']) . '">' . htmlspecialchars($row['nome']) . '</option>';
+                        }
+                    } else {
+                        echo '<option value="">Nenhum veículo encontrado</option>';
+                    }
 
-        $conn->close();
-        ?>
-    </select>
-</div>
+                    $conn->close();
+                    ?>
+                </select>
+            </div>
 
             <div class="form-group">
                 <label for="motorista">Motorista (Nome completo)</label>
@@ -111,14 +102,14 @@
         <label for="km_saida">KM saída</label>
         <div class="input-icon">
             <input type="number" id="km_saida" name="km_saida" placeholder="Ex: 23456">
-            <i class="fas fa-tachometer-alt"></i> <!-- Ícone de carro -->
+            <i class="fas fa-tachometer-alt"></i> 
         </div>
     </div>
     <div class="km-item">
         <label for="km_chegada">KM chegada</label>
         <div class="input-icon">
             <input type="number" id="km_chegada" name="km_chegada" placeholder="Ex: 23456">
-            <i class="fas fa-tachometer-alt"></i> <!-- Ícone de painel -->
+            <i class="fas fa-tachometer-alt"></i> 
         </div>
     </div>
 </div>
@@ -127,14 +118,14 @@
     <div class="horario-item">
         <label for="horario_saida"> Horário saída</label>
         <div class="input-icon">
-            <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
+            <i class="fas fa-clock"></i> 
             <input type="text" id="horario_saida" name="horario_saida" placeholder="Ex: 12:00">
         </div>
     </div>
     <div class="horario-item">
         <label for="horario_entrada"> Horário chegada</label>
         <div class="input-icon">
-            <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
+            <i class="fas fa-clock"></i> 
             <input type="text" id="horario_entrada" name="horario_entrada" placeholder="Ex: 12:00">
         </div>
     </div>
@@ -156,7 +147,6 @@
         </form>
     </div>
 
-        <!-- Contêiner para o launcher -->
         <div id="launcher" class="launcher hidden">
             <div class="launcher-message">Cadastro editado com sucesso!</div>
         </div>

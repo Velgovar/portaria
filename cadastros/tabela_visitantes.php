@@ -67,7 +67,6 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         <h2>Tabela Visitantes</h2>
         </div>
 
-        <!-- Formulário de Busca -->
         <form class="search-form" method="get" action="">
             <label for="campo-busca">Buscar por</label>
             <select name="criterio" id="criterio">
@@ -95,12 +94,10 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
             </div>
         </form>
 
-        <!-- Mensagem de Sucesso -->
         <?php if ($mensagemSucesso): ?>
             <div class="success-message"><?php echo htmlspecialchars($mensagemSucesso); ?></div>
         <?php endif; ?>
 
-<!-- Tabela de Registros -->
 <div class="table-container">
     <table>
         <thead>
@@ -152,7 +149,6 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     </table>
 </div>
 
-
 <div class="pagination-container">
         <div class="select-container">
             <select id="registrosPorPagina" onchange="changeRecordsPerPage()">
@@ -191,7 +187,6 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     </div>
 </div>
 
-<!-- Modal -->
 <div id="editModal" class="modal">
     <div class="modal-content">
         <span class="close" id="closeModal"></span>
@@ -212,13 +207,11 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
 
 <div class="message-container"></div>
 
-<!-- Contêiner para o launcher -->
 <div id="launcher" class="launcher hidden">
     <div class="launcher-message">Cadastro editado com sucesso!</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script><script src="js/tabela_visitantes.js"></script>
-
 
 </body>
 </html>
