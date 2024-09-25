@@ -67,6 +67,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
 
 </head>
 <body>
+    
 <img src="../images/inusitta.png" class="image-center" alt="icone central">
 
     <a href="menu.php" class="style">Voltar</a>
@@ -75,7 +76,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         <div class="header">
             <h2>[Administrador] Cadastros de Veiculos</h2>
         </div>
-        <!-- Formulário de Busca -->
+
         <form class="search-form" method="get" action="">
     <label for="campo-busca">Buscar por</label>
     <select name="criterio" id="criterio">
@@ -183,14 +184,12 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
             <?php endif; ?>
         </div>
 
-<!-- Modal de confirmação -->
 <div id="confirmationModal" class="confirmation-modal">
     <div class="confirmation-modal-content">
         <h3>Confirmação de Exclusão</h3>
         <p>Você tem certeza que deseja excluir este cadastro?</p>
         <form id="confirmationForm">
-<!-- Campo de texto para confirmação -->
-<input type="text" id="confirmationInput" autocomplete="off" placeholder="Digite 'excluir' para confirmar">
+        <input type="text" id="confirmationInput" autocomplete="off" placeholder="Digite 'excluir' para confirmar">
             <button type="submit">Excluir</button>
             <button type="button" class="cancel" onclick="closeConfirmationModal()">Cancelar</button>
         </form>
@@ -202,9 +201,8 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         <h2>Editar Registro</h2>
         <form id="editForm" action="config/tabela_veiculos_config.php" method="POST">
             <input type="hidden" id="editId" name="id">
-<label for="editData">DATA:</label>
-<input type="text" id="editData" name="data" autocomplete="off" class="datepicker">
-
+            <label for="editData">DATA:</label>
+            <input type="text" id="editData" name="data" autocomplete="off" class="datepicker">
             <label for="editPorteiro">PORTEIRO:</label>
             <input type="text" id="editPorteiro" name="porteiro" autocomplete="off">
             <label for="editVeiculo">VEICULO:</label>
@@ -226,7 +224,6 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
         </form>
     </div>
 </div>
-
 
 <div id="launcher" class="launcher hidden">
     <div class="launcher-message">Cadastro editado com sucesso!</div>

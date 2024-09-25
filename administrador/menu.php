@@ -1,9 +1,7 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado
 if (!isset($_SESSION['user_id'])) {
-    // Se não estiver logado, redireciona para a página de login
     header('Location: login.php');
     exit;
 }
@@ -22,17 +20,13 @@ if (!isset($_SESSION['user_id'])) {
 <a href="config/logout.php" class="style">Sair</a>
     <div class="title">Bem-vindo ao Modo Administrador</div>
     <div class="container">
-        <header>
-            <!-- Removido o h1 de dentro da div com a mensagem -->
-        </header>
-        <nav>
+         <nav>
             <div class="nav-column">
                 <ul>
                     <li><a href="tabela_veiculos.php">Cadastros Veiculos de Terceiros</a></li>
                     <li><a href="porteiros.php">Cadastrar Porteiros</a></li>
                     <li><a href="tipo.php">Cadastrar Tipo de Visitante</a></li>
-
-                </ul>
+               </ul>
             </div>
             <div class="nav-column">
                 <ul>

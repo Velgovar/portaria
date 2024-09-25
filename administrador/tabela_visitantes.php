@@ -146,36 +146,35 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
             <td class="estacionamento"><?php echo htmlspecialchars($registro['estacionamento']); ?></td>
             <td><?php echo htmlspecialchars(!empty($registro['placa']) ? $registro['placa'] : '-'); ?></td>
             <td class="horario_entrada"><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_entrada']))); ?></td>
-<td class="horario_saida"><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_saida']))); ?></td>
-
+            <td class="horario_saida"><?php echo htmlspecialchars(date('H:i', strtotime($registro['horario_saida']))); ?></td>
             <td class="colaborador"><?php echo htmlspecialchars($registro['colaborador']); ?></td>
             <td class="setor"><?php echo htmlspecialchars($registro['setor']); ?></td>
                     
                     
             <td>
-    <button class="edit-button" 
-        data-id="<?php echo htmlspecialchars($registro['id']); ?>" 
-        data-data="<?php echo htmlspecialchars($registro['data']); ?>"
-        data-porteiro="<?php echo htmlspecialchars($registro['porteiro']); ?>"
-        data-nome="<?php echo htmlspecialchars($registro['nome']); ?>"
-        data-cpf="<?php echo htmlspecialchars($registro['cpf']); ?>"
-        data-tipovisitante="<?php echo htmlspecialchars($registro['tipovisitante']); ?>"
-        data-servico="<?php echo htmlspecialchars($registro['servico']); ?>"
-        data-empresa="<?php echo htmlspecialchars($registro['empresa']); ?>"
-        data-estacionamento="<?php echo htmlspecialchars($registro['estacionamento']); ?>"
-        data-placa="<?php echo htmlspecialchars($registro['placa']); ?>"
-        data-horario_entrada="<?php echo htmlspecialchars($registro['horario_entrada']); ?>"
-        data-horario_saida="<?php echo htmlspecialchars($registro['horario_saida']); ?>"
-        data-colaborador="<?php echo htmlspecialchars($registro['colaborador']); ?>"
-        data-setor="<?php echo htmlspecialchars($registro['setor']); ?>">
-        Editar
-    </button>
-    <button class="delete-button" 
-        data-id="<?php echo htmlspecialchars($registro['id']); ?>"
-        onclick="openConfirmationModal(<?php echo htmlspecialchars($registro['id']); ?>)">
-        Excluir
-    </button>
-</td>
+                <button class="edit-button" 
+                    data-id="<?php echo htmlspecialchars($registro['id']); ?>" 
+                    data-data="<?php echo htmlspecialchars($registro['data']); ?>"
+                    data-porteiro="<?php echo htmlspecialchars($registro['porteiro']); ?>"
+                    data-nome="<?php echo htmlspecialchars($registro['nome']); ?>"
+                    data-cpf="<?php echo htmlspecialchars($registro['cpf']); ?>"
+                    data-tipovisitante="<?php echo htmlspecialchars($registro['tipovisitante']); ?>"
+                    data-servico="<?php echo htmlspecialchars($registro['servico']); ?>"
+                    data-empresa="<?php echo htmlspecialchars($registro['empresa']); ?>"
+                    data-estacionamento="<?php echo htmlspecialchars($registro['estacionamento']); ?>"
+                    data-placa="<?php echo htmlspecialchars($registro['placa']); ?>"
+                    data-horario_entrada="<?php echo htmlspecialchars($registro['horario_entrada']); ?>"
+                    data-horario_saida="<?php echo htmlspecialchars($registro['horario_saida']); ?>"
+                    data-colaborador="<?php echo htmlspecialchars($registro['colaborador']); ?>"
+                    data-setor="<?php echo htmlspecialchars($registro['setor']); ?>">
+                    Editar
+                </button>
+                <button class="delete-button" 
+                    data-id="<?php echo htmlspecialchars($registro['id']); ?>"
+                    onclick="openConfirmationModal(<?php echo htmlspecialchars($registro['id']); ?>)">
+                    Excluir
+                </button>
+            </td>
 
                 </tr>
             <?php endforeach; ?>
@@ -183,44 +182,43 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     </table>
 </div>
 
-
         <div class="pagination-container">
-                    <div class="select-container">
-                        <select id="registrosPorPagina" onchange="changeRecordsPerPage()">
-                            <option value="10" <?php echo $registrosPorPagina == 10 ? 'selected' : ''; ?>>10</option>
-                            <option value="25" <?php echo $registrosPorPagina == 25 ? 'selected' : ''; ?>>25</option>
-                            <option value="50" <?php echo $registrosPorPagina == 50 ? 'selected' : ''; ?>>50</option>
-                            <option value="100" <?php echo $registrosPorPagina == 100 ? 'selected' : ''; ?>>100</option>
-                            <option value="1000" <?php echo $registrosPorPagina == 1000 ? 'selected' : ''; ?>>1000</option>
-                            <option value="10000" <?php echo $registrosPorPagina == 10000 ? 'selected' : ''; ?>>10000</option>
-                            <option value="100000" <?php echo $registrosPorPagina == 100000 ? 'selected' : ''; ?>>100000</option>
-                            <option value="1000000" <?php echo $registrosPorPagina == 1000000 ? 'selected' : ''; ?>>1000000</option>
-                        </select>
-                        <span>Linhas / Páginas</span>
-                    </div>
+            <div class="select-container">
+            <select id="registrosPorPagina" onchange="changeRecordsPerPage()">
+                <option value="10" <?php echo $registrosPorPagina == 10 ? 'selected' : ''; ?>>10</option>
+                <option value="25" <?php echo $registrosPorPagina == 25 ? 'selected' : ''; ?>>25</option>
+                <option value="50" <?php echo $registrosPorPagina == 50 ? 'selected' : ''; ?>>50</option>
+                <option value="100" <?php echo $registrosPorPagina == 100 ? 'selected' : ''; ?>>100</option>
+                <option value="1000" <?php echo $registrosPorPagina == 1000 ? 'selected' : ''; ?>>1000</option>
+                <option value="10000" <?php echo $registrosPorPagina == 10000 ? 'selected' : ''; ?>>10000</option>
+                <option value="100000" <?php echo $registrosPorPagina == 100000 ? 'selected' : ''; ?>>100000</option>
+                <option value="1000000" <?php echo $registrosPorPagina == 1000000 ? 'selected' : ''; ?>>1000000</option>
+            </select>
+            <span>Linhas / Páginas</span>
+        </div>
 
-                    <div class="pagination">
-                        <a href="?pagina=1&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == 1) echo 'class="disabled"'; ?>>&laquo;</a>
-                        <a href="?pagina=<?php echo max(1, $paginaAtual - 1); ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == 1) echo 'class="disabled"'; ?>>&lt;</a>
-                        
-                        <?php
-                        $numLinks = 3;
-                        $startPage = max(1, $paginaAtual - floor($numLinks / 2));
-                        $endPage = min($totalPaginas, $startPage + $numLinks - 1);
-                        
-                        if ($endPage - $startPage + 1 < $numLinks) {
-                            $startPage = max(1, $endPage - $numLinks + 1);
-                        }
-                        
-                        for ($i = $startPage; $i <= $endPage; $i++): ?>
-                            <a href="?pagina=<?php echo $i; ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($i == $paginaAtual) echo 'class="active"'; ?>><?php echo $i; ?></a>
-                        <?php endfor; ?>
+        <div class="pagination">
+            <a href="?pagina=1&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == 1) echo 'class="disabled"'; ?>>&laquo;</a>
+            <a href="?pagina=<?php echo max(1, $paginaAtual - 1); ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == 1) echo 'class="disabled"'; ?>>&lt;</a>
+            
+            <?php
+            $numLinks = 3;
+            $startPage = max(1, $paginaAtual - floor($numLinks / 2));
+            $endPage = min($totalPaginas, $startPage + $numLinks - 1);
+            
+            if ($endPage - $startPage + 1 < $numLinks) {
+                $startPage = max(1, $endPage - $numLinks + 1);
+            }
+            
+            for ($i = $startPage; $i <= $endPage; $i++): ?>
+                <a href="?pagina=<?php echo $i; ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($i == $paginaAtual) echo 'class="active"'; ?>><?php echo $i; ?></a>
+            <?php endfor; ?>
 
-                        <a href="?pagina=<?php echo min($totalPaginas, $paginaAtual + 1); ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == $totalPaginas) echo 'class="disabled"'; ?>>&gt;</a>
-                        <a href="?pagina=<?php echo $totalPaginas; ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == $totalPaginas) echo 'class="disabled"'; ?>>&raquo;</a>
-                    </div>
-                </div>
-            </div>
+            <a href="?pagina=<?php echo min($totalPaginas, $paginaAtual + 1); ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == $totalPaginas) echo 'class="disabled"'; ?>>&gt;</a>
+            <a href="?pagina=<?php echo $totalPaginas; ?>&registrosPorPagina=<?php echo $registrosPorPagina; ?>" <?php if ($paginaAtual == $totalPaginas) echo 'class="disabled"'; ?>>&raquo;</a>
+        </div>
+    </div>
+</div>
 
 <div id="editModal" class="modal">
     <div class="modal-content">
@@ -278,23 +276,18 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
     </div>
 </div>
 
-<!-- Contêiner para a notificação -->
 <div id="launcher" class="launcher hidden">
     <div class="launcher-message">Cadastro editado com sucesso!</div>
 </div>
 
-<!-- Modal de confirmação -->
 <div id="confirmationModal" class="confirmation-modal">
     <div class="confirmation-modal-content">
         <h3>Confirmação de Exclusão</h3>
         <p>Você tem certeza que deseja excluir este cadastro?</p>
         
-        <!-- Formulário de confirmação -->
         <form id="confirmationForm">
-            <!-- Campo de texto para confirmação -->
             <input type="text" id="confirmationInput" autocomplete="off" placeholder="Digite 'excluir' para confirmar" >
             
-            <!-- Botões de ação -->
             <div class="modal-buttons">
                 <button type="submit" class="confirm-delete">Excluir</button>
                 <button type="button" class="cancel" onclick="closeConfirmationModal()">Cancelar</button>

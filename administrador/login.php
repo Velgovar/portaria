@@ -11,6 +11,7 @@ session_start();
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
+    
     <div class="title">login</div>
 
     <a href="../menu.html" class="style">Voltar</a>
@@ -39,7 +40,6 @@ session_start();
         <div id="launcher" class="launcher hidden">
             <div class="launcher-message"></div>
         </div>
-
     </div>
 
     <script>
