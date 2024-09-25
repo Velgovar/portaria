@@ -132,7 +132,7 @@
                     </select>
                 </div>
                 <div class="km-item" style="display: none;">
-                    <label for="placa">Digite a Placa</label>
+                    <label for="placa">Placa</label>
                     <input type="text" id="placa" name="placa" maxlength="8" placeholder="Mercosul (ABC1D23) ou Padrão Antiga (ABC-1234)">
                 </div>
             </div>

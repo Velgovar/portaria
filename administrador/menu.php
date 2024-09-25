@@ -28,7 +28,7 @@ if (!isset($_SESSION['user_id'])) {
         <nav>
             <div class="nav-column">
                 <ul>
-                    <li><a href="tabela_veiculos.php">Cadastros de Veiculos</a></li>
+                    <li><a href="tabela_veiculos.php">Cadastros Veiculos de Terceiros</a></li>
                     <li><a href="porteiros.php">Cadastrar Porteiros</a></li>
                     <li><a href="tipo.php">Cadastrar Tipo de Visitante</a></li>
 

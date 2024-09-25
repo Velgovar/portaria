@@ -142,12 +142,12 @@
 
             <div class="form-group">
                 <label for="destino">Destino</label>
-                <input type="text" id="destino" name="destino">
+                <input type="text" id="destino" name="destino" placeholder="Ex: Londrina">
             </div>
 
             <div class="form-group">
                 <label for="motivo">Motivo</label>
-                <input type="text" id="motivo" name="motivo">
+                <input type="text" id="motivo" name="motivo" placeholder="">
             </div>
 
             <div class="button-container">
