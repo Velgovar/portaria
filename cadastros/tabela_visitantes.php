@@ -154,14 +154,15 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
 <div class="pagination-container">
         <div class="select-container">
             <select id="registrosPorPagina" onchange="changeRecordsPerPage()">
+                <option value="5" <?php echo $registrosPorPagina == 5 ? 'selected' : ''; ?>>5</option>
                 <option value="10" <?php echo $registrosPorPagina == 10 ? 'selected' : ''; ?>>10</option>
                 <option value="25" <?php echo $registrosPorPagina == 25 ? 'selected' : ''; ?>>25</option>
                 <option value="50" <?php echo $registrosPorPagina == 50 ? 'selected' : ''; ?>>50</option>
                 <option value="100" <?php echo $registrosPorPagina == 100 ? 'selected' : ''; ?>>100</option>
-                <option value="1000" <?php echo $registrosPorPagina == 1000 ? 'selected' : ''; ?>>1000</option>
-                <option value="10000" <?php echo $registrosPorPagina == 10000 ? 'selected' : ''; ?>>10000</option>
-                <option value="100000" <?php echo $registrosPorPagina == 100000 ? 'selected' : ''; ?>>100000</option>
-                <option value="1000000" <?php echo $registrosPorPagina == 1000000 ? 'selected' : ''; ?>>1000000</option>
+                <option value="999" <?php echo $registrosPorPagina == 999 ? 'selected' : ''; ?>>999</option>
+                <option value="9999" <?php echo $registrosPorPagina == 9999 ? 'selected' : ''; ?>>9999</option>
+                <option value="99999" <?php echo $registrosPorPagina == 99999 ? 'selected' : ''; ?>>99999</option>
+                <option value="999999" <?php echo $registrosPorPagina == 999999 ? 'selected' : ''; ?>>999999</option>
             </select>
             <span>Linhas / Páginas</span>
         </div>
@@ -200,7 +201,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
             <label for="editHorarioSaida">Horário de Saída</label>
             <input type="text" name="horario_saida" id="editHorarioSaida" class="flatpickr" required>
             <i class="fas fa-clock"></i> 
-                        </div>
+            </div>
             <button type="submit" class="salvar">Salvar</button>
             <button type="button" class="cancelar" id="cancelButton">Cancelar</button>
         </form>

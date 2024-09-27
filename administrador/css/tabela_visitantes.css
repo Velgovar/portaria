@@ -15,8 +15,8 @@ body {
 
 .container_table1 {
     position: fixed;
-    width: 95%; /* Aumenta a largura do container */
-    max-width: 1800px; /* Ajusta o tamanho máximo do container */
+    width: 95%; 
+    max-width: 1800px; 
     height: 90%;
     max-height: 85vh;
     padding: 20px;
@@ -27,27 +27,56 @@ body {
                 10px 10px 25px rgba(0, 0, 0, 0.1);
 }
 
+.table-container {
+    overflow-y: auto; 
+    max-height: 400px; 
+}
+
+.table-container::-webkit-scrollbar {
+    width: 12px; 
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #333; 
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #777; 
+}
+
+.table-container {
+    scrollbar-width: thin; 
+    scrollbar-color: #555 #333; 
+}
+
+.table-container {
+    -ms-overflow-style: -ms-autohiding-scrollbar; 
+}
+
 .header {
     text-align: center;
     padding: 10px;
     color: white;
 }
 
-/* Ajusta o estilo da tabela para exibir mais linhas visíveis */
 .table-container {
-    height: calc(100% - 60px); /* Ajusta a altura para caber no container */
-    overflow-y: auto;
-    overflow-x: hidden; /* Remove a barra de rolagem horizontal */
-    margin-top: 10px;
+    height: calc(80vh - 100px); 
+    max-height: 600px; 
+    overflow-y: auto; 
+    margin-top: 10px; 
 }
 
-/* Ajusta a tabela e aplica zoom para aumentar o tamanho do texto e espaçamento */
 table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
     border: 2px solid #333;
-    table-layout: fixed; /* Garante que as colunas tenham largura fixa */
-    font-size: 0.9em; /* Reduzido o tamanho da fonte para 0.9em */
+    margin-bottom: 0; 
 }
 
 thead th {
@@ -56,19 +85,19 @@ thead th {
     position: sticky;
     top: 0;
     z-index: 2;
-    word-wrap: break-word; /* Força a quebra de linha se necessário */
-    white-space: normal; /* Permite a quebra de linha */
+    word-wrap: break-word; 
+    white-space: normal;
 }
 
 th, td {
-    padding: 10px; /* Reduzido o padding para 10px */
+    padding: 10px; 
     border: 2px solid #444;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: normal; /* Permite a quebra de linha em células */
+    white-space: normal; 
     color: #ddd;
-    font-size: 0.9em; /* Reduzido o tamanho da fonte para 0.9em */
+    font-size: 0.9em; 
 }
 
 tbody tr:nth-child(even) {
@@ -79,36 +108,21 @@ tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-th, td {
-    min-width: 80px; /* Garante que as colunas não fiquem muito estreitas */
-}
-
-        
-
-        tbody tr:nth-child(even) {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-/* Opcional: Ajusta o estilo das colunas específicas */
-th:nth-child(1), td:nth-child(1) { width: 30px; } 
-th:nth-child(2), td:nth-child(2) { width: 56px; }
-th:nth-child(3), td:nth-child(3) { width: 120px; }
-th:nth-child(4), td:nth-child(4) { width: 120px; }
-th:nth-child(5), td:nth-child(5) { width: 100px; }
-th:nth-child(6), td:nth-child(6) { width: 60px; }
-th:nth-child(7), td:nth-child(7) { width: 80px; }
-th:nth-child(8), td:nth-child(8) { width: 80px; } 
-th:nth-child(9), td:nth-child(9) { width: 60px; }
-th:nth-child(10), td:nth-child(10) { width: 60px; }
-th:nth-child(11), td:nth-child(11) { width: 70px; }
-th:nth-child(12), td:nth-child(12) { width: 70px; }
-th:nth-child(13), td:nth-child(13) { width: 100px; }
-th:nth-child(14), td:nth-child(14) { width: 60px; }
-th:nth-child(15), td:nth-child(15) { width: 120px; }
+th:nth-child(1), td:nth-child(1) { width: 30px; }
+th:nth-child(2), td:nth-child(2) { width: 70px; }
+th:nth-child(3), td:nth-child(3) { width: 180px; }
+th:nth-child(4), td:nth-child(4) { width: 180px; }
+th:nth-child(5), td:nth-child(5) { width: 110px; }
+th:nth-child(6), td:nth-child(6) { width: 100px; }
+th:nth-child(7), td:nth-child(7) { width: 100px; }
+th:nth-child(8), td:nth-child(8) { width: 100px; }
+th:nth-child(9), td:nth-child(9) { width: 96px; }
+th:nth-child(10), td:nth-child(10) { width: 70px; }
+th:nth-child(11), td:nth-child(11) { width: 55px; }
+th:nth-child(12), td:nth-child(11) { width: 55px; }
+th:nth-child(13), td:nth-child(11) { width: 90px; }
+th:nth-child(14), td:nth-child(11) { width: 90px; }
+th:nth-child(15), td:nth-child(11) { width: 120px; }
 
 
         /* Container da paginação */

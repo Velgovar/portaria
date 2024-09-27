@@ -131,81 +131,45 @@ function changeRecordsPerPage() {
     window.location.href = `?pagina=1&registrosPorPagina=${registrosPorPagina}`;
 }
 
-// Adicionar event listener para mudança no número de registros por página
-document.getElementById('registrosPorPagina').addEventListener('change', changeRecordsPerPage);
+// Função para formatar o horário
+function formatarHorario(input) {
+    let valor = input.value;
+    valor = valor.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
 
-document.addEventListener('DOMContentLoaded', function() {
-    const horarioSaida = document.getElementById('editHorarioSaida');
-
-    function setupTimeScrollPlugin(flatpickrInstance) {
-        function handleWheel(event) {
-            event.preventDefault(); // Previne o comportamento padrão do scroll
-
-            const currentDate = flatpickrInstance.selectedDates[0] || new Date();
-            const increment = event.deltaY < 0 ? 1 : -1; // Determina a direção do scroll
-            const minutes = currentDate.getMinutes() + increment;
-
-            if (minutes >= 60) {
-                currentDate.setHours(currentDate.getHours() + 1);
-                currentDate.setMinutes(0);
-            } else if (minutes < 0) {
-                currentDate.setHours(currentDate.getHours() - 1);
-                currentDate.setMinutes(59);
-            } else {
-                currentDate.setMinutes(minutes);
-            }
-
-            flatpickrInstance.setDate(currentDate, true); // Atualiza o valor no Flatpickr
-        }
-
-        flatpickrInstance._input.addEventListener('wheel', handleWheel);
-
-        flatpickrInstance._input.addEventListener('mousedown', function(event) {
-            event.stopPropagation(); // Previne que o clique seja interceptado por outros ouvintes
-        });
-
-        flatpickrInstance._input.addEventListener('focus', function(event) {
-            flatpickrInstance._input.setSelectionRange(0, flatpickrInstance._input.value.length);
-        });
-
-        flatpickrInstance._input.addEventListener('click', function(event) {
-            event.stopPropagation(); // Garante que o clique no campo seja tratado corretamente
-        });
-
-        flatpickrInstance._input.addEventListener('blur', function(event) {
-            // Verifica se o campo está vazio e limpa a data selecionada
-            if (flatpickrInstance._input.value.trim() === '') {
-                flatpickrInstance.clear(); // Limpa a data selecionada se o campo estiver vazio
-                flatpickrInstance.setDate('', false); // Define o valor do campo como vazio
-            }
-        });
-
-        // Desabilita a confirmação com a tecla Enter
-        flatpickrInstance._input.addEventListener('keydown', function(event) {
-            if (event.keyCode === 13) { // Verifica se a tecla pressionada é o Enter
-                event.preventDefault(); // Previne o comportamento padrão de confirmar
-            }
-        });
-
-        flatpickrInstance.config.onOpen.push(function() {
-            if (flatpickrInstance._input.value.trim() === '') {
-                flatpickrInstance.clear();
-                flatpickrInstance.setDate('', false); // Define o valor do campo como vazio
-            }
-        });
+    if (valor.length > 2) {
+        valor = valor.slice(0, 2) + ':' + valor.slice(2); // Adiciona os dois pontos após o segundo dígito
     }
 
-    // Aplicando o Flatpickr ao campo "Horário de Saída"
-    flatpickr(horarioSaida, {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i",
-        time_24hr: true,
-        minuteIncrement: 1,
-        defaultHour: null, // Remove o preenchimento automático com valor padrão
-        defaultMinute: null, // Remove o preenchimento automático com valor padrão
-        onReady: function(selectedDates, dateStr, instance) {
-            setupTimeScrollPlugin(instance);
+    // Se já tiver 5 caracteres, faz a validação
+    if (valor.length >= 5) {
+        let horas = parseInt(valor.slice(0, 2));
+        let minutos = parseInt(valor.slice(3, 5));
+
+        // Se as horas forem maiores que 23 ou os minutos forem maiores que 59, redefine para 00:00
+        if (horas > 23 || minutos > 59) {
+            valor = '00:00';
+        } else {
+            // Limita horas a 23
+            if (horas > 23) {
+                horas = 23;
+            }
+
+            // Limita minutos a 59
+            if (minutos > 59) {
+                minutos = 59;
+            }
+
+            // Formata o valor final
+            valor = ('0' + horas).slice(-2) + ':' + ('0' + minutos).slice(-2);
         }
-    });
+    }
+
+    input.value = valor.slice(0, 5); // Limita o valor a 5 caracteres (HH:MM)
+}
+
+// Adiciona o evento de input para os dois campos
+document.getElementById('editHorarioSaida').addEventListener('input', function(e) {
+    formatarHorario(e.target);
 });
+
+

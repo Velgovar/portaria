@@ -192,7 +192,7 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
             <label for="editHorarioChegada">Horário Chegada</label>
         <div class="input-icon">
             <i class="fas fa-clock"></i> 
-            <input type="number" id="editHorarioChegada" name="horario_chegada" required>
+            <input type="text" id="editHorarioChegada" name="horario_chegada" required>
         </div>
 
             <input type="text" class="hidden" id="editData" name="data">

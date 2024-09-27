@@ -126,8 +126,8 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
                             <td><?php echo htmlspecialchars($registro['veiculo']); ?></td>
                             <td><?php echo htmlspecialchars($registro['km_saida']); ?></td>
                             <td class="km_chegada"><?php echo htmlspecialchars($registro['km_chegada']); ?></td>
-                            <td class="horario_saida"><?php echo htmlspecialchars($registro['horario_saida']); ?></td>
-                            <td class="horario_chegada"><?php echo htmlspecialchars($registro['horario_chegada']); ?></td>
+                            <td class="horario_saida"><?php echo date('H:i', strtotime($registro['horario_saida'])); ?></td>
+                            <td class="horario_chegada"><?php echo date('H:i', strtotime($registro['horario_chegada'])); ?></td>
                             <td><?php echo htmlspecialchars($registro['destino']); ?></td>
                             <td><?php echo htmlspecialchars($registro['motivo']); ?></td>
                             <td>
@@ -213,9 +213,9 @@ $mensagemSucesso = isset($_GET['sucesso']) ? $_GET['sucesso'] : '';
             <label for="editKmChegada">KM Chegada:</label>
             <input type="text" id="editKmChegada" name="km_chegada" autocomplete="off">
             <label for="editHorarioSaida">Horário Saída:</label>
-            <input type="time" id="editHorarioSaida" name="horario_saida" autocomplete="off">            
+            <input type="text" id="editHorarioSaida" name="horario_saida" autocomplete="off">            
             <label for="editHorarioChegada">Horário Chegada:</label>
-            <input type="time" id="editHorarioChegada" name="horario_chegada" autocomplete="off">
+            <input type="text" id="editHorarioChegada" name="horario_chegada" autocomplete="off">
             <label for="editDestino">DESTINO:</label>
             <input type="text" id="editDestino" name="destino" autocomplete="off">
             <label for="editMotivo">MOTIVO:</label>
