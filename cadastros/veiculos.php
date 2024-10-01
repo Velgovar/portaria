@@ -45,12 +45,13 @@
                             die("Erro na conexão com o banco de dados: " . $conn->connect_error);
                         }
 
-                        $sql = "SELECT id, nome FROM porteiros";
+                        // Modifique a consulta SQL para incluir ORDER BY
+                        $sql = "SELECT id, nome FROM porteiros ORDER BY nome ASC"; // Ordem alfabética
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                echo '<option value="' . $row['nome'] . '">' . $row['nome'] . '</option>';
+                                echo '<option value="' . htmlspecialchars($row['nome']) . '">' . htmlspecialchars($row['nome']) . '</option>';
                             }
                         } else {
                             echo '<option value="">Nenhum porteiro/vigia encontrado</option>';
@@ -62,7 +63,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+                <div class="form-group">
                 <label for="veiculo">Veículo</label>
                 <select id="veiculo" name="veiculo">
                     <option value="">Selecione um veículo</option>
@@ -79,7 +80,8 @@
                         die("Erro na conexão com o banco de dados: " . $conn->connect_error);
                     }
 
-                    $sql = "SELECT id, nome FROM veiculos";
+                    // Modifique a consulta SQL para incluir ORDER BY
+                    $sql = "SELECT id, nome FROM veiculos ORDER BY nome ASC"; // Ordem alfabética
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {

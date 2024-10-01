@@ -31,34 +31,35 @@
                 <div class="porteiro-item">
                     <label for="porteiro">Porteiro/Vigia:</label>
                     <select id="porteiro" name="porteiro">
-                        <option value="">Selecione um porteiro/vigia</option>
-                        <?php
-                        // Exibir erros de PHP
-                        ini_set('display_errors', 1);
-                        ini_set('display_startup_errors', 1);
-                        error_reporting(E_ALL);
+                    <option value="">Selecione um porteiro/vigia</option>
+                            <?php
+                            // Exibir erros de PHP
+                            ini_set('display_errors', 1);
+                            ini_set('display_startup_errors', 1);
+                            error_reporting(E_ALL);
 
-                        require '../db_config.php';
+                            require '../db_config.php';
 
-                        $conn = new mysqli($servername, $username, $password, $dbname);
+                            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                        if ($conn->connect_error) {
-                            die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-                        }
-
-                        $sql = "SELECT id, nome FROM porteiros";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<option value="' . $row['nome'] . '">' . $row['nome'] . '</option>';
+                            if ($conn->connect_error) {
+                                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
                             }
-                        } else {
-                            echo '<option value="">Nenhum porteiro/vigia encontrado</option>';
-                        }
 
-                        $conn->close();
-                        ?>
+                            // Modifique a consulta SQL para incluir ORDER BY
+                            $sql = "SELECT id, nome FROM porteiros ORDER BY nome ASC"; // Ordem alfabética
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<option value="' . htmlspecialchars($row['nome']) . '">' . htmlspecialchars($row['nome']) . '</option>';
+                                }
+                            } else {
+                                echo '<option value="">Nenhum porteiro/vigia encontrado</option>';
+                            }
+
+                            $conn->close();
+                            ?>
                     </select>
                 </div>
             </div>
@@ -76,36 +77,37 @@
             <div class="form-group">
                 <label for="tipovisitante">Tipo de visitante</label>
                 <select type="text" id="tipovisitante" name="tipovisitante">
-                <option value="">Selecione o Tipo de Visitante</option>
-                        <?php
-                        ini_set('display_errors', 1);
-                        ini_set('display_startup_errors', 1);
-                        error_reporting(E_ALL);
+                    <option value="">Selecione o Tipo de Visitante</option>
+                    <?php
+                    ini_set('display_errors', 1);
+                    ini_set('display_startup_errors', 1);
+                    error_reporting(E_ALL);
 
-                        require '../db_config.php'; 
+                    require '../db_config.php'; 
 
-                        $conn = new mysqli($servername, $username, $password, $dbname);
+                    $conn = new mysqli($servername, $username, $password, $dbname);
 
-                        if ($conn->connect_error) {
-                            die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+                    if ($conn->connect_error) {
+                        die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+                    }
+
+                    // Modifique a consulta SQL para incluir ORDER BY
+                    $sql = "SELECT id, nome FROM tipovisitante ORDER BY nome ASC"; // Ordem alfabética
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . htmlspecialchars($row['nome']) . '">' . htmlspecialchars($row['nome']) . '</option>';
                         }
+                    } else {
+                        echo '<option value="">Nenhum Tipo de visitante encontrado</option>';
+                    }
 
-                        $sql = "SELECT id, nome FROM tipovisitante";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<option value="' . $row['nome'] . '">' . $row['nome'] . '</option>';
-                            }
-                        } else {
-                            echo '<option value="">Nenhum Tipo de visitante encontrado</option>';
-                        }
-
-                        $conn->close();
-                        ?>
-
+                    $conn->close();
+                    ?>
                 </select>
             </div>
+
 
             <div class="form-group">
                 <label for="empresa">Empresa</label>
@@ -155,37 +157,39 @@
                     <input type="text" id="colaborador" name="colaborador" placeholder="Colaborador responsável">
                 </div>
                 <div class="km-item">
-                    <label for="setor">Setor de Destino</label>
-                    <select type="text" id="setor" name="setor">
-                    <option value="">Selecione um setor</option>
-                        <?php
-                            ini_set('display_errors', 1);
-                            ini_set('display_startup_errors', 1);
-                            error_reporting(E_ALL);
+    <label for="setor">Setor de Destino</label>
+    <select type="text" id="setor" name="setor">
+        <option value="">Selecione um setor</option>
+        <?php
+            ini_set('display_errors', 1);
+            ini_set('display_startup_errors', 1);
+            error_reporting(E_ALL);
 
-                            require '../db_config.php'; 
+            require '../db_config.php'; 
 
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                            if ($conn->connect_error) {
-                                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-                            }
+            if ($conn->connect_error) {
+                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+            }
 
-                            $sql = "SELECT id, nome FROM setores";
-                            $result = $conn->query($sql);
+            // Modifique a consulta SQL para incluir ORDER BY
+            $sql = "SELECT id, nome FROM setores ORDER BY nome ASC"; // Ordem alfabética
+            $result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="' . $row['nome'] . '">' . $row['nome'] . '</option>';
-                                }
-                            } else {
-                                echo '<option value="">Nenhum Setor encontrado</option>';
-                            }
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<option value="' . htmlspecialchars($row['nome']) . '">' . htmlspecialchars($row['nome']) . '</option>';
+                }
+            } else {
+                echo '<option value="">Nenhum Setor encontrado</option>';
+            }
 
-                            $conn->close();
-                            ?>
-                  </select>
-              </div>
+            $conn->close();
+        ?>
+    </select>
+</div>
+
             </div>
 
             <div class="button-container">
