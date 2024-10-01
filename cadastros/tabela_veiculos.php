@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Setores</title>
-
+    <link rel="icon" href="../images/favicon.ico" type="image/png">
     <link rel="stylesheet" href="css/tabela_veiculos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    
     <div class="setor-container">
         <div class="fixed-container">
             <form id="vigia-form" method="POST" action="config/setores_config.php">
@@ -101,7 +100,7 @@
                             while ($row = $result->fetch_assoc()) {
                                 echo '<tr data-id="' . $row['id'] . '">';
                                 echo '<td title="' . htmlspecialchars($row['id']) . '">' . $row['id'] . '</td>'; // Tooltip para ID
-                                echo '<td title="' . htmlspecialchars($row['data']) . '">' . date('d-m-Y', strtotime($row['data'])) . '</td>'; // Formatação da Data
+                                echo '<td title="' . date('d-m-Y', strtotime($row['data'])) . '">' . date('d-m-Y', strtotime($row['data'])) . '</td>'; // Formatação da Data
                                 echo '<td title="' . htmlspecialchars($row['porteiro']) . '">' . $row['porteiro'] . '</td>'; // Tooltip para Porteiro
                                 echo '<td title="' . htmlspecialchars($row['veiculo']) . '">' . $row['veiculo'] . '</td>'; // Tooltip para Veículo
                                 echo '<td title="' . htmlspecialchars($row['motorista']) . '">' . $row['motorista'] . '</td>'; // Tooltip para Motorista
@@ -171,5 +170,6 @@
     </div>
 
     <script src="js/tabela_Veiculos.js"></script>
+    
 </body>
 </html>
