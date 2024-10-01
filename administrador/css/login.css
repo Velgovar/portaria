@@ -193,3 +193,158 @@ body {
     opacity: 0;
     transform: translateY(-20px);
 }
+
+/* Para telas muito pequenas (menos de 400px) */
+@media (max-width: 399px) {
+  .container {
+    width: 95%;
+    padding: 5px;
+  }
+
+  table {
+    font-size: 0.75em; /* Tamanho reduzido */
+  }
+}
+
+/* Para telas pequenas (400px a 599px) */
+@media (min-width: 400px) and (max-width: 599px) {
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  table {
+    font-size: 0.85em; /* Tamanho reduzido */
+  }
+}
+
+/* Para telas pequenas a médias (600px a 899px) */
+@media (min-width: 600px) and (max-width: 899px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  table {
+    font-size: 0.9em; /* Tamanho reduzido */
+  }
+}
+
+/* Para telas médias (900px a 1199px) */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .container {
+    width: 80%;
+    padding: 20px;
+  }
+
+  table {
+    font-size: 1em; /* Tamanho normal */
+  }
+}
+
+/* Para telas grandes (1200px a 1599px) */
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .container {
+    width: 75%;
+    padding: 25px;
+  }
+
+  table {
+    font-size: 1em; /* Tamanho normal */
+  }
+}
+
+/* Para telas extra grandes (1600px a 1920px) */
+@media (min-width: 1600px) and (max-width: 1920px) {
+  .container {
+    width: 70%;
+    padding: 30px;
+  }
+
+  table {
+    font-size: 1em; /* Tamanho normal */
+  }
+}
+
+/* Para telas ultra grandes (mais de 1920px) */
+@media (min-width: 1920px) {
+  .container {
+    width: 65%;
+    padding: 35px;
+  }
+
+  table {
+    font-size: 1em; /* Tamanho normal */
+  }
+}
+
+/* Para telas com alta densidade de pixels (como retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  th, td {
+    padding: 12px; /* Aumenta o padding para maior clareza */
+  }
+
+  table {
+    border: 2px solid #ddd; /* Destaca bordas em telas de alta resolução */
+  }
+}
+
+/* Para TVs HD (1366px a 768px) */
+@media (min-width: 1366px) and (max-width: 1920px) {
+  .container {
+    width: 80%;
+    padding: 25px;
+  }
+
+  table {
+    font-size: 1em; /* Tamanho normal */
+  }
+}
+
+/* Para TVs Full HD (1920px a 2560px) */
+@media (min-width: 1920px) and (max-width: 2560px) {
+  .container {
+    width: 70%;
+    padding: 30px;
+  }
+
+  table {
+    font-size: 1em; /* Tamanho normal */
+  }
+}
+
+/* Para TVs 4K (2560px a 3840px) */
+@media (min-width: 2560px) and (max-width: 3840px) {
+  .container {
+    width: 60%;
+    padding: 35px;
+  }
+
+  table {
+    font-size: 1em; /* Tamanho normal */
+  }
+}
+
+/* Para telas ultra HD (mais de 3840px) */
+@media (min-width: 3840px) {
+  .container {
+    width: 50%;
+    padding: 40px;
+  }
+
+  table {
+    font-size: 1em; /* Tamanho normal */
+  }
+}
+
+/* Para monitores menores (até 1366px) */
+@media (max-width: 1365px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  table {
+    font-size: 0.9em; /* Tamanho reduzido */
+  }
+}
