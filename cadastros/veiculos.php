@@ -141,7 +141,7 @@
 
             <div class="form-group">
                 <label for="motivo">Motivo</label>
-                <input type="text" id="motivo" name="motivo" placeholder="">
+                <input type="text" id="motivo" name="motivo" placeholder="Ex: Montagem">
             </div>
 
             <div class="button-container">
