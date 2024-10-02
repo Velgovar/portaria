@@ -78,7 +78,7 @@
             <div class="form-group">
                 <label for="tipovisitante">Tipo de visitante</label>
                 <select type="text" id="tipovisitante" name="tipovisitante">
-                    <option value="">Selecione o Tipo de Visitante</option>
+                    <option value="">Selecione o tipo de visitante</option>
                     <?php
                     ini_set('display_errors', 1);
                     ini_set('display_startup_errors', 1);
@@ -116,7 +116,7 @@
             </div>
 
             <div class="form-group">
-                <label for="servico">Motivo da Visita</label>
+                <label for="servico">Motivo da visita</label>
                 <input type="text" id="servico" name="servico" placeholder="Ex: Visitante">
             </div>
 
@@ -124,14 +124,14 @@
                 <div class="km-item">
                     <label for="estacionamento">Usou estacionamento</label>
                     <select type="text" id="estacionamento" name="estacionamento">
-                    <option value="">Selecione...</option>
+                    <option value="">Selecione</option>
                     <option value="Sim">Sim</option>
                     <option value="Não">Não</option>
                     </select>
                 </div>
                 <div class="km-item" style="display: none;">
                     <label for="placa">Placa</label>
-                    <input type="text" id="placa" name="placa" maxlength="8" placeholder="Mercosul (ABC1D23) ou Padrão Antiga (ABC-1234)">
+                    <input type="text" id="placa" name="placa" maxlength="8" placeholder="Mercosul (ABC1D23) ou padrão antiga (ABC-1234)">
                 </div>
             </div>
 
@@ -154,11 +154,11 @@
 
             <div class="form-group km">
                 <div class="km-item">
-                    <label for="colaborador">Colaborador Responsável pela Liberação</label>
+                    <label for="colaborador">Colaborador responsável pela liberação</label>
                     <input type="text" id="colaborador" name="colaborador" placeholder="Colaborador responsável">
                 </div>
                 <div class="km-item">
-                <label for="setor">Setor de Destino</label>
+                <label for="setor">Setor de destino</label>
                 <select type="text" id="setor" name="setor">
                     <option value="">Selecione um setor</option>
                     <?php
