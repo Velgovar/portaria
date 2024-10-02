@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Setores</title>
+    <title>Cadastros de Veiculos de Terceiros</title>
     <link rel="icon" href="../images/favicon.ico" type="image/png">
     <link rel="stylesheet" href="css/tabela_veiculos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -23,7 +23,7 @@
 
         <div class="table-container">
             <div class="table-header">
-                <h2>Lista de Registros de Veículos</h2>
+                <h2>Cadastros de veículos de terceiros</h2>
             </div>
 
             <form class="search-form" method="get" action="">

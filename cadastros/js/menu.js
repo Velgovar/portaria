@@ -19,26 +19,14 @@ function openRamaisModal() {
 }
 
 function openAjuda() {
-    window.location.href = 'http://172.16.0.225/front/ticket.form.php';
+    window.open('http://172.16.0.225/front/ticket.form.php', '_blank'); // Abre em uma nova guia
 }
+
 
 function handleCadastrarRamais() {
     toggleAdminLauncher(); // Mostra o painel de administração
     openRamaisModal(); // Abre o modal de ramais
 }
-
-// Fechar o modal ao clicar no "x"
-document.querySelector('.close').addEventListener('click', function() {
-    document.getElementById('myModal').style.display = 'none';
-});
-
-// Fechar o modal ao clicar fora do conteúdo
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('myModal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-});
 
 // Fechar o painel de administração ao clicar fora dele
 window.addEventListener('click', function(event) {

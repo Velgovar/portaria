@@ -39,7 +39,7 @@ body {
     padding: 40px;
     text-align: center;
     width: 100%;
-    max-width: 900px;
+    max-width: 950px;
     position: relative;
     margin-top: 50px; /* Ajustado para mover o container mais para cima */
     margin-bottom: 50px; /* Adicionado para dar um espaço em baixo do container */
@@ -80,11 +80,11 @@ nav {
     text-decoration: none;
     font-weight: bold;
     font-size: 1.2em;
-    padding: 15px 25px;
+    padding: 15px 24px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.7); /* Escurece o fundo dos botões */
     transition: background-color 0.3s, transform 0.3s;
-    width: 100%; /* Garante que todos os botões tenham a mesma largura */
+    width: 88%; /* Garante que todos os botões tenham a mesma largura */
     text-align: center;
 }
 
