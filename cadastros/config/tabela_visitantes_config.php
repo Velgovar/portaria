@@ -1,17 +1,16 @@
 <?php
 header('Content-Type: application/json');
 
-// Configurações de conexão com o banco de dados
-$host = '172.16.0.225';
-$dbname = 'portaria';
-$username = 'root';
-$password = 'Meunome1@';
+// Incluir o arquivo de configuração do banco de dados
+require '../../db_config.php'; // Verifique se o caminho está correto
+
 $options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
 );
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
+    // Estabelecer a conexão com o banco de dados usando as configurações do arquivo
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, $options);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Erro ao conectar ao banco de dados: " . $e->getMessage());

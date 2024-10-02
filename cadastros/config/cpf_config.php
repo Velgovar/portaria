@@ -5,10 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Configurações de conexão com o banco de dados
-$servername = "172.16.0.225";
-$username = "root";
-$password = "Meunome1@";
-$dbname = "portaria";
+require '../../db_config.php'; 
 
 // Cria a conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);

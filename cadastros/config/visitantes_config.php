@@ -1,9 +1,8 @@
 <?php
-// Configurações do banco de dados
-$host = '172.16.0.225'; // Host do banco de dados
-$dbname = 'portaria'; // Nome do banco de dados
-$username = 'root'; // Nome de usuário do banco de dados
-$password = 'Meunome1@'; // Senha do banco de dados
+header('Content-Type: application/json');
+
+// Inclui as configurações do banco de dados
+require '../../db_config.php';
 
 // Configuração do charset para conexão
 $options = array(
@@ -12,7 +11,7 @@ $options = array(
 
 // Tentativa de conexão com o banco de dados usando PDO
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, $options);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Modo de erros para Exception
 } catch (PDOException $e) {
     die("Erro ao conectar ao banco de dados: " . $e->getMessage());
@@ -67,3 +66,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(array('message' => 'Erro ao cadastrar visitante: ' . $e->getMessage()));
     }
 }
+?>
