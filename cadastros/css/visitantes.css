@@ -112,7 +112,7 @@ body {
     justify-content: center;
     margin-top: 20px;
   }
-  
+    
   .styled {
     border: 0;
     line-height: 2.5;
@@ -203,7 +203,6 @@ body {
     margin-top: 20px;
   }
   
-  /* Ajuste para posicionar mensagem abaixo do botão */
   
   
   /* Estilo para o contêiner do launcher */
@@ -471,6 +470,40 @@ input[type="number"] {
     -webkit-appearance: none; /* Chrome, Safari */
     appearance: none; /* Padrão */
 }
+
+/* Estilizando a barra de rolagem */
+::-webkit-scrollbar {
+  width: 8px; /* Largura da barra de rolagem */
+  background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #555; /* Cor da "bolinha" da barra de rolagem */
+  border-radius: 10px; /* Bordas arredondadas para a "bolinha" */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #777; /* Cor da "bolinha" quando o mouse está sobre ela */
+}
+
+/* Estilizando os botões das extremidades (flechinhas) */
+::-webkit-scrollbar-button {
+  background-color: #333; /* Cor de fundo das flechinhas */
+  height: 16px; /* Altura dos botões */
+}
+
+::-webkit-scrollbar-button:vertical:decrement,
+::-webkit-scrollbar-button:vertical:increment {
+  background-color: red; /* Cor das flechinhas */
+  border-radius: 5px;
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: thin; /* Largura fina */
+  scrollbar-color: #555 rgba(0, 0, 0, 0.5); /* Cor da "bolinha" e fundo */
+}
+
 
 /* Para telas muito pequenas (menos de 400px) */
 @media (max-width: 399px) {
