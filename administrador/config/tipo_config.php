@@ -1,9 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $servername = "172.16.0.225";
-    $username = "root";
-    $password = "Meunome1@";
-    $dbname = "portaria";
+    // Inclui as configurações do banco de dados
+    require '../../db_config.php';
 
     // Criação da conexão
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (isset($_POST['id'])) {
-        // Exclusão da tabela setores
+        // Exclusão da tabela tipos de visitante
         $id = intval($_POST['id']);
         $sql = "DELETE FROM tipovisitante WHERE id = $id";
         $result = $conn->query($sql);
@@ -26,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['status' => 'error', 'message' => 'Erro ao excluir setor: ' . $conn->error]);
         }
     } elseif (isset($_POST['nome'])) {
-        // Inserção na tabela setores
+        // Inserção na tabela tipos de visitante
         $nome = $conn->real_escape_string($_POST['nome']);
         $sql = "INSERT INTO tipovisitante (nome) VALUES ('$nome')";
         $result = $conn->query($sql);
@@ -45,4 +43,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Fechamento da conexão
     $conn->close();
 }
-
+?>

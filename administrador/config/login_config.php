@@ -1,14 +1,12 @@
 <?php
 session_start();
 
-// Configurações de conexão com o banco de dados
-$dsn = 'mysql:host=172.16.0.225;dbname=portaria';
-$dbUsername = 'root';
-$dbPassword = 'Meunome1@';
+// Inclui as configurações do banco de dados
+require '../../db_config.php';
 
 // Conexão com o banco de dados
 try {
-    $pdo = new PDO($dsn, $dbUsername, $dbPassword);
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die('Connection failed: ' . $e->getMessage());
@@ -30,12 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header('Location: ../menu.php');
         exit;
     } else {
-        // Armazena a mensagem de erro na sessão e redireciona de volta para logine.php
+        // Armazena a mensagem de erro na sessão e redireciona de volta para login.php
         $_SESSION['login_error'] = 'Senha Inválida';
         header('Location: ../login.php');
         exit;
     }
 }
-
-
-
+?>

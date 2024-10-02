@@ -1,11 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
-// Configurações de conexão com o banco de dados
-$servername = "172.16.0.225";
-$username = "root";
-$password = "Meunome1@";
-$dbname = "portaria";
+// Inclui as configurações do banco de dados
+require '../../db_config.php';
 
 $options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',

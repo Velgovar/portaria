@@ -1,9 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $servername = "172.16.0.225";
-    $username = "root";
-    $password = "Meunome1@";
-    $dbname = "portaria";
+    // Inclui as configurações do banco de dados
+    require '../../db_config.php';
 
     // Criação da conexão
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -45,5 +43,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Fechamento da conexão
     $conn->close();
 }
-
-
+?>

@@ -1,9 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $servername = "172.16.0.225";
-    $username = "root";
-    $password = "Meunome1@";
-    $dbname = "portaria";
+    // Inclui as configurações do banco de dados
+    require '../../db_config.php';
 
     // Criação da conexão
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,19 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (isset($_POST['id'])) {
-        // Exclusão da tabela veiculos
+        // Exclusão da tabela veículos
         $id = intval($_POST['id']);
         $sql = "DELETE FROM veiculos WHERE id = $id";
         $result = $conn->query($sql);
 
         // Verificação do resultado
         if ($result) {
-            echo json_encode(['status' => 'success', 'message' => 'Setor excluído com sucesso!']);
+            echo json_encode(['status' => 'success', 'message' => 'Veículo excluído com sucesso!']);
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Erro ao excluir setor: ' . $conn->error]);
+            echo json_encode(['status' => 'error', 'message' => 'Erro ao excluir veículo: ' . $conn->error]);
         }
     } elseif (isset($_POST['nome'])) {
-        // Inserção na tabela veiculos
+        // Inserção na tabela veículos
         $nome = $conn->real_escape_string($_POST['nome']);
         $sql = "INSERT INTO veiculos (nome) VALUES ('$nome')";
         $result = $conn->query($sql);
@@ -34,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Verificação do resultado
         if ($result) {
             $last_id = $conn->insert_id;
-            echo json_encode(['status' => 'success', 'message' => 'Setor cadastrado com sucesso!', 'id' => $last_id, 'nome' => $nome]);
+            echo json_encode(['status' => 'success', 'message' => 'Veículo cadastrado com sucesso!', 'id' => $last_id, 'nome' => $nome]);
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Erro ao cadastrar setor: ' . $conn->error]);
+            echo json_encode(['status' => 'error', 'message' => 'Erro ao cadastrar veículo: ' . $conn->error]);
         }
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Dados de entrada inválidos.']);
@@ -45,4 +43,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Fechamento da conexão
     $conn->close();
 }
-
+?>

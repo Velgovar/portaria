@@ -49,8 +49,8 @@ if (!isset($_SESSION['user_id'])) {
                 </thead>
                     <tbody id="setor-list">
                     <?php
-                        require '../db_config.php';
 
+                        require '../db_config.php';
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
 
