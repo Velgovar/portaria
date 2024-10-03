@@ -1,16 +1,16 @@
 let currentPage = 1;
-let rowsPerPage = parseInt(localStorage.getItem('rowsPerPage')) || parseInt(document.getElementById('rows-per-page').value); // Recupera o valor armazenado ou o valor padrão
-const table = document.getElementById('setor-list');
-let tableRows = Array.from(table.querySelectorAll('tr')); // Convert to array for easier manipulation
+let rowsPerPage = parseInt(localStorage.getItem('rowsPerPage')) || parseInt(document.getElementById('rows-per-page').value); 
+const table = document.getElementById('veiculos-list');
+let tableRows = Array.from(table.querySelectorAll('tr')); 
 let totalRows = tableRows.length;
 let totalPages = Math.ceil(totalRows / rowsPerPage);
 
 function updateRows() {
     rowsPerPage = parseInt(document.getElementById('rows-per-page').value);
-    localStorage.setItem('rowsPerPage', rowsPerPage); // Armazena o valor no localStorage
+    localStorage.setItem('rowsPerPage', rowsPerPage); 
     totalRows = tableRows.length;
     totalPages = Math.ceil(totalRows / rowsPerPage);
-    currentPage = 1; // Reset to the first page when changing the number of rows per page
+    currentPage = 1; 
     renderTable();
 }
 
@@ -41,9 +41,6 @@ document.querySelectorAll('.edit-button').forEach(button => {
         document.getElementById('modal-edit').style.display = 'flex';
     });
 });
-
-// Restante do seu código...
-
 
 function filtrarEntrada(input) {
     // Remove qualquer caractere que não seja um número
@@ -105,7 +102,6 @@ function renderTable() {
         row.style.display = (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) ? '' : 'none';
     });
 
-
     // Atualizar o estado dos botões de paginação
     document.getElementById('prev-page').classList.toggle('disabled', currentPage === 1);
     document.getElementById('next-page').classList.toggle('disabled', currentPage === totalPages);
@@ -137,7 +133,6 @@ function renderTable() {
         });
         pageLinks.appendChild(link);
     }
-
 }
 
 // Event listeners for pagination buttons
@@ -181,7 +176,6 @@ window.onload = function() {
     rowsPerPageSelector.value = rowsPerPage;
     renderTable();
 };
-
 
 // Adiciona evento para atualização de linhas por página
 document.getElementById('rows-per-page').addEventListener('change', updateRows);
@@ -274,7 +268,6 @@ function updateTableRow(id, km_chegada, horario_chegada) {
         console.error(`Linha com ID ${id} não encontrada.`);
     }
 }
-
 
 // Função para filtrar a tabela
 function filterTable() {

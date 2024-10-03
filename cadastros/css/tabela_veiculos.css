@@ -12,18 +12,16 @@ body {
   background-position: center;
 }
 
-/* Container principal para a tabela e o formulário */
 .setor-container {
   width: 100%;
-  max-width: 1600px; /* Ajuste conforme necessário */
+  max-width: 1600px; 
   margin: 0 auto;
-  padding: 20px; /* Aumenta o padding para dar mais espaço vertical */
-  background-color: rgba(51, 51, 51, 0.9); /* Cor de fundo */
-  border-radius: 4%; /* Bordas arredondadas */
-  box-shadow: none; /* Remove a sombra para garantir a consistência da cor */
+  padding: 20px; 
+  background-color: rgba(51, 51, 51, 0.9); 
+  border-radius: 4%; 
+  box-shadow: none; 
 }
 
-/* Larguras específicas das colunas com limite máximo */
 th:nth-child(1), td:nth-child(1) { width: 30px; max-width: 30px; }
 th:nth-child(2), td:nth-child(2) { width: 90px; max-width: 57px; }
 th:nth-child(3), td:nth-child(3) { width: 130px; max-width: 160px; }
@@ -37,83 +35,185 @@ th:nth-child(10), td:nth-child(10) { width: 130px; max-width: 100px; }
 th:nth-child(11), td:nth-child(11) { width: 60px; max-width: 80px; }
 th:nth-child(12), td:nth-child(12) { width: 60px; max-width: 40px; }
 
-/* Estilização do formulário de cadastro */
 .fixed-container {
-  background-color: rgba(46, 46, 46, 0.9); /* Mesma cor de fundo */
-  padding: 0px 20px 20px; /* Diminui o padding superior para 10px */
+  background-color: rgba(46, 46, 46, 0.9); 
+  padding: 0px 20px 20px; 
   border-radius: 8px;
   margin-bottom: 0;
   text-align: center;
-  box-shadow: none; /* Remova a sombra para garantir que a cor seja consistente */
+  box-shadow: none; 
 }
 
-/* Container para a tabela */
 .table-container {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: rgba(46, 46, 46, 0.9); /* Mesma cor de fundo */
+  background-color: rgba(46, 46, 46, 0.9); 
 }
 
-/* Container para a tabela com rolagem */
 .scrollable-container {
-  margin-top: 20px; /* Adiciona espaçamento acima da tabela */
-  margin-bottom: 20px; /* Adiciona espaçamento abaixo da tabela */
-  height: calc(10 * (60px + 20px)); /* 10 linhas, cada uma com 60px de altura + 20px de padding */
-  overflow-y: auto; /* Adiciona rolagem vertical se necessário */
+  margin-top: 20px; 
+  margin-bottom: 20px; 
+  height: calc(10 * (60px + 20px)); 
+  overflow-y: auto; 
 }
 
-/* Estilização do cabeçalho da tabela */
 .table-header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: rgba(46, 46, 46, 0.9); /* Mesma cor de fundo */
+  background-color: rgba(46, 46, 46, 0.9); 
   padding: 10px;
-  box-shadow: none; /* Remova a sombra para garantir que a cor seja consistente */
+  box-shadow: none; 
 }
 
 .scrollable-container th, 
 .scrollable-container td {
-  padding: 9px; /* Padding das células */
-  height: 20px; /* Altura fixa das células */
-  text-align: center; /* Alinhamento centralizado para cabeçalho e células de dados */
-  border-bottom: 1px solid #444; /* Linha horizontal abaixo de cada célula */
-  border-right: 1px solid #444; /* Linha vertical à direita de cada célula */
-  white-space: nowrap; /* Não permite quebra de linha nas células de dados */
-  overflow: hidden; /* Esconde o texto que excede a largura da coluna */
-  text-overflow: ellipsis; /* Adiciona reticências quando o texto é cortado */
+  padding: 9px; 
+  height: 20px; 
+  text-align: center; 
+  border-bottom: 1px solid #444; 
+  border-right: 1px solid #444; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
-/* Estilização das células de cabeçalho */
 .scrollable-container th {
-  background-color: #007BFF; /* Cor de fundo do cabeçalho */
-  color: white; /* Cor do texto do cabeçalho */
-  white-space: normal; /* Permite quebra de linha no cabeçalho */
+  background-color: #007BFF; 
+  color: white; 
+  white-space: normal; 
 }
 
-/* Estilização das células de dados */
 .scrollable-container td {
-  background-color: #333; /* Cor de fundo das células de dados */
-  color: #ddd; /* Cor do texto das células de dados */
+  background-color: #333; 
+  color: #ddd; 
 }
 
-/* Alterna as cores das linhas para melhor visualização */
 .scrollable-container tr:nth-child(even) td {
-  background-color: #2a2a2a; /* Cor de fundo para linhas pares */
+  background-color: #2a2a2a; 
 }
 
-/* Efeito de hover nas linhas da tabela */
 .scrollable-container tr:hover td {
-  background-color: #444; /* Cor de fundo ao passar o mouse sobre a linha */
+  background-color: #444; 
 }
 
-/* Remove a borda direita da última coluna */
 .scrollable-container tr td:last-child {
   border-right: none;
 }
 
-      /* Estilo do botão verde de voltar */
+.scrollable-container::-webkit-scrollbar {
+  width: 12px; 
+  height: 12px;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  background: #333; 
+  border-radius: 10px; 
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background-color: #555; 
+  border-radius: 10px; 
+  border: 3px solid #333; 
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background-color: #777;
+}
+
+.scrollable-container td:nth-child(2),
+.scrollable-container th:nth-child(2) {
+  width: 80px; 
+  text-align: center; 
+}
+
+.fixed-container h2 {
+  text-align: center; 
+  padding-top: 0px; 
+}
+
+.table-container .table-header h2 {
+  text-align: center; 
+  margin: 0; 
+}
+
+.scrollable-container td:last-child,
+.scrollable-container th:last-child {
+  border-right: none; 
+}
+
+.scrollable-container {
+  position: relative; 
+  overflow-y: auto; 
+  max-height: 535px; 
+}
+
+.scrollable-container th {
+  background-color: #111; 
+  color: white; 
+  border-top: none; 
+  position: -webkit-sticky; 
+  position: sticky; 
+  top: 0; 
+  z-index: 1; 
+  padding: 8px; 
+  margin: 0; 
+}
+
+table {
+  border-collapse: collapse; 
+  width: 100%; 
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ccc;
+}
+
+.form-group input,
+.form-group select {
+  width: 70%; 
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #666;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  margin: 0 auto;
+  display: block; 
+}
+
+.form-group select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 24px; 
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom, #555, #555);
+  background-position: right center;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: #66afe9;
+  box-shadow: 0 0 10px rgba(102, 175, 233, 0.6);
+}
+
+.form-group select option {
+  background-color: rgba(51, 51, 51, 0.9);
+  color: white;
+  padding: 8px;
+}
+
 .voltar {
   position: absolute;
   top: 10px;
@@ -149,146 +249,18 @@ box-shadow:
   inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
 
-/* Estilizando a barra de rolagem geral */
-.scrollable-container::-webkit-scrollbar {
-  width: 12px; /* Largura da barra de rolagem */
-  height: 12px; /* Altura da barra de rolagem horizontal */
-}
-
-/* Estilizando a trilha da barra de rolagem (o fundo) */
-.scrollable-container::-webkit-scrollbar-track {
-  background: #333; /* Cor de fundo da trilha */
-  border-radius: 10px; /* Cantos arredondados */
-}
-
-/* Estilizando o polegar (a parte móvel) da barra de rolagem */
-.scrollable-container::-webkit-scrollbar-thumb {
-  background-color: #555; /* Cor do polegar */
-  border-radius: 10px; /* Cantos arredondados */
-  border: 3px solid #333; /* Borda ao redor do polegar */
-}
-
-/* Estilizando o polegar ao passar o mouse sobre ele */
-.scrollable-container::-webkit-scrollbar-thumb:hover {
-  background-color: #777; /* Cor do polegar ao passar o mouse */
-}
-
-/* Diminuir o campo de ações */
-.scrollable-container td:nth-child(2),
-.scrollable-container th:nth-child(2) {
-  width: 80px; /* Define a largura da coluna de ações */
-  text-align: center; /* Centraliza o conteúdo da coluna de ações */
-}
-
-.fixed-container h2 {
-  text-align: center; /* Centraliza o texto horizontalmente */
-  padding-top: 0px; /* Adiciona espaço interno acima do texto */
-  /* margin-bottom: 20px; Adiciona espaço abaixo do texto, se necessário */
-}
-
-
-.table-container .table-header h2 {
-  text-align: center; /* Alinha o texto à direita */
-  margin: 0; /* Remove margens externas, se necessário */
-}
-
-
-.scrollable-container td:last-child,
-.scrollable-container th:last-child {
-  border-right: none; /* Remove a linha da última coluna para evitar borda dupla */
-}
-
-.scrollable-container {
-  position: relative; /* Garante que o conteúdo da tabela fique dentro do container */
-  overflow-y: auto; /* Ativa o scroll vertical */
-  max-height: 535px; /* Altura máxima para a área de rolagem */
-}
-
-.scrollable-container th {
-  background-color: #111; /* Cor de fundo do cabeçalho (azul) */
-  color: white; /* Cor do texto */
-  border-top: none; /* Remove a linha superior */
-  position: -webkit-sticky; /* Para navegadores WebKit */
-  position: sticky; /* Para navegadores modernos */
-  top: 0; /* Fixa o cabeçalho no topo da tabela */
-  z-index: 1; /* Garante que o cabeçalho fique sobre o conteúdo da tabela */
-  padding: 8px; /* Adiciona espaçamento interno */
-  margin: 0; /* Remove margens externas */
-  
-}
-
-table {
-  border-collapse: collapse; /* Remove espaços entre as bordas das células */
-  width: 100%; /* Usa toda a largura disponível */
-}
-
-/* Estiliza o grupo de formulário */
-.form-group {
-  margin-bottom: 15px;
-}
-
-/* Estiliza os rótulos dos grupos de formulário */
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  color: #ccc;
-}
-
-/* Estiliza os campos de entrada e seleção com largura reduzida */
-.form-group input,
-.form-group select {
-  width: 70%; /* Ajuste a largura conforme necessário */
-  padding: 8px;
-  box-sizing: border-box;
-  background-color: #222;
-  color: #fff;
-  border: 1px solid #666;
-  border-radius: 4px;
-  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
-  margin: 0 auto; /* Centraliza o campo horizontalmente */
-  display: block; /* Garante que o campo seja exibido como bloco */
-}
-
-/* Estiliza o select com aparência personalizada */
-.form-group select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding-right: 24px; /* Espaçamento para a seta */
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom, #555, #555);
-  background-position: right center;
-  background-size: 10px 10px;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-
-/* Estiliza o select quando em foco */
-.form-group select:focus {
-  outline: none;
-  border-color: #66afe9;
-  box-shadow: 0 0 10px rgba(102, 175, 233, 0.6);
-}
-
-/* Estiliza as opções dentro do select */
-.form-group select option {
-  background-color: rgba(51, 51, 51, 0.9);
-  color: white;
-  padding: 8px;
-}
-
-/* Botão Salvar */
 .button-container .salvar-button {
   border: 0;
   color: white;
-  line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-  padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+  line-height: 2; 
+  padding: 0 7px; 
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-  border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+  font-size: 0.9rem; 
+  border-radius: 5px; 
   cursor: pointer;
-  background-color: rgb(0, 170, 23); /* Cor vermelha escura */
+  background-color: rgb(0, 170, 23); 
   background-image: linear-gradient(
       to top left,
       rgb(0 0 0 / 20%),
@@ -301,7 +273,7 @@ table {
 }
 
 .button-container .salvar-button:hover {
-  background-color: rgb(6, 131, 2); /* Cor de fundo ao passar o mouse */
+  background-color: rgb(6, 131, 2);
 }
 
 .button-container .salvar-button:active {
@@ -310,19 +282,18 @@ table {
       inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
 
-/* Botão Excluir */
 .edit-button {
   border: 0;
   color: white;
-  line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-  padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+  line-height: 2; 
+  padding: 0 7px; 
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-  border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+  font-size: 0.9rem; 
+  border-radius: 5px; 
   cursor: pointer;
-  background-color: rgb(94, 94, 94); /* Cor vermelha escura */
+  background-color: rgb(94, 94, 94); 
   background-image: linear-gradient(
       to top left,
       rgb(0 0 0 / 20%),
@@ -335,7 +306,7 @@ table {
 }
 
 .edit-button:hover {
-  background-color: rgb(56, 56, 56); /* Cor de fundo ao passar o mouse */
+  background-color: rgb(56, 56, 56); 
 }
 
 .deledete-button:active {
@@ -344,116 +315,106 @@ table {
       inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
 
-
-/* Estilização da paginação */
 .pagination {
-  display: flex; /* Utiliza flexbox para alinhar os botões */
-  justify-content: flex-end; /* Alinha os itens à direita */
-  margin-top: -42px; /* Ajusta a posição vertical, se necessário */
-  padding: 0; /* Remove qualquer padding padrão */
-  width: 100%; /* Faz com que a paginação ocupe a largura total do container */
+  display: flex; 
+  justify-content: flex-end; 
+  margin-top: -42px; 
+  padding: 0; 
+  width: 100%; 
 }
 
 .pagination button {
-  flex-grow: 1; /* Faz com que os botões cresçam para ocupar o espaço disponível */
-  margin: 0 5px; /* Adiciona um espaço entre os botões */
-  padding: 10px; /* Adiciona um padding para um tamanho de botão agradável */
-  background-color: #007BFF; /* Cor de fundo dos botões */
-  color: white; /* Cor do texto dos botões */
-  border: none; /* Remove a borda padrão */
-  border-radius: 5px; /* Arredonda os cantos */
-  cursor: pointer; /* Muda o cursor ao passar o mouse sobre o botão */
+  flex-grow: 1; 
+  margin: 0 5px; 
+  padding: 10px; 
+  background-color: #007BFF; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
 }
 
 .pagination button:hover {
-  background-color: #0056b3; /* Cor ao passar o mouse */
+  background-color: #0056b3; 
 }
-
 
 .pagination a,
 .pagination span {
   display: inline-block;
   padding: 8px 12px;
   margin: 0 2px;
-  border: 1px solid #444; /* Borda escura para combinar com o fundo */
-  border-radius: 10px; /* Bordas arredondadas */
-  color: #ddd; /* Texto claro */
+  border: 1px solid #444; 
+  border-radius: 10px; 
+  color: #ddd; 
   text-decoration: none;
   font-size: 14px;
   text-align: center;
 }
 
 .pagination a.active {
-  background-color: #555; /* Cor do fundo da página ativa */
+  background-color: #555; 
   color: #fff;
 }
 
 .pagination a.disabled {
-  color: #666; /* Texto desativado */
-  pointer-events: none; /* Desabilita o clique */
-  cursor: not-allowed; /* Muda o cursor para indicar que não é clicável */
+  color: #666; 
+  pointer-events: none; 
+  cursor: not-allowed; 
 }
 
 .pagination a:hover {
-  background-color: #555; /* Cor de fundo ao passar o mouse */
+  background-color: #555; 
 }
 
-/* Adiciona estilo ao número da página */
 .pagination span {
-  background-color: #555; /* Cor de fundo dos números de página */
-  color: #fff; /* Cor do texto */
+  background-color: #555; 
+  color: #fff; 
 }
 
 .pagination span.active {
-  background-color: #333; /* Cor de fundo para o número da página ativa */
+  background-color: #333; 
 }
 
-/* Container para o texto e o select */
 .select-container {
-  display: flex; /* Utiliza flexbox para alinhar o select e o texto */
-  align-items: center; /* Alinha verticalmente o select e o texto */
-  justify-content: flex-start; /* Alinha o conteúdo à esquerda */
-  margin: 10px 0; /* Ajusta o espaço acima e abaixo do contêiner */
-  width: 100%; /* Garante que o contêiner ocupe 100% da largura disponível */
-  padding: 0 20px; /* Adiciona um padding lateral */
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-start;
+  margin: 10px 0; 
+  width: 100%; 
+  padding: 0 20px; 
 }
 
-/* Estilização do texto */
 .select-container span {
-  font-size: 14px; /* Tamanho da fonte */
-  color: #ddd; /* Cor do texto */
-  margin-left: 10px; /* Espaço entre o select e o texto */
+  font-size: 14px; 
+  color: #ddd; 
+  margin-left: 10px; 
 }
 
-/* Estilização do select */
 .select-container select {
   padding: 5px;
   font-size: 14px;
-  color: #fff; /* Cor do texto */
-  background-color: #444; /* Cor de fundo */
-  border: 1px solid #666; /* Cor da borda */
-  border-radius: 10px; /* Bordas arredondadas */
-  height: 32px; /* Ajusta a altura do select */
-  margin-left: 10px; /* Espaço entre o select e o texto */
-  width: 100%; /* Ocupará toda a largura disponível */
-  max-width: 80px; /* Largura máxima para evitar esticar demais */
-  flex-shrink: 0; /* Evita que o select encolha se houver pouco espaço */
+  color: #fff; 
+  background-color: #444; 
+  border: 1px solid #666; 
+  border-radius: 10px; 
+  height: 32px; 
+  margin-left: 10px; 
+  width: 100%; 
+  max-width: 80px; 
+  flex-shrink: 0; 
 }
 
-/* Estilização para o estado do foco do select */
 .select-container select:focus {
-  outline: none; /* Remove o contorno padrão */
-  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Sombra azul ao focar */
+  outline: none; 
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); 
 }
 
-
-/* Estilo para o contêiner do launcher */
 .launcher {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 9999; /* Garante que esteja acima de outros elementos */
-  background-color: #4CAF50; /* Verde para sucesso */
+  z-index: 9999; 
+  background-color: #4CAF50; 
   color: white;
   padding: 15px 25px;
   border-radius: 8px;
@@ -467,25 +428,22 @@ table {
   justify-content: center;
 }
 
-/* Estilo para a mensagem de erro */
 .launcher-error {
-  background-color: #f44336; /* Vermelho para erro */
+  background-color: #f44336; 
   color: white;
 }
 
-/* Animação para o launcher aparecer */
 .launcher-show {
   transform: translateY(0);
 }
 
-/* Animação para o launcher desaparecer */
 .hidden {
   opacity: 0;
   transform: translateY(-20px);
 }
 
 .modal {
-  display: none; /* Oculta o modal por padrão */
+  display: none; 
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -493,42 +451,39 @@ table {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; 
+  align-items: center;
 }
 
 .modal-content {
   background-color: #333;
   color: white;
-  padding: 20px 10px; /* Padding de 20px no topo/baixo e 10px nas laterais */
+  padding: 20px 10px; 
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  max-width: 400px; /* Ajuste para um valor menor se necessário */
-  width: 80%; /* Ajuste para 80% da largura da tela */
+  max-width: 400px; 
+  width: 80%; 
 }
 
 .modal-content h2 {
   margin-top: 0;
-  color: white; /* Garante que o título também esteja em branco */
+  color: white; 
   font-weight: arial;
   font-size: 20px;
 }
 
-/* Estilo para os rótulos */
 .modal-content label {
-  display: block; /* Garante que o rótulo se comporte como um bloco */
-  margin-bottom: 8px; /* Espaço abaixo do rótulo */
-  font-weight: normal; /* Ajusta o peso da fonte (substitua por 'bold' se preferir) */
-  color: white; /* Garante que o texto do rótulo esteja em branco */
-  text-align: left; /* Alinha o texto do rótulo à esquerda */
-  width: 100%; /* Garante que o rótulo ocupe toda a largura disponível */
-  box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
-  margin-left: 4%; /* Ajusta o deslocamento para a direita (agora mais à esquerda) */
+  display: block; 
+  margin-bottom: 8px; 
+  font-weight: normal; 
+  color: white; 
+  text-align: left;
+  width: 100%; 
+  box-sizing: border-box; 
+  margin-left: 4%; 
 }
 
-
-/* Estilo para todos os campos de entrada */
 .modal-content input {
   padding: 10px;
   margin-bottom: 10px;
@@ -541,7 +496,6 @@ table {
   box-sizing: border-box;
 }
 
-/* Estilo específico para o campo do tipo 'time' */
 .modal-content input[type="time"] {
   padding: 10px;
   margin-bottom: 10px;
@@ -554,7 +508,6 @@ table {
   box-sizing: border-box;
 }
 
-/* Estilo específico para o campo do tipo 'text' (apenas para garantir consistência) */
 .modal-content input[type="text"] {
   padding: 10px;
   margin-bottom: 10px;
@@ -578,16 +531,15 @@ table {
   font-size: 14px;
 }
 
-/* Botão de Exclusão */
 .modal-content .cancelar {
-  background-color: rgb(150, 0, 0); /* Cor vermelha escura */
-  line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-  padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
+  background-color: rgb(150, 0, 0); 
+  line-height: 2; 
+  padding: 0 7px; 
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-  border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
+  font-size: 0.9rem; 
+  border-radius: 5px; 
   background-image: linear-gradient(
       to top left,
       rgb(0 0 0 / 20%),
@@ -600,7 +552,7 @@ table {
 }
 
 .modal-content .cancelar:hover {
-  background-color: rgb(120, 0, 0); /* Cor de fundo ao passar o mouse */
+  background-color: rgb(120, 0, 0); 
 }
 
 .modal-content .cancelar:active {
@@ -609,17 +561,16 @@ table {
       inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
 
-/* Botão de Salvar */
 .modal-content .salvar {
-  background-color: rgb(5, 143, 0); /* Cor verde */
-  line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-  padding: 0 15.5px; /* Aumenta o padding horizontal para tornar o botão mais largo */
+  background-color: rgb(5, 143, 0); 
+  line-height: 2; 
+  padding: 0 15.5px; 
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-  border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
-  cursor: pointer; /* Muda o cursor ao passar o mouse */
+  font-size: 0.9rem; 
+  border-radius: 5px; 
+  cursor: pointer; 
   background-image: linear-gradient(
       to top left,
       rgb(0 0 0 / 20%),
@@ -632,7 +583,7 @@ table {
 }
 
 .modal-content .salvar:hover {
-  background-color: rgb(4, 115, 0); /* Verde mais escuro ao passar o mouse */
+  background-color: rgb(4, 115, 0); 
 }
 
 .modal-content .salvar:active {
@@ -641,259 +592,236 @@ table {
       inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
 
-/* Remover as setas em um input type="number" */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Estilo do formulário de busca */
 .search-form {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* Espaçamento entre os campos */
+  gap: 10px; 
   width: 80%;
   margin: 0 auto;
   padding: 15px;
-  background-color: rgba(255, 255, 255, 0); /* Fundo transparente para o contêiner */
+  background-color: rgba(255, 255, 255, 0); 
   border-radius: 10px;
 }
 
-/* Estilo dos rótulos */
 .search-form label {
   font-size: 16px;
-  color: #ffffff; /* Cor do texto em branco */
+  color: #ffffff; 
   font-weight: bold;
   margin-right: 10px;
 }
 
-/* Estilo do seletor de critérios */
 .search-form select {
   padding: 8px;
   font-size: 14px;
   border: 1px solid #b0b0b0;
   border-radius: 5px;
-  background-color: rgba(51, 51, 51, 0.9); /* Fundo escuro com 90% de opacidade */
-  color: #ffffff; /* Texto em branco */
-  width: 120px; /* Ajustado para largura menor */
+  background-color: rgba(51, 51, 51, 0.9); 
+  color: #ffffff; 
+  width: 120px; 
 }
 
-/* Estilo do campo de busca */
 .search-form .input-container {
-  position: relative; /* Para posicionar o ícone de busca dentro do campo */
-  width: 200px; /* Largura ajustada do campo de busca */
+  position: relative; 
+  width: 200px; 
 }
 
 .search-form input[type="text"] {
-  padding: 8px 40px 8px 10px; /* Aumentado o espaço à direita para o ícone */
+  padding: 8px 40px 8px 10px; 
   font-size: 14px;
   border: 1px solid #b0b0b0;
   border-radius: 5px;
-  background-color: rgba(51, 51, 51, 0.9); /* Fundo escuro com 90% de opacidade */
-  color: #ffffff; /* Texto em branco */
-  width: 100%; /* Ocupa toda a largura do contêiner */
+  background-color: rgba(51, 51, 51, 0.9); 
+  color: #ffffff; 
+  width: 100%; 
 }
 
-/* Estilo do botão de busca */
 .search-form button[type="submit"] {
   position: absolute;
-  right: -45px; /* Move a lupa 20px para a direita */
-  top: 50%; /* Centralizado verticalmente */
-  transform: translateY(-50%); /* Ajusta o ícone para o centro vertical */
-  background: none; /* Remove o fundo do botão */
-  border: none; /* Remove a borda do botão */
-  cursor: pointer; /* Cursor de ponteiro ao passar sobre o ícone */
+  right: -45px; 
+  top: 50%; 
+  transform: translateY(-50%);
+  background: none; 
+  border: none; 
+  cursor: pointer; 
 }
 
-/* Estilo do ícone de busca */
 .search-form .search-icon {
   font-size: 16px;
-  color: #ffffff; /* Cor do ícone */
+  color: #ffffff; 
 }
 
-/* Estilo do tooltip */
 .tooltip {
   position: relative;
-  display: inline-block; /* Permite que o tooltip funcione */
+  display: inline-block; 
 }
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px; /* Largura do tooltip */
-  background-color: #555; /* Cor do fundo */
-  color: #fff; /* Cor do texto */
-  text-align: center; /* Centraliza o texto */
-  border-radius: 6px; /* Bordas arredondadas */
-  padding: 5px; /* Espaçamento interno */
-  position: absolute; /* Posiciona o tooltip */
-  z-index: 1; /* Coloca o tooltip acima de outros elementos */
-  bottom: 125%; /* Posiciona o tooltip acima da célula */
-  left: 50%; /* Centraliza em relação à célula */
-  margin-left: -60px; /* Ajusta o posicionamento */
-  opacity: 0; /* Torna invisível inicialmente */
-  transition: opacity 0.3s; /* Efeito de transição */
+  width: 120px; 
+  background-color: #555; 
+  color: #fff; 
+  text-align: center; 
+  border-radius: 6px; 
+  padding: 5px; 
+  position: absolute; 
+  z-index: 1; 
+  bottom: 125%; 
+  left: 50%; 
+  margin-left: -60px; 
+  opacity: 0; 
+  transition: opacity 0.3s; 
 }
 
-/* Exibe o tooltip quando o mouse está sobre o elemento */
 .tooltip:hover .tooltiptext {
-  visibility: visible; /* Torna visível */
-  opacity: 1; /* Torna opaco */
+  visibility: visible; 
+  opacity: 1; 
 }
 
-
-/* Para telas muito pequenas (menos de 400px) */
 @media (max-width: 399px) {
-  .container {
-    width: 95%;
-    padding: 5px;
+    .container {
+      width: 95%;
+      padding: 5px;
+    }
+  
+    table {
+      font-size: 0.75em;
+    }
   }
-
-  table {
-    font-size: 0.75em; /* Tamanho reduzido */
+  
+  @media (min-width: 400px) and (max-width: 599px) {
+    .container {
+      width: 95%;
+      padding: 10px;
+    }
+  
+    table {
+      font-size: 0.85em; 
+    }
   }
-}
-
-/* Para telas pequenas (400px a 599px) */
-@media (min-width: 400px) and (max-width: 599px) {
-  .container {
-    width: 95%;
-    padding: 10px;
+  
+  @media (min-width: 600px) and (max-width: 899px) {
+    .container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    table {
+      font-size: 0.9em; 
+    }
   }
-
-  table {
-    font-size: 0.85em; /* Tamanho reduzido */
+  
+  @media (min-width: 900px) and (max-width: 1199px) {
+    .container {
+      width: 80%;
+      padding: 20px;
+    }
+  
+    table {
+      font-size: 1em; 
+    }
   }
-}
-
-/* Para telas pequenas a médias (600px a 899px) */
-@media (min-width: 600px) and (max-width: 899px) {
-  .container {
-    width: 90%;
-    padding: 15px;
+  
+  @media (min-width: 1200px) and (max-width: 1599px) {
+    .container {
+      width: 75%;
+      padding: 25px;
+    }
+  
+    table {
+      font-size: 1em; 
+    }
   }
-
-  table {
-    font-size: 0.9em; /* Tamanho reduzido */
+  
+  @media (min-width: 1600px) and (max-width: 1920px) {
+    .container {
+      width: 70%;
+      padding: 30px;
+    }
+  
+    table {
+      font-size: 1em; 
+    }
   }
-}
-
-/* Para telas médias (900px a 1199px) */
-@media (min-width: 900px) and (max-width: 1199px) {
-  .container {
-    width: 80%;
-    padding: 20px;
+  
+  @media (min-width: 1920px) {
+    .container {
+      width: 65%;
+      padding: 35px;
+    }
+  
+    table {
+      font-size: 1em; 
+    }
   }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
+  
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    th, td {
+      padding: 12px; 
+    }
+  
+    table {
+      border: 2px solid #ddd;
+    }
   }
-}
-
-/* Para telas grandes (1200px a 1599px) */
-@media (min-width: 1200px) and (max-width: 1599px) {
-  .container {
-    width: 75%;
-    padding: 25px;
+  
+  @media (min-width: 1366px) and (max-width: 1920px) {
+    .container {
+      width: 80%;
+      padding: 25px;
+    }
+  
+    table {
+      font-size: 1em; 
+    }
   }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
+  
+  @media (min-width: 1920px) and (max-width: 2560px) {
+    .container {
+      width: 70%;
+      padding: 30px;
+    }
+  
+    table {
+      font-size: 1em;
+    }
   }
-}
-
-/* Para telas extra grandes (1600px a 1920px) */
-@media (min-width: 1600px) and (max-width: 1920px) {
-  .container {
-    width: 70%;
-    padding: 30px;
+  
+  @media (min-width: 2560px) and (max-width: 3840px) {
+    .container {
+      width: 60%;
+      padding: 35px;
+    }
+  
+    table {
+      font-size: 1em; 
+    }
   }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
+  
+  @media (min-width: 3840px) {
+    .container {
+      width: 50%;
+      padding: 40px;
+    }
+  
+    table {
+      font-size: 1em; 
+    }
   }
-}
-
-/* Para telas ultra grandes (mais de 1920px) */
-@media (min-width: 1920px) {
-  .container {
-    width: 65%;
-    padding: 35px;
+  
+  @media (max-width: 1365px) {
+    .container {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    table {
+      font-size: 0.9em; 
+    }
   }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
-}
-
-/* Para telas com alta densidade de pixels (como retina) */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  th, td {
-    padding: 12px; /* Aumenta o padding para maior clareza */
-  }
-
-  table {
-    border: 2px solid #ddd; /* Destaca bordas em telas de alta resolução */
-  }
-}
-
-/* Para TVs HD (1366px a 768px) */
-@media (min-width: 1366px) and (max-width: 1920px) {
-  .container {
-    width: 80%;
-    padding: 25px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
-}
-
-/* Para TVs Full HD (1920px a 2560px) */
-@media (min-width: 1920px) and (max-width: 2560px) {
-  .container {
-    width: 70%;
-    padding: 30px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
-}
-
-/* Para TVs 4K (2560px a 3840px) */
-@media (min-width: 2560px) and (max-width: 3840px) {
-  .container {
-    width: 60%;
-    padding: 35px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
-}
-
-/* Para telas ultra HD (mais de 3840px) */
-@media (min-width: 3840px) {
-  .container {
-    width: 50%;
-    padding: 40px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
-}
-
-/* Para monitores menores (até 1366px) */
-@media (max-width: 1365px) {
-  .container {
-    width: 90%;
-    padding: 20px;
-  }
-
-  table {
-    font-size: 0.9em; /* Tamanho reduzido */
-  }
-}

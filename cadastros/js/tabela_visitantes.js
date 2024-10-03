@@ -1,6 +1,6 @@
 let currentPage = 1;
 let rowsPerPage = parseInt(localStorage.getItem('rowsPerPage')) || parseInt(document.getElementById('rows-per-page').value); // Recupera o valor armazenado ou o valor padrão
-const table = document.getElementById('setor-list');
+const table = document.getElementById('visitantes-list');
 let tableRows = Array.from(table.querySelectorAll('tr')); // Converte para um array para facilitar a manipulação
 let totalRows = tableRows.length;
 let totalPages = Math.ceil(totalRows / rowsPerPage);
@@ -40,10 +40,6 @@ document.querySelectorAll('.edit-button').forEach(button => {
     });
 });
 
-
-
-
-
 // Função para fechar o modal de edição
 function closeEditModal() {
     document.getElementById('modal-edit').style.display = 'none';
@@ -57,7 +53,6 @@ function filtrarEntrada(input) {
     // Remove qualquer caractere que não seja um número
     input.value = input.value.replace(/[^0-9]/g, '');
 }
-
 
 // Função para formatar o horário
 function formatarHorario(input) {
@@ -95,13 +90,11 @@ function formatarHorario(input) {
     input.value = valor.slice(0, 5); // Limita o valor a 5 caracteres (HH:MM)
 }
 
-
 function renderTable() {
     // Ocultar todas as linhas
     tableRows.forEach((row, index) => {
         row.style.display = (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) ? '' : 'none';
     });
-
 
     // Atualizar o estado dos botões de paginação
     document.getElementById('prev-page').classList.toggle('disabled', currentPage === 1);
@@ -134,7 +127,6 @@ function renderTable() {
         });
         pageLinks.appendChild(link);
     }
-
 }
 
 // Event listeners for pagination buttons
@@ -170,7 +162,6 @@ document.getElementById('last-page').addEventListener('click', (e) => {
     }
 });
 
-
 // Inicializar a tabela e botões ao carregar a página
 window.onload = function() {
     // Configura o valor inicial do seletor de linhas por página
@@ -178,7 +169,6 @@ window.onload = function() {
     rowsPerPageSelector.value = rowsPerPage;
     renderTable();
 };
-
 
 // Adiciona evento para atualização de linhas por página
 document.getElementById('rows-per-page').addEventListener('change', updateRows);
@@ -223,7 +213,6 @@ document.getElementById('editForm').addEventListener('submit', function (event) 
     });
 });
 
-
 // Função para mostrar o launcher de notificação
 function showLauncher(message, isError = false) {
     const launcher = document.getElementById('launcher');
@@ -267,8 +256,6 @@ function updateTableRow(id, horario_saida) {
     }
 }
 
-
-
 // Função para filtrar a tabela
 function filterTable() {
     const searchInput = document.getElementById('search-input').value.toLowerCase();
@@ -288,7 +275,6 @@ function filterTable() {
                 }
             }
         }
-
         rows[i].style.display = shouldShow ? '' : 'none';
     }
 }

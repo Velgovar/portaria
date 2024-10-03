@@ -67,7 +67,8 @@
                             <th>AÇÃO</th>
                         </tr>
                     </thead>
-                    <tbody id="setor-list">
+                    <tbody id="veiculos-list">
+
                     <?php
                         require '../db_config.php';
 
@@ -77,11 +78,9 @@
                             die("Erro na conexão com o banco de dados: " . $conn->connect_error);
                         }
 
-                        // Query para selecionar registros com base na busca
                         $criterio = isset($_GET['criterio']) ? $_GET['criterio'] : 'id';
                         $busca = isset($_GET['busca']) ? $_GET['busca'] : '';
 
-                        // Ajuste na consulta SQL para tratamento do ID e valores numéricos
                         if ($busca !== '') {
                             if ($criterio === 'id') {
                                 $sql = "SELECT id, data, porteiro, veiculo, motorista, km_saida, km_chegada, horario_saida, horario_chegada, destino, motivo FROM registros_veiculos WHERE id = $busca ORDER BY id DESC";
@@ -99,32 +98,31 @@
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo '<tr data-id="' . $row['id'] . '">';
-                                echo '<td title="' . htmlspecialchars($row['id']) . '">' . $row['id'] . '</td>'; // Tooltip para ID
-                                echo '<td title="' . date('d-m-Y', strtotime($row['data'])) . '">' . date('d-m-Y', strtotime($row['data'])) . '</td>'; // Formatação da Data
-                                echo '<td title="' . htmlspecialchars($row['porteiro']) . '">' . $row['porteiro'] . '</td>'; // Tooltip para Porteiro
-                                echo '<td title="' . htmlspecialchars($row['veiculo']) . '">' . $row['veiculo'] . '</td>'; // Tooltip para Veículo
-                                echo '<td title="' . htmlspecialchars($row['motorista']) . '">' . $row['motorista'] . '</td>'; // Tooltip para Motorista
-                                echo '<td title="' . htmlspecialchars($row['km_saida']) . '">' . $row['km_saida'] . '</td>'; // Tooltip para KM Saída
-                                echo '<td title="' . htmlspecialchars($row['km_chegada']) . '">' . $row['km_chegada'] . '</td>'; // Tooltip para KM Chegada
-                                echo '<td title="' . htmlspecialchars(date('H:i', strtotime($row['horario_saida']))) . '">' . date('H:i', strtotime($row['horario_saida'])) . '</td>'; // Tooltip para Horário Saída
-                                echo '<td title="' . htmlspecialchars(date('H:i', strtotime($row['horario_chegada']))) . '">' . date('H:i', strtotime($row['horario_chegada'])) . '</td>'; // Tooltip para Horário Chegada
-                                echo '<td title="' . htmlspecialchars($row['destino']) . '">' . $row['destino'] . '</td>'; // Tooltip para Destino
-                                echo '<td title="' . htmlspecialchars($row['motivo']) . '">' . $row['motivo'] . '</td>'; // Tooltip para Motivo
-                                echo '<td><button class="edit-button" data-id="' . $row['id'] . '" data-km-chegada="' . $row['km_chegada'] . '" data-horario-chegada="' . $row['horario_chegada'] . '">Editar</button></td>'; // Botão Editar
+                                echo '<td title="' . htmlspecialchars($row['id']) . '">' . $row['id'] . '</td>'; 
+                                echo '<td title="' . date('d-m-Y', strtotime($row['data'])) . '">' . date('d-m-Y', strtotime($row['data'])) . '</td>'; 
+                                echo '<td title="' . htmlspecialchars($row['porteiro']) . '">' . $row['porteiro'] . '</td>'; 
+                                echo '<td title="' . htmlspecialchars($row['veiculo']) . '">' . $row['veiculo'] . '</td>'; 
+                                echo '<td title="' . htmlspecialchars($row['motorista']) . '">' . $row['motorista'] . '</td>'; 
+                                echo '<td title="' . htmlspecialchars($row['km_saida']) . '">' . $row['km_saida'] . '</td>'; 
+                                echo '<td title="' . htmlspecialchars($row['km_chegada']) . '">' . $row['km_chegada'] . '</td>'; 
+                                echo '<td title="' . htmlspecialchars(date('H:i', strtotime($row['horario_saida']))) . '">' . date('H:i', strtotime($row['horario_saida'])) . '</td>'; 
+                                echo '<td title="' . htmlspecialchars(date('H:i', strtotime($row['horario_chegada']))) . '">' . date('H:i', strtotime($row['horario_chegada'])) . '</td>'; 
+                                echo '<td title="' . htmlspecialchars($row['destino']) . '">' . $row['destino'] . '</td>'; 
+                                echo '<td title="' . htmlspecialchars($row['motivo']) . '">' . $row['motivo'] . '</td>'; 
+                                echo '<td><button class="edit-button" data-id="' . $row['id'] . '" data-km-chegada="' . $row['km_chegada'] . '" data-horario-chegada="' . $row['horario_chegada'] . '">Editar</button></td>'; 
                                 echo '</tr>';
                             }
                         } else {
                             echo '<tr><td colspan="12">Nenhum registro cadastrado.</td></tr>';
                         }
-                        
-                        
+                                                
                         $conn->close();
                     ?>
+
                     </tbody>
                 </table>
             </div>
 
-            <!-- Select para escolher o número de linhas a serem exibidas -->
             <div class="select-container">
                 <select id="rows-per-page" onchange="updateRows()">
                     <option value="10">10</option>
@@ -148,7 +146,6 @@
         </div>
     </div>
 
-    <!-- Modal de Edição -->
     <div id="modal-edit" class="modal">
     <div class="modal-content">
         <h2>Editar Registro</h2>
@@ -163,7 +160,6 @@
         </form>
     </div>
 </div>
-
 
     <div id="launcher" class="launcher hidden">
         <div class="launcher-message">Cadastro editado com sucesso!</div>
