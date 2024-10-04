@@ -141,14 +141,14 @@
         <label for="horario_entrada"> Horário entrada</label>
         <div class="input-icon">
             <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
-            <input type="text" id="horario_entrada" name="horario_entrada" placeholder="">
+            <input type="text" id="horario_entrada" name="horario_entrada" placeholder="Ex: 12:00">
         </div>
     </div>
     <div class="horario-item">
         <label for="horario_saida"> Horário saída</label>
         <div class="input-icon">
             <i class="fas fa-clock"></i> <!-- Ícone de Relógio -->
-            <input type="text" id="horario_saida" name="horario_saida" placeholder="">
+            <input type="text" id="horario_saida" name="horario_saida" placeholder="Ex: 12:00">
         </div>
     </div>
 </div>
