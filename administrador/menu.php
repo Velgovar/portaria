@@ -24,16 +24,16 @@ if (!isset($_SESSION['user_id'])) {
          <nav>
             <div class="nav-column">
                 <ul>
-                    <li><a href="tabela_veiculos.php">Cadastros Veiculos de Terceiros</a></li>
-                    <li><a href="porteiros.php">Cadastrar Porteiros</a></li>
-                    <li><a href="tipo.php">Cadastrar Tipo de Visitante</a></li>
+                    <li><a href="tabela_veiculos.php">Cadastros veiculos da empresa</a></li>
+                    <li><a href="porteiros.php">Cadastrar porteiros</a></li>
+                    <li><a href="tipo.php">Cadastrar tipo de visitante</a></li>
                </ul>
             </div>
             <div class="nav-column">
                 <ul>
-                <li><a href="tabela_visitantes.php">Cadastros de Visitantes</a></li>
-                <li><a href="setores.php">Cadastrar Setores</a></li>
-                    <li><a href="veiculos.php">Cadastrar Veiculos</a></li>
+                <li><a href="tabela_visitantes.php">Cadastros de visitantes</a></li>
+                <li><a href="setores.php">Cadastrar setores</a></li>
+                    <li><a href="veiculos.php">Cadastrar veiculos</a></li>
                 </ul>
             </div>
         </nav>
