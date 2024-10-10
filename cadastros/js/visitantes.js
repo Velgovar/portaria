@@ -245,6 +245,13 @@ var cpfInput = document.getElementById('cpf');
 cpfInput.addEventListener('input', function(event) {
     const value = event.target.value;
     const cleanedValue = value.replace(/\D/g, ''); // Remover caracteres não numéricos
+
+    // Limitar o CPF a 11 dígitos
+    if (cleanedValue.length > 11) {
+        event.target.value = formatCPF(cleanedValue.slice(0, 11));
+        return; // Ignorar o restante da execução se o limite for ultrapassado
+    }
+
     event.target.value = formatCPF(value);
 
     // Se o CPF for válido (11 dígitos), buscar as informações
@@ -304,7 +311,6 @@ function fetchVisitorInfo(cpf) {
             });
     }
 }
-
     // Manipulador de evento para o campo de estacionamento
     var estacionamentoSelect = document.getElementById('estacionamento');
     estacionamentoSelect.addEventListener('change', function() {
