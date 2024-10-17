@@ -283,7 +283,7 @@ function formatarHorario($horario) {
             <input type="text" id="confirmationInput" autocomplete="off" placeholder="Digite 'excluir' para confirmar">
             
             <!-- Botão de Exclusão com a classe delete-button -->
-            <button type="submit" class="delete-button">Excluir</button>
+            <button type="button" class="delete-button" data-id="1">Excluir</button>
 
             <!-- Botão de Cancelar com a classe cancel -->
             <button type="button" class="cancel" onclick="closeConfirmationModal()">Cancelar</button>
