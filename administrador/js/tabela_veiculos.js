@@ -1,218 +1,226 @@
-// Função para abrir o modal e preencher os campos com os dados mais recentes da linha
-function openModal(id) {
-    // Seleciona a linha correspondente pelo ID
-    const row = document.querySelector(`tr[data-id="${id}"]`);
-    
-    if (row) {
-    // Pegue os valores mais recentes da linha da tabela
-    const km_chegada = row.querySelector('.km_chegada').textContent.trim();
-    const horario_chegada = row.querySelector('.horario_chegada').textContent.trim();
-    const horario_saida = row.querySelector('td:nth-child(7)').textContent.trim(); // Coluna horario saida
-    const data = row.querySelector('td:nth-child(2)').textContent.trim(); // Coluna DATA
-    const porteiro = row.querySelector('td:nth-child(3)').textContent.trim(); // Coluna PORTEIRO
-    const veiculo = row.querySelector('td:nth-child(4)').textContent.trim(); // Coluna VEICULO
-    const km_saida = row.querySelector('td:nth-child(5)').textContent.trim(); // Coluna KM SAIDA
-    const destino = row.querySelector('td:nth-child(9)').textContent.trim(); // Coluna DESTINO
-    const motivo = row.querySelector('td:nth-child(10)').textContent.trim(); // Coluna MOTIVO
+let currentPage = 1;
+let rowsPerPage = parseInt(localStorage.getItem('rowsPerPage')) || parseInt(document.getElementById('rows-per-page').value);
+const table = document.getElementById('veiculos-list');
+let tableRows = Array.from(table.querySelectorAll('tr')); 
+let totalRows = tableRows.length;
+let totalPages = Math.ceil(totalRows / rowsPerPage);
 
-    // Preenche os campos do modal com os valores mais recentes
-    document.getElementById('editId').value = id;
-    document.getElementById('editKmChegada').value = km_chegada;
-    document.getElementById('editHorarioChegada').value = horario_chegada;
-    document.getElementById('editHorarioSaida').value = horario_saida;
-    document.getElementById('editData').value = data;
-    document.getElementById('editPorteiro').value = porteiro;
-    document.getElementById('editVeiculo').value = veiculo;
-    document.getElementById('editKmSaida').value = km_saida;
-    document.getElementById('editDestino').value = destino;
-    document.getElementById('editMotivo').value = motivo;
+// Seleciona o modal, o botão de fechar e o botão de cancelar
+const modal = document.getElementById("editModal");
+const cancelButton = document.getElementById("cancelButton");
 
-    // Abra o modal
-    document.getElementById('editModal').style.display = 'flex';
-} else {
-    console.error(`Linha com ID ${id} não encontrada.`);
+// Função para remover hífens e tratar valores vazios
+function removerHifen(valor) {
+    return (valor === '-' || valor.trim() === '') ? '' : valor;
 }
 
+// Função para abrir o modal e preencher os dados
+function openEditModal(row) {
+    const id = row.getAttribute('data-id'); // Pega o ID da linha
+    const data = removerHifen(row.querySelector('td:nth-child(2)').textContent);
+    const porteiro = removerHifen(row.querySelector('td:nth-child(3)').textContent);
+    const veiculo = removerHifen(row.querySelector('td:nth-child(4)').textContent);
+    const motorista = removerHifen(row.querySelector('td:nth-child(5)').textContent);
+    const km_saida = removerHifen(row.querySelector('td:nth-child(6)').textContent);
+    const km_chegada = removerHifen(row.querySelector('td:nth-child(7)').textContent);
+    const horario_saida = removerHifen(row.querySelector('td:nth-child(8)').textContent);
+    const horario_chegada = removerHifen(row.querySelector('td:nth-child(9)').textContent);
+    const destino = removerHifen(row.querySelector('td:nth-child(10)').textContent);
+    const motivo = removerHifen(row.querySelector('td:nth-child(11)').textContent);
+
+    // Preencher o formulário no modal com os dados
+    document.getElementById('data').value = data;
+    document.getElementById('porteiro').value = porteiro;
+    document.getElementById('veiculo').value = veiculo;
+    document.getElementById('motorista').value = motorista;
+    document.getElementById('km_saida').value = km_saida;
+    document.getElementById('km_chegada').value = km_chegada;
+
+    // Formatar os horários removendo os segundos
+    document.getElementById('horario_saida').value = formatarHorario(horario_saida);
+    document.getElementById('horario_chegada').value = formatarHorario(horario_chegada);
+
+    document.getElementById('destino').value = destino;
+    document.getElementById('motivo').value = motivo;
+
+    // Armazene o ID da linha no modal para ser usado depois
+    $('#editForm').data('id', id);
+
+    // Exibir o modal
+    modal.style.display = "flex"; // Certifique-se de que é "flex" para centralizar
 }
 
-// Variável global para armazenar o ID do item a ser excluído
-let deleteId = null;
+// Adiciona o evento ao botão de editar
+document.querySelectorAll('.edit-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const row = button.closest('tr');
+        openEditModal(row);
+    });
+});
 
-// Função para abrir o modal de confirmação
-function openConfirmationModal(id) {
-    deleteId = id; // Define o ID do item a ser excluído
-    document.getElementById('confirmationModal').style.display = 'flex';
-}
+// Função para fechar o modal
+cancelButton.addEventListener('click', function() {
+    modal.style.display = "none"; // Esconde o modal ao clicar em cancelar
+});
 
-// Função para fechar o modal de confirmação
-function closeConfirmationModal() {
-    document.getElementById('confirmationModal').style.display = 'none';
-    document.getElementById('confirmationInput').value = ''; // Limpa o campo de texto
-}
-
-// Função para confirmar a exclusão
-function confirmDelete() {
-    const confirmationInput = document.getElementById('confirmationInput').value.trim().toLowerCase();
-    if (confirmationInput === 'excluir') {
-        fetch('config/tabela_veiculos_config.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                'id': deleteId,
-                'confirmacao': 'excluir'
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Remove a linha da tabela
-                const row = document.querySelector(`tr[data-id="${deleteId}"]`);
-                if (row) {
-                    row.remove();
-                }
-
-                // Mostra o launcher de notificação
-                const deleteLauncher = document.getElementById('launcherDelete');
-                deleteLauncher.classList.remove('hidden');
-                deleteLauncher.classList.add('visible');
-
-                // Remove o launcher após 2 segundos
-                setTimeout(() => {
-                    deleteLauncher.classList.remove('visible');
-                    deleteLauncher.classList.add('hidden');
-                }, 2000);
-
-                closeConfirmationModal(); // Fecha o modal após a confirmação
-            } else {
-                // Mostra a mensagem de erro
-                alert(data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            closeConfirmationModal(); // Fecha o modal mesmo se ocorrer um erro
-        });
-    } else {
-        alert('Você deve digitar "excluir" para confirmar.');
+// Função para formatar horário removendo os segundos
+function formatarHorario(horario) {
+    if (horario.includes(':')) {
+        const partes = horario.split(':');
+        return partes[0] + ':' + partes[1]; // Retorna horas e minutos
     }
+    return horario;
 }
 
 
-// Adiciona um listener para o envio do formulário
-document.getElementById('confirmationForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Previne o envio padrão do formulário
-    confirmDelete(); // Chama a função de confirmação
+$('#editForm').on('submit', function(e) {
+    e.preventDefault(); // Impede o envio tradicional do formulário
+
+    // Pega o valor da data do campo de input (no formato dd/mm/aaaa)
+    var dataInput = $('#data').val();
+
+// Converte a data no formato dd/mm/yyyy para yyyy-mm-dd, ou usa '0000-00-00' se estiver vazia
+var dataConvertida = dataInput ? dataInput.split('/').reverse().join('-') : '0000-01-01';
+
+// Coleta os dados do formulário, garantindo que campos vazios sejam preenchidos com valores padrão
+var formData = {
+    id: $('#editForm').data('id'), // Pega o ID da linha editada do modal
+    data: dataConvertida, // Envia a data no formato aaaa-mm-dd ou '0000-00-00' se vazio
+    porteiro: $('#porteiro').val() || '-', // Se estiver vazio, envia '-'
+    veiculo: $('#veiculo').val() || '-', // Se estiver vazio, envia '-'
+    motorista: $('#motorista').val() || '-', // Se estiver vazio, envia '-'
+    km_saida: $('#km_saida').val() || '0', // Se estiver vazio, envia '0'
+    km_chegada: $('#km_chegada').val() || '0', // Se estiver vazio, envia '0'
+    horario_saida: $('#horario_saida').val() || '00:00', // Se estiver vazio, envia '00:00'
+    horario_chegada: $('#horario_chegada').val() || '00:00', // Se estiver vazio, envia '00:00'
+    destino: $('#destino').val() || '-', // Se estiver vazio, envia '-'
+    motivo: $('#motivo').val() || '-' // Se estiver vazio, envia '-'
+};
+
+
+    // Requisição Ajax para enviar os dados para o arquivo config.php
+    $.ajax({
+        url: 'config/tabela_veiculos_config.php', // URL do arquivo PHP que irá processar os dados
+        type: 'POST', // Método de envio
+        data: formData, // Dados a serem enviados
+        success: function(response) {
+            // O que fazer em caso de sucesso
+            modal.style.display = "none"; // Fecha o modal
+            $('#editForm')[0].reset(); // Limpa o formulário
+            // Atualizar a tabela localmente com os novos dados
+            updateTableRow(formData);
+
+            // Exibe uma notificação de sucesso usando o launcher
+            showLauncher("Registro atualizado com sucesso!");
+        },
+        error: function(xhr, status, error) {
+            // O que fazer em caso de erro
+            console.error(xhr.responseText); // Exibe o erro no console
+
+            // Exibe uma notificação de erro usando o launcher
+            showLauncher("Erro ao salvar o registro. Tente novamente.", true);
+        }
+    });
 });
 
 
-// Função para fechar o modal e exibir a mensagem de cancelamento (se necessário)
-function closeModal(showCancelMessage = false) {
-    document.getElementById('editModal').style.display = 'none';
-    
-    if (showCancelMessage) {
-        // Adicionar a mensagem de cancelamento
-        const cancelMessage = document.getElementById('cancelMessage');
-        cancelMessage.textContent = 'Edição cancelada.';
-        cancelMessage.style.display = 'block';
+// Função para formatar automaticamente enquanto digita
+$('#data').on('input', function() {
+    var valor = $(this).val();
 
-        // Remover a mensagem após 2 segundos
-        setTimeout(() => {
-            cancelMessage.style.display = 'none';
-        }, 2000);
+    // Remove qualquer caractere que não seja número ou barra
+    valor = valor.replace(/[^0-9\/]/g, '');
+
+    // Verifica se a barra deve ser adicionada
+    if (valor.length >= 2 && valor[2] !== '/') {
+        valor = valor.substring(0, 2) + '/' + valor.substring(2);
     }
-}
+    if (valor.length >= 5 && valor[5] !== '/') {
+        valor = valor.substring(0, 5) + '/' + valor.substring(5);
+    }
 
-// Função para alterar o número de registros por página
-function changeRecordsPerPage() {
-    const select = document.getElementById('registrosPorPagina');
-    const registrosPorPagina = select.value;
-    window.location.href = `?pagina=1&registrosPorPagina=${registrosPorPagina}`;
-}
+    // Limita o campo a 10 caracteres (dd/mm/aaaa)
+    if (valor.length > 10) {
+        valor = valor.substring(0, 10);
+    }
 
-function handleFormSubmit(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+    // Atualiza o campo com o valor formatado
+    $(this).val(valor);
+});
 
-    // Mostra o launcher de notificação
-    const launcher = document.getElementById('launcher');
-    launcher.classList.remove('hidden');
-    launcher.classList.add('visible');
-
-    // Envia o formulário via AJAX
-    const form = document.getElementById('editForm');
-    const formData = new FormData(form);
-
-    fetch('config/tabela_veiculos_config.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json()) // Espera JSON como resposta
-    .then(data => {
-        console.log('Dados recebidos do servidor:', data); // Adiciona log para depuração
-
-        if (data.success) {
-            // Fechar o modal
-            closeModal();
-
-            // Atualizar a linha da tabela com os novos dados
-            updateTableRow(
-                formData.get('id'),
-                formData.get('km_chegada'),
-                formData.get('horario_saida'),
-                formData.get('horario_chegada'),
-                formData.get('data'),
-                formData.get('porteiro'),
-                formData.get('veiculo'),
-                formData.get('km_saida'),
-                formData.get('destino'),
-                formData.get('motivo')
-            );
-        } else {
-            console.error('Falha ao editar o registro:', data.message);
+// Permite apagar a barra sem problemas e limita a 10 caracteres
+$('#data').on('keydown', function(e) {
+    var valor = $(this).val();
+    
+    // Verifica se a tecla pressionada é Backspace ou Delete
+    if (e.key === 'Backspace' || e.key === 'Delete') {
+        // Se a barra for apagada, reformatar os caracteres ao redor
+        if (valor.length === 3 || valor.length === 6) {
+            // Remove a barra apenas quando a tecla Backspace ou Delete for pressionada
+            var novaValor = valor.substring(0, valor.length - 1); 
+            $(this).val(novaValor);
         }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-    })
-    .finally(() => {
-        // Oculta o launcher de notificação após 2 segundos
-        setTimeout(() => {
-            launcher.classList.remove('visible');
-            launcher.classList.add('hidden');
-        }, 2000); // Mantém o launcher visível por 2 segundos
-    });
+    }
+});
+
+// Previne a inserção de mais de 10 caracteres no campo
+$('#data').on('paste', function(e) {
+    var pastedData = e.originalEvent.clipboardData.getData('text');
+    if (pastedData.length > 10) {
+        e.preventDefault();
+    }
+});
+
+// Função para formatar a data no formato dd/mm/aaaa
+function formatarData(data) {
+    var partes = data.split('-'); // Divide a data no formato aaaa-mm-dd
+    return partes[2] + '/' + partes[1] + '/' + partes[0]; // Retorna no formato dd/mm/aaaa
 }
 
+// Função para atualizar a linha na tabela com os dados editados
+function updateTableRow(data) {
+    const row = document.querySelector(`tr[data-id="${data.id}"]`);
+    row.querySelector('td:nth-child(2)').textContent = formatarData(data.data); // Formata a data antes de atualizar
+    row.querySelector('td:nth-child(3)').textContent = data.porteiro;
+    row.querySelector('td:nth-child(4)').textContent = data.veiculo;
+    row.querySelector('td:nth-child(5)').textContent = data.motorista;
+    row.querySelector('td:nth-child(6)').textContent = data.km_saida;
+    row.querySelector('td:nth-child(7)').textContent = data.km_chegada;
+    row.querySelector('td:nth-child(8)').textContent = data.horario_saida;
+    row.querySelector('td:nth-child(9)').textContent = data.horario_chegada;
+    row.querySelector('td:nth-child(10)').textContent = data.destino;
+    row.querySelector('td:nth-child(11)').textContent = data.motivo;
+}
 
-// Função para atualizar a linha da tabela com os novos dados
-function updateTableRow(id, km_chegada,horario_saida, horario_chegada, data, porteiro, veiculo, km_saida, destino, motivo) {
-    if (!id) {
-        console.error('ID não fornecido.');
-        return;
-    }
+// Função para salvar os dados e atualizar a tabela
+$('#salvar').on('click', function() {
+    var formData = {
+        id: $('#editForm').data('id'),
+        data: $('#data').val(),
+        porteiro: $('#porteiro').val(),
+        veiculo: $('#veiculo').val(),
+        motorista: $('#motorista').val(),
+        km_saida: $('#km_saida').val(),
+        km_chegada: $('#km_chegada').val(),
+        horario_saida: $('#horario_saida').val(),
+        horario_chegada: $('#horario_chegada').val(),
+        destino: $('#destino').val(),
+        motivo: $('#motivo').val()
+    };
     
-    const row = document.querySelector(`tr[data-id="${id}"]`);
-    if (row) {
-        console.log(`Atualizando a linha com ID ${id}`); // Log para depuração
-        row.querySelector('td:nth-child(2)').textContent = data;
-        row.querySelector('td:nth-child(3)').textContent = porteiro;
-        row.querySelector('td:nth-child(4)').textContent = veiculo;
-        row.querySelector('td:nth-child(5)').textContent = km_saida;
-        row.querySelector('.km_chegada').textContent = km_chegada;
-        row.querySelector('td:nth-child(7)').textContent = horario_saida;
-        row.querySelector('.horario_chegada').textContent = horario_chegada;
-        row.querySelector('td:nth-child(9)').textContent = destino;
-        row.querySelector('td:nth-child(10)').textContent = motivo;
-    } else {
-        console.error(`Linha com ID ${id} não encontrada.`);
-    }
-}
+    // Atualiza a tabela com os novos dados
+    updateTableRow(formData);
+
+    // Opcional: Pode adicionar um alerta ou mensagem de sucesso
+    alert('Registro salvo com sucesso!');
+});
 
 
+// Função para filtrar a tabela
 function filterTable() {
     const searchInput = document.getElementById('search-input').value.toLowerCase();
-    const searchSelect = document.getElementById('search-select').value;
+    const searchSelect = document.getElementById('search-select').value;  // Valor do select
+    console.log("Filtro aplicado com valor de select:", searchSelect);  // Debug
     const table = document.getElementById('tabela-registros');
     const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
 
@@ -231,52 +239,157 @@ function filterTable() {
 
         rows[i].style.display = shouldShow ? '' : 'none';
     }
+
+    // Salva o valor selecionado no select no localStorage
+    console.log("Salvando no localStorage:", searchSelect);  // Debug
+    localStorage.setItem('searchSelectValue', searchSelect);
 }
 
-// Adicionar event listener ao formulário de edição
-document.getElementById('editForm').addEventListener('submit', handleFormSubmit);
 
-// Adicionar event listener para mudança no número de registros por página
-document.getElementById('registrosPorPagina').addEventListener('change', changeRecordsPerPage);
+let recordIdToDelete = null; // Variável para armazenar o ID do registro a ser excluído
 
-document.addEventListener('DOMContentLoaded', function() {
-    const dateInput = document.getElementById('editData'); // Mudando para o campo de data do modal
-    let isCalendarOpen = false; // Variável de controle para o estado do calendário
-    let preventImmediateClose = false; // Variável para prevenir fechamento imediato
+// Exibe o modal de confirmação de exclusão
+function openConfirmationModal(recordId) {
+    recordIdToDelete = recordId; // Armazena o ID do registro
+    document.getElementById('confirmationModal').style.display = 'flex'; // Exibe o modal
+}
 
-    const flatpickrInstance = flatpickr(dateInput, {
-        locale: "pt", // Define o idioma para português
-        dateFormat: "Y/m/d", // Formato de data
-        showMonths: 1, // Mostra apenas um mês por vez
-        disableMonthNav: true, // Desabilita a navegação entre meses
-        defaultDate: "today", // Define a data padrão como hoje
-        onReady: function(selectedDates, dateStr, instance) {
-            instance.calendarContainer.classList.add('only-current-month');
-        },
-        onOpen: function() {
-            isCalendarOpen = true; // Atualiza o estado quando o calendário abre
-            preventImmediateClose = true; // Impede fechamento imediato ao abrir
-            setTimeout(() => preventImmediateClose = false, 200); // Libera após 200ms
-        },
-        onClose: function() {
-            isCalendarOpen = false; // Atualiza o estado quando o calendário fecha
-        }
-    });
+// Fecha o modal de confirmação
+function closeConfirmationModal() {
+    document.getElementById('confirmationModal').style.display = 'none'; // Esconde o modal
+    document.getElementById('confirmationInput').value = ''; // Limpa o campo de input
+}
 
-    // Função para alternar a exibição do calendário
-    dateInput.addEventListener('click', function(event) {
-        if (preventImmediateClose) return; // Previne o fechamento imediato
+// Lida com a submissão do formulário de confirmação
+document.getElementById('confirmationForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio do formulário
+    const confirmationInput = document.getElementById('confirmationInput').value.trim();
 
-        if (isCalendarOpen) {
-            flatpickrInstance.close(); // Fecha o calendário se estiver aberto
-        } else {
-            flatpickrInstance.open(); // Abre o calendário se estiver fechado
-        }
+    // Verifica se o texto digitado é 'excluir'
+    if (confirmationInput.toLowerCase() === 'excluir') {
+        console.log("Iniciando a exclusão..."); // Log para verificar o processo de exclusão
+
+        // Realiza a requisição de exclusão ao servidor
+        const formData = new FormData();
+        formData.append('id', recordIdToDelete);
+        formData.append('confirmacao', 'excluir'); // Envia o valor de confirmação
+
+        fetch('config/tabela_veiculos_config.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro na resposta do servidor");
+            }
+            return response.json(); // Espera um JSON como resposta
+        })
+        .then(result => {
+            console.log("Resposta do servidor: ", result); // Log para depurar a resposta do servidor
+
+            if (result.success) {
+                // Exclui a linha imediatamente após a confirmação
+                const rowToDelete = document.querySelector(`tr[data-id="${recordIdToDelete}"]`);
+                if (rowToDelete) {
+                    rowToDelete.style.display = 'none'; // Esconde a linha imediatamente
+                }
+
+                // Exibe uma notificação de sucesso usando o launcher
+                showLauncher("Registro excluído com sucesso!");
+                closeConfirmationModal(); // Fecha o modal após o sucesso
+
+                // Exibe a notificação por 2 segundos, e recarrega a página depois
+                setTimeout(() => {
+                    location.reload(); // Recarrega a página após 2 segundos
+                }, 2000);
+            } else {
+                // Exibe uma notificação de erro usando o launcher
+                showLauncher("Erro ao excluir o registro: " + result.message, true);
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao excluir o registro:', error);
+            // Exibe uma notificação de erro usando o launcher
+            showLauncher('Ocorreu um erro ao excluir o registro.', true);
+        });
+    } else {
+        // Exibe uma notificação de erro usando o launcher
+        showLauncher('Por favor, digite "excluir" para confirmar.', true);
+    }
+});
+
+// Função para inicializar os botões de excluir
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const recordId = this.getAttribute('data-id');
+            openConfirmationModal(recordId); // Abre o modal com o ID do registro
+        });
     });
 });
 
-// Função para formatar o horário
-function formatarHorario(input) {
+
+
+
+// Função para mostrar o launcher de notificação
+function showLauncher(message, isError = false) {
+    const launcher = document.getElementById('launcher');
+    const launcherMessage = document.querySelector('.launcher-message');
+    
+    // Atualiza a mensagem do launcher
+    launcherMessage.textContent = message;
+
+    // Adiciona ou remove a classe de erro com base no parâmetro
+    if (isError) {
+        launcher.classList.add('launcher-error');
+    } else {
+        launcher.classList.remove('launcher-error');
+    }
+
+    // Mostra o launcher com animação
+    launcher.classList.remove('hidden');
+    launcher.classList.add('launcher-show');
+
+    // Oculta o launcher após 2 segundos
+    setTimeout(() => {
+        launcher.classList.remove('launcher-show');
+        launcher.classList.add('hidden');
+    }, 2000);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Função para formatar o horário (removendo os segundos)
+function formatarHorario(horario) {
+    // Remove os segundos se houver e mantém apenas o formato HH:MM
+    if (horario && horario.includes(':')) {
+        return horario.split(':').slice(0, 2).join(':'); // Divide o horário em partes e usa apenas horas e minutos
+    }
+    return horario; // Se não houver um valor válido, retorna o valor original
+}
+
+// Função para formatar o horário (no campo de input)
+function formatarHorarioInput(input) {
     let valor = input.value;
     valor = valor.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
 
@@ -311,12 +424,108 @@ function formatarHorario(input) {
     input.value = valor.slice(0, 5); // Limita o valor a 5 caracteres (HH:MM)
 }
 
-// Adiciona o evento de input para os dois campos
-document.getElementById('editHorarioChegada').addEventListener('input', function(e) {
-    formatarHorario(e.target);
+// Adiciona o evento de input para o campo de horário
+document.getElementById('horario_chegada').addEventListener('input', function(e) {
+    formatarHorarioInput(e.target);
 });
 
-// Adiciona o evento de input para os dois campos
-document.getElementById('editHorarioSaida').addEventListener('input', function(e) {
-    formatarHorario(e.target);
+// Adiciona o evento de input para o campo de horário
+document.getElementById('horario_saida').addEventListener('input', function(e) {
+    formatarHorarioInput(e.target);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+function updateRows() {
+    rowsPerPage = parseInt(document.getElementById('rows-per-page').value);
+    localStorage.setItem('rowsPerPage', rowsPerPage); 
+    totalRows = tableRows.length;
+    totalPages = Math.ceil(totalRows / rowsPerPage);
+    currentPage = 1; 
+    renderTable();
+}
+
+function renderTable() {
+    tableRows.forEach((row, index) => {
+        row.style.display = (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) ? '' : 'none';
+    });
+
+    document.getElementById('prev-page').classList.toggle('disabled', currentPage === 1);
+    document.getElementById('next-page').classList.toggle('disabled', currentPage === totalPages);
+    document.getElementById('first-page').classList.toggle('disabled', currentPage === 1);
+    document.getElementById('last-page').classList.toggle('disabled', currentPage === totalPages);
+
+    const pageLinks = document.getElementById('page-links');
+    pageLinks.innerHTML = '';
+
+    const numLinks = 3;
+    let startPage = Math.max(1, currentPage - Math.floor(numLinks / 2));
+    let endPage = Math.min(totalPages, startPage + numLinks - 1);
+
+    if (endPage - startPage + 1 < numLinks) {
+        startPage = Math.max(1, endPage - numLinks + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        const link = document.createElement('a');
+        link.textContent = i;
+        link.href = '#';
+        link.className = (i === currentPage) ? 'active' : '';
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentPage = i;
+            renderTable();
+        });
+        pageLinks.appendChild(link);
+    }
+}
+
+document.getElementById('prev-page').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentPage > 1) {
+        currentPage--;
+        renderTable();
+    }
+});
+
+document.getElementById('next-page').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderTable();
+    }
+});
+
+document.getElementById('first-page').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentPage > 1) {
+        currentPage = 1;
+        renderTable();
+    }
+});
+
+document.getElementById('last-page').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentPage < totalPages) {
+        currentPage = totalPages;
+        renderTable();
+    }
+});
+
+window.onload = function() {
+    const rowsPerPageSelector = document.getElementById('rows-per-page');
+    rowsPerPageSelector.value = rowsPerPage;
+    renderTable();
+};
+
+document.getElementById('rows-per-page').addEventListener('change', updateRows);
+

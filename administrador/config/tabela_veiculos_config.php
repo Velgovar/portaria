@@ -9,7 +9,7 @@ $options = array(
 );
 
 try {
-    // Conectar ao banco de dados
+    // Conectar ao banco de dados usando PDO
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, $options);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -18,9 +18,11 @@ try {
         if (isset($_POST['confirmacao']) && $_POST['confirmacao'] === 'excluir' && isset($_POST['id'])) {
             $id = $_POST['id'];
 
+            // Preparar a consulta de exclusão
             $sql = "DELETE FROM registros_veiculos WHERE id = :id";
             $stmt = $pdo->prepare($sql);
 
+            // Executar a consulta
             if ($stmt->execute([':id' => $id])) {
                 if ($stmt->rowCount() > 0) {
                     echo json_encode(['success' => true, 'message' => 'Registro excluído com sucesso.']);
@@ -37,7 +39,7 @@ try {
             isset($_POST['id']) && isset($_POST['data']) && isset($_POST['porteiro']) &&
             isset($_POST['veiculo']) && isset($_POST['km_saida']) && isset($_POST['km_chegada']) &&
             isset($_POST['horario_saida']) && isset($_POST['horario_chegada']) &&
-            isset($_POST['destino']) && isset($_POST['motivo'])
+            isset($_POST['destino']) && isset($_POST['motivo']) && isset($_POST['motorista'])
         ) {
             $id = $_POST['id'];
             $data = $_POST['data'];
@@ -49,7 +51,9 @@ try {
             $horario_chegada = $_POST['horario_chegada'];
             $destino = $_POST['destino'];
             $motivo = $_POST['motivo'];
+            $motorista = $_POST['motorista']; // Novo campo motorista
 
+            // Preparar a consulta de atualização completa
             $stmt = $pdo->prepare("UPDATE registros_veiculos SET
                 data = :data,
                 porteiro = :porteiro,
@@ -59,9 +63,11 @@ try {
                 horario_saida = :horario_saida,
                 horario_chegada = :horario_chegada, 
                 destino = :destino,
-                motivo = :motivo
+                motivo = :motivo,
+                motorista = :motorista
                 WHERE id = :id");
 
+            // Vincular parâmetros
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':data', $data);
             $stmt->bindParam(':porteiro', $porteiro);
@@ -72,22 +78,29 @@ try {
             $stmt->bindParam(':horario_chegada', $horario_chegada);
             $stmt->bindParam(':destino', $destino);
             $stmt->bindParam(':motivo', $motivo);
+            $stmt->bindParam(':motorista', $motorista); // Vincular motorista
 
+            // Executar a consulta
             $stmt->execute();
 
             echo json_encode(['success' => true]);
         }
 
-        // Verificar se é uma atualização parcial
-        elseif (isset($_POST['id']) && isset($_POST['km_chegada']) && isset($_POST['horario_chegada'])) {
+        // Verificar se é uma atualização parcial (com km_chegada, horario_chegada e motorista)
+        elseif (isset($_POST['id']) && isset($_POST['km_chegada']) && isset($_POST['horario_chegada']) && isset($_POST['motorista'])) {
             $id = $_POST['id'];
             $km_chegada = $_POST['km_chegada'];
             $horario_chegada = $_POST['horario_chegada'];
+            $motorista = $_POST['motorista']; // Novo campo motorista
 
-            $stmt = $pdo->prepare("UPDATE registros_veiculos SET km_chegada = :km_chegada, horario_chegada = :horario_chegada WHERE id = :id");
+            // Preparar a consulta de atualização parcial
+            $stmt = $pdo->prepare("UPDATE registros_veiculos SET km_chegada = :km_chegada, horario_chegada = :horario_chegada, motorista = :motorista WHERE id = :id");
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':km_chegada', $km_chegada);
             $stmt->bindParam(':horario_chegada', $horario_chegada);
+            $stmt->bindParam(':motorista', $motorista); // Vincular motorista
+
+            // Executar a consulta
             $stmt->execute();
 
             echo json_encode(['success' => true]);

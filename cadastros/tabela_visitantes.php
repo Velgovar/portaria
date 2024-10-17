@@ -28,52 +28,55 @@
                 <h2>Cadastros de entrada e saída de terceiros</h2>
         </div>
 
-            <form class="search-form" method="get" action="">
-                <label for="campo-busca">Buscar por</label>
-                <select name="criterio" id="criterio">
-                    <option value="id">ID</option>
-                    <option value="data">DATA</option>
-                    <option value="porteiro">PORTEIRO</option>
-                    <option value="veiculo">VEÍCULO</option>
-                    <option value="motorista">MOTORISTA</option>
-                    <option value="km_saida">KM SAIDA</option>
-                    <option value="km_chegada">KM CHEGADA</option>
-                    <option value="horario_saida">HORARIO SAIDA</option>
-                    <option value="horario_chegada">HORARIO CHEGADA</option>
-                    <option value="destino">DESTINO</option>
-                    <option value="motivo">MOTIVO</option>
-                    <option value="acao">AÇÃO</option>
-                </select>
-                    <div class="input-container">
-                    <input type="text" name="busca" id="campo-busca" placeholder="Digite sua busca">
-                    <button type="submit">
-                        <i class="fas fa-search search-icon"></i>
-                    </button>
-                </div>
-            </form>
+        <form class="search-form" method="get" action="">
+    <label for="campo-busca">Buscar por</label>
+    <select name="criterio" id="criterio">
+        <option value="id">ID</option>
+        <option value="data">DATA</option>
+        <option value="porteiro">PORTEIRO</option>
+        <option value="nome">NOME</option>
+        <option value="cpf">CPF</option>
+        <option value="tipovisitante">TIPO VISITANTE</option>
+        <option value="servico">SERVIÇO</option>
+        <option value="empresa">EMPRESA</option>
+        <option value="estacionamento">ESTACIONAMENTO</option>
+        <option value="placa">PLACA</option>
+        <option value="horario_entrada">HORÁRIO ENTRADA</option>
+        <option value="horario_saida">HORÁRIO SAÍDA</option>
+        <option value="colaborador">COLABORADOR</option>
+        <option value="setor">SETOR</option>
+    </select>
+    <div class="input-container">
+        <input type="text" name="busca" id="campo-busca" placeholder="Digite sua busca">
+        <button type="submit">
+            <i class="fas fa-search search-icon"></i>
+        </button>
+    </div>
+</form>
 
-            <div class="scrollable-container">
-                <table>
-                    <thead>
-                        <tr>
-                        <th>ID</th>
-                        <th>Data</th>
-                        <th>Porteiro</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>Tipo Visitante</th>
-                        <th>Serviço</th>
-                        <th>Empresa</th>
-                        <th>Estacionamento</th>
-                        <th>Placa</th>
-                        <th>Horário Entrada</th>
-                        <th>Horário Saída</th>
-                        <th>Colaborador</th>
-                        <th>Setor</th>
-                        <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="visitantes-list">
+<div class="scrollable-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Porteiro</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Tipo Visitante</th>
+                <th>Serviço</th>
+                <th>Empresa</th>
+                <th>Estacionamento</th>
+                <th>Placa</th>
+                <th>Horário Entrada</th>
+                <th>Horário Saída</th>
+                <th>Colaborador</th>
+                <th>Setor</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="visitantes-list">
+
 
                     <?php
                         require '../db_config.php';
@@ -83,10 +86,10 @@
                         if ($conn->connect_error) {
                             die("Erro na conexão com o banco de dados: " . $conn->connect_error);
                         }
-
+                        
                         $criterio = isset($_GET['criterio']) ? $conn->real_escape_string($_GET['criterio']) : 'id';
                         $busca = isset($_GET['busca']) ? $conn->real_escape_string($_GET['busca']) : '';
-
+                        
                         if ($busca !== '') {
                             if ($criterio === 'id') {
                                 $sql = "SELECT id, data, porteiro, nome, cpf, tipovisitante, servico, empresa, estacionamento, placa, horario_entrada, horario_saida, colaborador, setor 
@@ -97,6 +100,11 @@
                                 $sql = "SELECT id, data, porteiro, nome, cpf, tipovisitante, servico, empresa, estacionamento, placa, horario_entrada, horario_saida, colaborador, setor 
                                         FROM registro 
                                         WHERE $criterio = '$busca' 
+                                        ORDER BY id DESC";
+                            } elseif ($criterio === 'nome' || $criterio === 'tipovisitante' || $criterio === 'servico' || $criterio === 'empresa' || $criterio === 'estacionamento' || $criterio === 'horario_entrada' || $criterio === 'horario_saida' || $criterio === 'colaborador' || $criterio === 'setor') {
+                                $sql = "SELECT id, data, porteiro, nome, cpf, tipovisitante, servico, empresa, estacionamento, placa, horario_entrada, horario_saida, colaborador, setor 
+                                        FROM registro 
+                                        WHERE $criterio LIKE '%$busca%' 
                                         ORDER BY id DESC";
                             } else {
                                 $sql = "SELECT id, data, porteiro, nome, cpf, tipovisitante, servico, empresa, estacionamento, placa, horario_entrada, horario_saida, colaborador, setor 
@@ -109,8 +117,9 @@
                                     FROM registro 
                                     ORDER BY id DESC";
                         }
-
+                        
                         $result = $conn->query($sql);
+                        
 
                         if ($result->num_rows > 0) {
 

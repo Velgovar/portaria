@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastros de Visitantes</title>
+    <title>Entrada e saída de terceiros</title>
     
     <link rel="icon" href="../images/favicon.ico" type="image/png">
 
@@ -18,10 +18,10 @@
 
     <div class="container">
                     <img src="../images/inusitta.png" class="image-center" alt="icone central">
-                    <h2>CONTROLE DE ENTRADA E SAÍDA DE TERCEIROS</h2>
+                    <h2>Controle de entrada e saída de terceiros</h2>
                     <form id="vehicle-form" method="POST" action="../config/config.php" autocomplete="off">
                         <div class="form-group data-porteiro">
-            <div class="data-item">
+            <div class="data-item"> 
                 <label for="date"> Data</label>
                 <div class="input-container">
                     <input type="text" id="date" name="data" class="datepicker" placeholder="Selecione a data">
