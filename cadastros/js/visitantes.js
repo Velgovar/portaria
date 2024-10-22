@@ -7,66 +7,63 @@ document.addEventListener('DOMContentLoaded', function() {
     var placaField = document.getElementById('placa').parentElement;
     placaField.style.display = 'none'; // Oculta o campo de placa inicialmente
 
-    // Manipulador de evento para o envio do formulário
-    document.getElementById('vehicle-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita o envio padrão do formulário
+// Manipulador de evento para o envio do formulário
+document.getElementById('vehicle-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita o envio padrão do formulário
 
-        if (formIsProcessing) {
-            return; // Impede o envio se o formulário já estiver sendo processado
-        }
+    if (formIsProcessing) {
+        return; // Impede o envio se o formulário já estiver sendo processado
+    }
 
-        var inputs = document.querySelectorAll('#vehicle-form input, #vehicle-form select');
-        var formIsValid = true;
-
-        // Valida todos os campos do formulário
-        inputs.forEach(function(input) {
-            formIsValid = validateInput(input) && formIsValid;
-        });
-
-        if (formIsValid) {
-            formIsProcessing = true;
-            submitButton.disabled = true;
-
-            var formData = new FormData(this);
-
-            fetch('config/visitantes_config.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(function(response) {
-                if (!response.ok) {
-                    throw new Error('Erro ao enviar o formulário.');
-                }
-                return response.json();
-            })
-            .then(function(data) {
-                showLauncher(data.message); // Exibe mensagem de sucesso
-                resetForm();
-            })
-            .catch(function(error) {
-                showLauncher('Erro ao processar o formulário.', true); // Exibe mensagem de erro
-            })
-            .finally(function() {
-                setTimeout(function() {
-                    formIsProcessing = false;
-                    submitButton.disabled = false;
-                }, 1500);
-            });
-        } else {
-            showLauncher('Por favor, preencha todos os campos corretamente.', true); // Exibe mensagem de erro
-        }
-        
-    });
-
-
-    
-    // Adiciona validadores aos campos do formulário
     var inputs = document.querySelectorAll('#vehicle-form input, #vehicle-form select');
+    var formIsValid = true;
+
+    // Valida todos os campos do formulário
     inputs.forEach(function(input) {
-        input.addEventListener('input', function() {
-            validateInput(input);
-        });
+        formIsValid = validateInput(input) && formIsValid;
     });
+
+    if (formIsValid) {
+        formIsProcessing = true;
+        submitButton.disabled = true;
+
+        var formData = new FormData(this);
+
+        fetch('config/visitantes_config.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Erro ao enviar o formulário.');
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            showLauncher(data.message); // Exibe mensagem de sucesso
+            resetForm();
+        })
+        .catch(function(error) {
+            showLauncher('Erro ao processar o formulário.', true); // Exibe mensagem de erro
+        })
+        .finally(function() {
+            setTimeout(function() {
+                formIsProcessing = false;
+                submitButton.disabled = false;
+            }, 1500);
+        });
+    } else {
+        showLauncher('Por favor, preencha todos os campos corretamente.', true); // Exibe mensagem de erro
+    }
+});
+
+// Adiciona validadores aos campos do formulário
+var inputs = document.querySelectorAll('#vehicle-form input, #vehicle-form select');
+inputs.forEach(function(input) {
+    input.addEventListener('input', function() {
+        validateInput(input);
+    });
+});
 
 // Função para exibir mensagens de erro
 function showLauncher(message, isError = false) {
@@ -110,11 +107,9 @@ function validateInput(input) {
     } else if (input.id === 'placa') {
         // Só validar se o campo estiver visível
         if (placaField.style.display !== 'none') {
-            // Expressões regulares para os dois formatos de placa
             const mercosulRegex = /^[A-Z]{3}\d[A-Z]\d{2}$/; // ABC1D23
             const antigoRegex = /^[A-Z]{3}-\d{4}$/; // ABC-1234 (com hífen)
             
-            // Verifica se o valor corresponde a um dos dois formatos
             if (!mercosulRegex.test(input.value.trim()) && !antigoRegex.test(input.value.trim())) {
                 input.classList.add('error');
                 input.classList.remove('valid');
@@ -133,7 +128,10 @@ function validateInput(input) {
             return true;
         }
     } else if (input.id === 'cpf') {
-        if (!isValidCPF(input.value)) {
+        if (input.value.trim() === '') {
+            // Não faz validação se o CPF estiver vazio
+            return true;
+        } else if (!isValidCPF(input.value)) {
             input.classList.add('error');
             input.classList.remove('valid');
             setTimeout(function() {
