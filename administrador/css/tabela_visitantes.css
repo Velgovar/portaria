@@ -1,1076 +1,1178 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: black;
-    color: white;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 95vh;
-    background-size: cover;
-    background-position: center;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 95vh;
+  background-size: cover;
+  background-position: center;
 }
 
-
-.container_table1 {
-    position: fixed;
-    width: 95%; 
-    max-width: 1800px; 
-    height: 90%;
-    max-height: 85vh;
-    padding: 20px;
-    background-color: rgba(51, 51, 51, 0.9);
-    border-radius: 4%;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
-                5px 5px 20px rgba(0, 0, 0, 0.2),
-                10px 10px 25px rgba(0, 0, 0, 0.1);
+.setor-container {
+width: 100%;
+max-width: 1900px; 
+margin: 0 auto;
+padding: 0px 20px 20px 20px; 
+background-color: rgba(51, 51, 51, 0.9); 
+border-radius: 4%; 
+box-shadow: none; 
 }
 
-.table-container {
-    overflow-y: auto; 
-    max-height: 400px; 
+th:nth-child(1), td:nth-child(1) { width: 30px; max-width: 30px; }
+th:nth-child(2), td:nth-child(2) { width: 60px; max-width: 60px; }
+th:nth-child(3), td:nth-child(3) { width: 130px; max-width: 160px; }
+th:nth-child(4), td:nth-child(4) { width: 60px; max-width: 100px; }
+th:nth-child(5), td:nth-child(5) { width: 80px; max-width: 80px; }
+th:nth-child(6), td:nth-child(6) { width: 80px; max-width: 80px; }
+th:nth-child(7), td:nth-child(7) { width: 200px; max-width: 60px; }
+th:nth-child(8), td:nth-child(8) { width: 60px; max-width: 60px; }
+th:nth-child(9), td:nth-child(9) { 
+    width: 70px; 
+    max-width: 70px; 
+    white-space: normal; 
+    word-wrap: break-word; 
 }
+th:nth-child(10), td:nth-child(10) { width: 50px; max-width: 50px; }
+th:nth-child(11), td:nth-child(11) { width: 55px; max-width: 55px; }
+th:nth-child(12), td:nth-child(12) { width: 55px; max-width: 55px; }
+th:nth-child(13), td:nth-child(13) { width: 100px; max-width: 100px; }
+th:nth-child(14), td:nth-child(14) { width: 100px; max-width: 100px; }
+th:nth-child(15), td:nth-child(15) { width: 100px; max-width: 100px; }
 
-.table-container::-webkit-scrollbar {
-    width: 12px; 
-}
-
-.table-container::-webkit-scrollbar-track {
-    background: #333; 
-}
-
-.table-container::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 10px;
-}
-
-.table-container::-webkit-scrollbar-thumb:hover {
-    background: #777; 
-}
-
-.table-container {
-    scrollbar-width: thin; 
-    scrollbar-color: #555 #333; 
-}
-
-.table-container {
-    -ms-overflow-style: -ms-autohiding-scrollbar; 
-}
-
-.header {
-    text-align: center;
-    padding: 10px;
-    color: white;
+.fixed-container {
+  background-color: rgba(46, 46, 46, 0.9); 
+  padding: 0px 20px 20px; 
+  border-radius: 8px;
+  margin-bottom: 0;
+  text-align: center;
+  box-shadow: none; 
 }
 
 .table-container {
-    height: calc(80vh - 100px); 
-    max-height: 600px; 
-    overflow-y: auto; 
-    margin-top: 10px; 
+width: 100%;
+margin: 0;
+padding: 0;
+background-color: rgba(46, 46, 46, 0.9); 
+}
+
+.scrollable-container {
+margin-top: 20px; 
+margin-bottom: 20px; 
+height: calc(10 * (60px + 20px)); 
+overflow-y: auto; 
+}
+
+.table-header {
+position: -webkit-sticky;
+position: sticky;
+top: 0;
+background-color: rgba(46, 46, 46, 0.9); 
+padding: 10px;
+box-shadow: none; 
+}
+
+.scrollable-container th, 
+.scrollable-container td {
+padding: 9px; 
+height: 20px; 
+text-align: center; 
+border-bottom: 1px solid #444; 
+border-right: 1px solid #444; 
+white-space: nowrap; 
+overflow: hidden; 
+text-overflow: ellipsis; 
+}
+
+.scrollable-container th {
+background-color: #007BFF; 
+color: white; 
+white-space: normal; 
+}
+
+.scrollable-container td {
+background-color: #333; 
+color: #ddd; 
+}
+
+.scrollable-container tr:nth-child(even) td {
+background-color: #2a2a2a; 
+}
+
+.scrollable-container tr:hover td {
+background-color: #444; 
+}
+
+.scrollable-container tr td:last-child {
+border-right: none;
+}
+
+.scrollable-container::-webkit-scrollbar {
+width: 12px; 
+height: 12px;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+background: #333; 
+border-radius: 10px; 
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+background-color: #555; 
+border-radius: 10px; 
+border: 3px solid #333; 
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+background-color: #777;
+}
+
+.scrollable-container td:nth-child(2),
+.scrollable-container th:nth-child(2) {
+width: 80px; 
+text-align: center; 
+}
+
+.fixed-container h2 {
+text-align: center; 
+padding-top: 0px; 
+}
+
+.table-container .table-header h2 {
+text-align: center; 
+margin: 0; 
+}
+
+.scrollable-container td:last-child,
+.scrollable-container th:last-child {
+border-right: none; 
+}
+
+.scrollable-container {
+position: relative; 
+overflow-y: auto; 
+max-height: 535px; 
+}
+
+.scrollable-container th {
+background-color: #111; 
+color: white; 
+border-top: none; 
+position: -webkit-sticky; 
+position: sticky; 
+top: 0; 
+z-index: 1; 
+padding: 8px; 
+margin: 0; 
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-    border: 2px solid #333;
-    margin-bottom: 0; 
+  border-collapse: collapse; 
+  width: 100%; 
 }
 
-thead th {
-    background-color: #222;
-    color: #eee;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    word-wrap: break-word; 
-    white-space: normal;
+.form-group {
+  margin-bottom: 15px;
 }
 
-th, td {
-    padding: 10px; 
-    border: 2px solid #444;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal; 
-    color: #ddd;
-    font-size: 0.9em; 
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ccc;
 }
 
-tbody tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.1);
+.form-group input,
+.form-group select {
+  width: 70%; 
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #666;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  margin: 0 auto; 
+  display: block; 
 }
 
-tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+.form-group select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 24px; 
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom, #555, #555);
+  background-position: right center;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
-th:nth-child(1), td:nth-child(1) { width: 30px; }
-th:nth-child(2), td:nth-child(2) { width: 70px; }
-th:nth-child(3), td:nth-child(3) { width: 180px; }
-th:nth-child(4), td:nth-child(4) { width: 180px; }
-th:nth-child(5), td:nth-child(5) { width: 110px; }
-th:nth-child(6), td:nth-child(6) { width: 100px; }
-th:nth-child(7), td:nth-child(7) { width: 100px; }
-th:nth-child(8), td:nth-child(8) { width: 100px; }
-th:nth-child(9), td:nth-child(9) { width: 96px; }
-th:nth-child(10), td:nth-child(10) { width: 70px; }
-th:nth-child(11), td:nth-child(11) { width: 55px; }
-th:nth-child(12), td:nth-child(11) { width: 55px; }
-th:nth-child(13), td:nth-child(11) { width: 90px; }
-th:nth-child(14), td:nth-child(11) { width: 90px; }
-th:nth-child(15), td:nth-child(11) { width: 120px; }
-
-
-        /* Container da paginação */
-        .pagination-container {
-            position: absolute; /* Fixa o container de paginação na parte inferior da página */
-            bottom: 3px; /* Ajusta a posição para estar um pouco acima da borda inferior da página */
-            left: -20px; /* Ajusta a posição horizontal para a esquerda, movendo 40px para a esquerda (20px - 40px) */
-            width: calc(100% - 60px); /* Ajusta a largura para acomodar o padding e o deslocamento */
-            padding: 15px 0; /* Adiciona algum espaço acima e abaixo do conteúdo */
-            z-index: 1000; /* Garante que a paginação fique acima do conteúdo */
-            display: flex; /* Utiliza flexbox para alinhar o conteúdo */
-            justify-content: space-between; /* Espaça os itens para a esquerda e direita */
-            align-items: center; /* Alinha o conteúdo verticalmente */
-        }
-
-        /* Estilização da paginação */
-        .pagination {
-            display: flex; /* Utiliza flexbox para alinhar os botões */
-        }
-
-        .pagination a {
-            display: inline-block;
-            padding: 8px 12px;
-            margin: 0 2px;
-            border: 1px solid #444; /* Borda escura para combinar com o fundo */
-            border-radius: 10px; /* Bordas arredondadas */
-            color: #ddd; /* Texto claro */
-            text-decoration: none;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .pagination a.active {
-            background-color: #555; /* Cor do fundo da página ativa */
-            color: #fff;
-        }
-
-        .pagination a.disabled {
-            color: #666; /* Texto desativado */
-            pointer-events: none; /* Desabilita o clique */
-            cursor: not-allowed; /* Muda o cursor para indicar que não é clicável */
-        }
-
-        .pagination a:hover {
-            background-color: #555; /* Cor de fundo ao passar o mouse */
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .modal-content {
-            background-color: rgba(51, 51, 51, 0.9);
-            padding: 10px 20px;
-            border-radius: 8px;
-            width: 450px; /* Largura do modal ajustada */
-            max-width: 90%;
-            height: calc(85vh + 260px); /* Altura aumentada em 100px (40px anteriores + 100px adicionais) */
-            box-sizing: border-box; /* Inclui padding e border na largura e altura total */
-            overflow: hidden; /* Remove rolagem */
-            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3),
-                        4px 4px 16px rgba(0, 0, 0, 0.2),
-                        8px 8px 20px rgba(0, 0, 0, 0.1);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transform: scale(0.8); /* Reduz o zoom do modal */
-            transform-origin: center; /* Centraliza a transformação */
-            margin-top: -5px; /* Ajuste a margem superior conforme necessário */
-        }
-        
-        
-        .modal-content h2 {
-            margin-top: 0;
-            color: white;
-            font-size: 20px;
-            text-align: center;
-        }
-        
-        .modal-content label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .modal-content input {
-            width: calc(100% - 20px);
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            background: #333;
-            color: white;
-            box-sizing: border-box;
-        }
-        
-        .modal-content .input-group {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            width: 100%;
-        }
-        
-        .modal-content .input-group div {
-            flex: 1;
-        }
-        
-        .modal-content button {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            color: white;
-            margin: 5px;
-        }
-        
-        .modal-content button[type="submit"] {
-            background-color: #4CAF50;
-        }
-        
-        .modal-content button[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        
-        /* Ocultar os campos que não devem aparecer no modal */
-        .modal-content .hidden {
-            display: none;
-        }
-                /* Personalização do ícone do seletor de hora */
-                input[type="time"]::-webkit-calendar-picker-indicator {
-                    filter: invert(1); /* Inverte as cores do ícone, tornando-o branco em um fundo escuro */
-                }
-        
-                /* Para navegadores Firefox e outros */
-                input[type="time"] {
-                    color: white; /* Garante que o texto dos campos de entrada seja branco */
-                    background: #333; /* Garante o fundo dos campos de entrada */
-                }
-        
-                .success-message {
-                    position: fixed;
-                    left: 50%; /* Posiciona o início da mensagem no meio da tela */
-                    top: 831px; /* Espaço a partir do topo da página */
-                    transform: translateX(-50%); /* Move a mensagem 50% da sua largura para a esquerda para centralizar */
-                    background-color: #d4edda; /* Cor de fundo verde claro */
-                    color: #155724; /* Cor do texto verde escuro */
-                    border: 1px solid #c3e6cb; /* Borda verde claro */
-                    padding: 10px;
-                    border-radius: 5px;
-                    display: none; /* Inicialmente oculto */
-                    z-index: 1000; /* Garante que a mensagem fique acima do conteúdo */
-                }
-         
-                /* Estilo para a mensagem de cancelamento */
-                .cancel-message {
-                    position: fixed;
-                    left: 50%;
-                    top: 831px;
-                    transform: translateX(-50%);
-                    background-color: #f8d7da; /* Cor de fundo vermelho claro */
-                    color: #721c24; /* Cor do texto vermelho escuro */
-                    border: 1px solid #f5c6cb; /* Borda vermelha clara */
-                    padding: 10px;
-                    border-radius: 5px;
-                    display: none; /* Inicialmente oculto */
-                    z-index: 1000; /* Garante que a mensagem fique acima do conteúdo */
-                }
-        
-                .edit-button {
-                    border: 0;
-                    color: white;
-                    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-                    padding: 0 10px; /* Reduz o padding horizontal para diminuir a largura */
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-                    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
-                    cursor: pointer;
-                    background-color: rgb(100, 100, 100);
-                    background-image: linear-gradient(
-                    to top left,
-                        rgb(0 0 0 / 20%),
-                        rgb(0 0 0 / 20%) 30%,
-                        rgb(0 0 0 / 0%)
-                );
-                    box-shadow:
-                    inset 2px 2px 3px rgb(255 255 255 / 60%),
-                    inset -2px -2px 3px rgb(0 0 0 / 60%);
-                }
-        
-                .edit-button:hover {
-                        background-color: rgb(100, 100, 100);
-                    }
-        
-                .edit-button:active {
-                        box-shadow:
-                        inset -2px -2px 3px rgb(255 255 255 / 60%),
-                        inset 2px 2px 3px rgb(0 0 0 / 60%);
-                    }
-        
-
-/* Botão Excluir */
-.delete-button {
-    border: 0;
-    color: white;
-    line-height: 2; /* Reduz a altura da linha para tornar o botão mais fino */
-    padding: 0 7px; /* Reduz o padding horizontal para diminuir a largura */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 0.9rem; /* Ajuste o tamanho da fonte se necessário */
-    border-radius: 5px; /* Mantém o border-radius para bordas arredondadas */
-    cursor: pointer;
-    background-color: rgb(150, 0, 0); /* Cor vermelha escura */
-    background-image: linear-gradient(
-        to top left,
-        rgb(0 0 0 / 20%),
-        rgb(0 0 0 / 20%) 30%,
-        rgb(0 0 0 / 0%)
-    );
-    box-shadow:
-        inset 2px 2px 3px rgb(255 255 255 / 60%),
-        inset -2px -2px 3px rgb(0 0 0 / 60%);
+.form-group select:focus {
+  outline: none;
+  border-color: #66afe9;
+  box-shadow: 0 0 10px rgba(102, 175, 233, 0.6);
 }
 
-.delete-button:hover {
-    background-color: rgb(120, 0, 0); /* Cor de fundo ao passar o mouse */
+.form-group select option {
+  background-color: rgba(51, 51, 51, 0.9);
+  color: white;
+  padding: 8px;
 }
 
-.delete-button:active {
-    box-shadow:
-        inset -2px -2px 3px rgb(255 255 255 / 60%),
-        inset 2px 2px 3px rgb(0 0 0 / 60%);
-}
-                                
-                    
-                    
-                    
-
-                    .style {
-                        position: absolute;
-                        top: 10px;
-                        left: 10px;
-                        border: 0;
-                        color: white;
-                        line-height: 1.75; /* Ajustado para um pouco mais de altura */
-                        padding: 0 40px; /* Aumentado um pouco */
-                        text-align: center;
-                        text-decoration: none;
-                        display: inline-block;
-                        font-size: 0.95rem; /* Ajustado para um pouco maior */
-                        border-radius: 10px; /* Ajustado para um pouco maior */
-                        cursor: pointer;
-                        background-color: rgb(0, 138, 143);
-                        background-image: linear-gradient(
-                          to top left,
-                            rgb(0 0 0 / 20%),
-                            rgb(0 0 0 / 20%) 30%,
-                            rgb(0 0 0 / 0%));
-                        box-shadow:
-                          inset 2px 2px 3px rgb(255 255 255 / 60%),
-                          inset -2px -2px 3px rgb(0 0 0 / 60%);
-                    }
-                    
-                    .style:hover {
-                        background-color: rgb(0, 209, 216);
-                    }
-                    
-                    .style:active {
-                        box-shadow:
-                          inset -2px -2px 3px rgb(255 255 255 / 60%),
-                          inset 2px 2px 3px rgb(0 0 0 / 60%);
-                    }
-                    
-        
-                    .search-container {
-            margin-bottom: 20px;
-        }
-        /* Estilo do formulário de busca */
 .search-form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* Espaçamento entre os campos */
-    width: 80%;
-    margin: 0 auto;
-    padding: 15px;
-    background-color: rgba(255, 255, 255, 0); /* Fundo transparente para o contêiner */
-    border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 85%; 
+  margin: 0 auto;
+  margin-right: 50px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
-/* Estilo dos rótulos */
 .search-form label {
-    font-size: 16px;
-    color: #ffffff; /* Cor do texto em branco */
-    font-weight: bold;
-    margin-right: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
-/* Estilo do seletor de critérios */
 .search-form select {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #b0b0b0;
-    border-radius: 5px;
-    background-color: rgba(51, 51, 51, 0.9); /* Fundo escuro com 90% de opacidade */
-    color: #ffffff; /* Texto em branco */
-    width: 120px; /* Ajustado para largura menor */
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #b0b0b0;
+  border-radius: 5px;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #ffffff;
+  width: 60px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-/* Estilo do campo de busca */
+.search-form select:focus {
+  width: 220px;
+  outline: none;
+  background-color: rgba(51, 51, 51, 1);
+}
+
 .search-form .input-container {
-    position: relative; /* Para posicionar o ícone de busca dentro do campo */
-    width: 200px; /* Largura ajustada do campo de busca */
+  position: relative;
+  width: 250px; 
 }
 
 .search-form input[type="text"] {
-    padding: 8px 40px 8px 10px; /* Aumentado o espaço à direita para o ícone */
-    font-size: 14px;
-    border: 1px solid #b0b0b0;
-    border-radius: 5px;
-    background-color: rgba(51, 51, 51, 0.9); /* Fundo escuro com 90% de opacidade */
-    color: #ffffff; /* Texto em branco */
-    width: 100%; /* Ocupa toda a largura do contêiner */
+  padding: 8px 40px 8px 10px;
+  font-size: 14px;
+  border: 1px solid #b0b0b0;
+  border-radius: 5px;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #ffffff;
+  width: 100%; 
 }
 
-/* Estilo do botão de busca */
 .search-form button[type="submit"] {
-    position: absolute;
-    right: -45px; /* Move a lupa 20px para a direita */
-    top: 50%; /* Centralizado verticalmente */
-    transform: translateY(-50%); /* Ajusta o ícone para o centro vertical */
-    background: none; /* Remove o fundo do botão */
-    border: none; /* Remove a borda do botão */
-    cursor: pointer; /* Cursor de ponteiro ao passar sobre o ícone */
+  position: absolute;
+  right: -45px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-/* Estilo do ícone de busca */
 .search-form .search-icon {
-    font-size: 16px;
-    color: #ffffff; /* Cor do ícone */
+  font-size: 16px;
+  color: #ffffff;
+  transform: translateX(-55px);
 }
 
-
-        /* Estilização da paginação */
-        .pagination {
-            display: flex; /* Utiliza flexbox para alinhar os botões */
-        }
-
-        .pagination a {
-            display: inline-block;
-            padding: 8px 12px;
-            margin: 0 2px;
-            border: 1px solid #444; /* Borda escura para combinar com o fundo */
-            border-radius: 10px; /* Bordas arredondadas */
-            color: #ddd; /* Texto claro */
-            text-decoration: none;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .pagination a.active {
-            background-color: #555; /* Cor do fundo da página ativa */
-            color: #fff;
-        }
-
-        .pagination a.disabled {
-            color: #666; /* Texto desativado */
-            pointer-events: none; /* Desabilita o clique */
-            cursor: not-allowed; /* Muda o cursor para indicar que não é clicável */
-        }
-
-        .pagination a:hover {
-            background-color: #555; /* Cor de fundo ao passar o mouse */
-        }
-
-        
-        /* Container para o texto e o select */
-        .select-container {
-            display: flex; /* Utiliza flexbox para alinhar o texto e o select */
-            align-items: center; /* Alinha verticalmente o texto e o select */
-            margin-left: 83px; /* Ajusta a margem à esquerda para mover o conteúdo 20px para a direita */
-            margin-bottom: -5px; /* Ajusta a margem inferior para alinhar melhor */
-            margin-right: 20px; /* Ajusta a margem à direita para a distância do texto */
-        }
-
-        /* Estilização do texto */
-        .select-container span {
-            font-size: 14px; /* Tamanho da fonte */
-            color: #ddd; /* Cor do texto */
-            margin-left: 10px; /* Espaço entre o select e o texto */
-        }
-
-        /* Estilização do select */
-        .select-container select {
-            padding: 5px;
-            font-size: 14px;
-            color: #fff; /* Cor do texto */
-            background-color: #444; /* Cor de fundo azul */
-            border: 1px solid #666; /* Cor da borda azul mais escura */
-            border-radius: 10px; /* Bordas arredondadas iguais aos botões de paginação */
-            height: 32px; /* Ajusta a altura do select para corresponder aos botões de paginação */
-        }
-
-        /* Estilização para o estado do foco do select */
-        .select-container select:focus {
-            outline: none; /* Remove o contorno padrão */
-            box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Sombra azul ao focar */
-        }
-
-/* Estilos para o modal de confirmação */
-.confirmation-modal {
-    display: none; /* Oculta o modal por padrão */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center;    /* Centraliza verticalmente */
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  width: 100%;
+  display: block;
 }
 
-.confirmation-modal-content {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    width: 80%;
+.tooltip {
+position: relative;
+display: inline-block; 
 }
 
-.confirmation-modal-content h3 {
-    margin-top: 0;
+.tooltip .tooltiptext {
+visibility: hidden;
+width: 120px; 
+background-color: #555; 
+color: #fff; 
+text-align: center; 
+border-radius: 6px; 
+padding: 5px; 
+position: absolute; 
+z-index: 1; 
+bottom: 125%; 
+left: 50%; 
+margin-left: -60px; 
+opacity: 0; 
+transition: opacity 0.3s; 
 }
 
-.confirmation-modal-content p {
-    margin-bottom: 20px;
+.tooltip:hover .tooltiptext {
+visibility: visible; 
+opacity: 1; 
 }
 
-.confirmation-modal-content input[type=text] {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #666;
-    border-radius: 4px;
-    width: calc(100% - 22px);
-    font-size: 14px;
-    background-color: #222;
-    color: white;
-    box-sizing: border-box;
+.button-container .salvar-button {
+  border: 0;
+  color: white;
+  line-height: 2; 
+  padding: 0 7px; 
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9rem; 
+  border-radius: 5px; 
+  cursor: pointer;
+  background-color: rgb(0, 170, 23); 
+  background-image: linear-gradient(
+      to top left,
+      rgb(0 0 0 / 20%),
+      rgb(0 0 0 / 20%) 30%,
+      rgb(0 0 0 / 0%)
+  );
+  box-shadow:
+      inset 2px 2px 3px rgb(255 255 255 / 60%),
+      inset -2px -2px 3px rgb(0 0 0 / 60%);
 }
 
-.confirmation-modal-content button {
-    margin: 5px 10px;
-    padding: 10px 16px;
-    border: none;
-    background-color: #f44336;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 14px;
+.button-container .salvar-button:hover {
+  background-color: rgb(6, 131, 2); 
 }
 
-.confirmation-modal-content button:hover {
-    background-color: #cc0000;
+.button-container .salvar-button:active {
+  box-shadow:
+      inset -2px -2px 3px rgb(255 255 255 / 60%),
+      inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
 
-.confirmation-modal-content button.cancel {
-    background-color: #ccc;
-    color: black;
+.field-container {
+  display: flex; 
+  gap: 15px; 
+  align-items: center; 
 }
 
-.confirmation-modal-content button.cancel:hover {
-    background-color: #999;
+.field-container label {
+  margin-right: 5px; 
 }
 
-/* Estilo para o contêiner do launcher */
-.launcher {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999; /* Garante que esteja acima de outros elementos */
-    background-color: #4CAF50; /* Verde para sucesso */
-    color: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%; 
 }
 
-/* Estilo para a mensagem dentro do launcher */
-.launcher-message {
-    margin: 0;
+.delete-button {
+  border: 0;
+  color: white;
+  line-height: 2; 
+  padding: 0 7px; 
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9rem; 
+  border-radius: 5px; 
+  cursor: pointer;
+  background-color: rgb(150, 0, 0); 
+  background-image: linear-gradient(
+      to top left,
+      rgb(0 0 0 / 20%),
+      rgb(0 0 0 / 20%) 30%,
+      rgb(0 0 0 / 0%)
+  );
+  box-shadow:
+      inset 2px 2px 3px rgb(255 255 255 / 60%),
+      inset -2px -2px 3px rgb(0 0 0 / 60%);
 }
 
-/* Animação para o launcher aparecer */
-.launcher-show {
-    transform: translateY(0);
+.delete-button:hover {
+  background-color: rgb(120, 0, 0); 
 }
 
-/* Animação para o launcher desaparecer */
-.hidden {
-    opacity: 0;
-    transform: translateY(-20px);
+.delete-button:active {
+  box-shadow:
+      inset -2px -2px 3px rgb(255 255 255 / 60%),
+      inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
 
-/* Estilos para o launcher de exclusão */
-.launcher-delete {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #f44336; /* Cor de fundo vermelho para o launcher de exclusão */
-    color: #fff; /* Cor do texto branco */
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    display: none; /* Oculto por padrão */
-    z-index: 1000; /* Garantir que esteja acima de outros elementos */
-    text-align: center;
-    font-family: Arial, sans-serif;
+.modal-content .delete-button {
+background-color: rgb(150, 0, 0); 
+line-height: 2; 
+padding: 0 7px; 
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.9rem; 
+border-radius: 5px; 
+background-image: linear-gradient(
+    to top left,
+    rgb(0 0 0 / 20%),
+    rgb(0 0 0 / 20%) 30%,
+    rgb(0 0 0 / 0%)
+);
+box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
 }
 
-.launcher-delete-message {
-    font-size: 16px;
+.modal-content .delete-button:hover {
+background-color: rgb(120, 0, 0);
 }
 
-.hidden {
-    display: none;
+.modal-content .delete-button:active {
+box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 60%),
+    inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
 
-.visible {
-    display: block;
+.modal-content .cancel {
+background-color: rgb(100, 100, 100); 
+line-height: 2; 
+padding: 0 7px; 
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.9rem; 
+border-radius: 5px; 
+cursor: pointer;
+background-image: linear-gradient(
+    to top left,
+    rgb(0 0 0 / 20%),
+    rgb(0 0 0 / 20%) 30%,
+    rgb(0 0 0 / 0%)
+);
+box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
 }
 
-
-
-/* Para telas pequenas, como smartphones */
-@media (max-width: 600px) {
-    .container {
-      width: 95%; /* Aumenta a largura para 95% da tela */
-      padding: 10px; /* Reduz o padding para telas menores */
-    }
-  
-    .image-center {
-      max-width: 150px;
-      max-height: 100px;
-      top: 350px; /* Ajusta a posição vertical */
-    }
-  
-    h2 {
-      font-size: 1.2em; /* Diminui o tamanho da fonte para títulos */
-    }
-  }
-  
-  /* Para telas médias, como tablets */
-  @media (min-width: 601px) and (max-width: 1024px) {
-    .container {
-      width: 80%; /* Ajusta a largura para 80% da tela */
-      padding: 15px; /* Padding intermediário */
-    }
-  
-    .image-center {
-      max-width: 180px;
-      max-height: 120px;
-    }
-  
-    h2 {
-      font-size: 1.5em; /* Ajusta o tamanho da fonte para títulos */
-    }
-  }
-  
-  /* Para telas grandes, como desktops */
-  @media (min-width: 1025px) {
-    .container {
-      width: 700px; /* Largura fixa para telas grandes */
-      padding: 20px;
-    }
-  }
-
-  .datepicker {
-    width: 150px;
-    padding: 10px; /* Aumenta o espaço interno */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+.modal-content .cancel:hover {
+background-color: rgb(80, 80, 80); 
 }
 
-/* Cor das setas de ano (anterior e próximo) */
-.flatpickr-calendar .flatpickr-prev-month,
-.flatpickr-calendar .flatpickr-next-month,
-.flatpickr-calendar .flatpickr-prev-month svg,
-.flatpickr-calendar .flatpickr-next-month svg,
-.flatpickr-calendar .flatpickr-prev-month svg path,
-.flatpickr-calendar .flatpickr-next-month svg path {
-fill: #fff !important; /* Define a cor das setas como branca */
+.modal-content .cancel:active {
+box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 60%),
+    inset 2px 2px 3px rgb(0 0 0 / 60%);
 }
 
-/* Cor das setas de ano ao passar o mouse */
-.flatpickr-calendar .flatpickr-prev-month:hover svg,
-.flatpickr-calendar .flatpickr-next-month:hover svg {
-fill: #fff !important; /* Mantém a cor branca ao passar o mouse */
+.pagination {
+display: flex; 
+justify-content: flex-end; 
+margin-top: -42px; 
+padding: 0; 
+width: 100%; 
 }
 
-
-/* Ajusta o fundo do seletor de meses */
-.flatpickr-calendar .flatpickr-months select,
-.flatpickr-calendar .flatpickr-months .flatpickr-month,
-.flatpickr-calendar .flatpickr-months .flatpickr-year {
-background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
-color: #fff !important; /* Cor do texto */
+.pagination button {
+flex-grow: 1; 
+margin: 0 5px; 
+padding: 10px; 
+background-color: #007BFF; 
+color: white; 
+border: none; 
+border-radius: 5px; 
+cursor: pointer; 
 }
 
-/* Ajusta o fundo das opções do seletor de meses */
-.flatpickr-calendar .flatpickr-months select option,
-.flatpickr-calendar .flatpickr-months .flatpickr-month,
-.flatpickr-calendar .flatpickr-months .flatpickr-year {
-background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
-color: #fff !important; /* Cor do texto */
+.pagination button:hover {
+background-color: #0056b3; 
 }
 
-
-
-/* Ajusta a cor de fundo do calendário */
-.flatpickr-calendar {
-background-color: rgba(51, 51, 51, 0.8) !important; /* Cor de fundo com transparência */
-color: #fff !important;
-max-height: 230px; /* Limita a altura máxima do calendário */
-overflow: hidden; /* Esconde qualquer conteúdo excedente */
+.pagination a,
+.pagination span {
+display: inline-block;
+padding: 8px 12px;
+margin: 0 2px;
+border: 1px solid #444; 
+border-radius: 10px; 
+color: #ddd; 
+text-decoration: none;
+font-size: 14px;
+text-align: center;
 }
 
-/* Cor dos dias */
-.flatpickr-calendar .flatpickr-day {
-color: #fff !important;
-line-height: 24px; /* Ajusta o espaçamento de linha para os dias */
-height: 24px; /* Reduz a altura das células dos dias */
-}
-
-/* Ocultar dias fora do mês atual mantendo o layout */
-.flatpickr-calendar.only-current-month .flatpickr-day.prevMonthDay,
-.flatpickr-calendar.only-current-month .flatpickr-day.nextMonthDay {
-visibility: hidden !important;
-}
-
-/* Cor de fundo dos dias quando o mouse passa sobre eles */
-.flatpickr-calendar .flatpickr-day:hover {
-background-color: #666 !important;
-}
-
-/* Cor das setas de navegação (botões) */
-.flatpickr-calendar .flatpickr-prev-month svg,
-.flatpickr-calendar .flatpickr-next-month svg {
-fill: #fff !important;
-}
-
-/* Cor do nome do mês e ano */
-.flatpickr-calendar .flatpickr-months .flatpickr-month,
-.flatpickr-calendar .flatpickr-months .flatpickr-year {
-color: #fff !important;
-}
-
-/* Cor dos dias da semana */
-.flatpickr-calendar .flatpickr-weekday {
-color: #ccc !important;
-}
-
-/* Cor dos dias selecionados */
-.flatpickr-calendar .flatpickr-day.selected {
-background-color: #666 !important;
-color: #fff !important;
-}
-
-/* Cor dos dias do mês atual */
-.flatpickr-calendar .flatpickr-day.currentMonth {
-color: #fff !important;
-}
-
-/* Cor do ícone de fechar (se houver) */
-.flatpickr-calendar .flatpickr-close {
-color: #fff !important;
-}
-
-/* Ícone do calendário no campo de entrada */
-.fas.fa-calendar-alt {
+.pagination a.active {
+background-color: #555; 
 color: #fff;
 }
 
-/* Estilo para o contêiner do campo de entrada */
-.input-container {
-position: relative; /* Define a referência para o posicionamento absoluto do ícone */
-display: inline-block;
+.pagination a.disabled {
+color: #666; 
+pointer-events: none; 
+cursor: not-allowed; 
 }
 
-/* Estilo para o campo de entrada */
-.input-container input {
-padding-right: 30px; /* Espaçamento para o ícone na direita */
-width: 100%; /* Certifique-se de que o campo de entrada preencha o contêiner */
+.pagination a:hover {
+background-color: #555; 
 }
 
-/* Estilo para o ícone do calendário */
-.calendar-icon {
-position: absolute;
-right: 10px; /* Ajusta a posição horizontal do ícone para a direita */
-top: 50%;
-transform: translateY(-50%); /* Centraliza o ícone verticalmente */
-color: #fff; /* Cor do ícone */
-pointer-events: none; /* O ícone não interfere com o clique do mouse */
+.pagination span {
+background-color: #555; 
+color: #fff; 
 }
 
-/* Estilo para o ícone no rótulo, se desejar reposicionar também */
-.data-item label i {
-color: #fff; /* Cor do ícone */
-margin-right: 5px; /* Espaçamento entre o ícone e o texto do rótulo */
+.pagination span.active {
+background-color: #333; 
 }
 
-/* Estilos personalizados para o Flatpickr */
-.flatpickr-input {
-background-color: rgba(34, 34, 34, 0.5); /* Fundo semi-transparente com a cor #222 */
-color: #fff !important; /* Texto branco */
-background-color: rgba(34, 34, 34, 0.5); /* Fundo semi-transparente com a cor #222 */
-padding: 10px; /* Espaçamento interno */
-border-radius: 4px; /* Bordas arredondadas */
-font-size: 16px; /* Tamanho da fonte */
+.select-container {
+display: flex; 
+align-items: center; 
+justify-content: flex-start;
+margin: 10px 0; 
+width: 100%; 
+padding: 0 20px; 
 }
 
-/* Fundo e texto das horas e minutos */
-.flatpickr-time .flatpickr-hour,
-.flatpickr-time .flatpickr-minute {
-background-color: transparent !important; /* Fundo transparente das horas e minutos */
-color: #fff !important; /* Texto branco das horas e minutos */
+.select-container span {
+font-size: 14px; 
+color: #ddd; 
+margin-left: 10px; 
 }
 
-/* Cor do separador de horas e minutos */
-.flatpickr-time .flatpickr-time-separator {
-color: #fff !important; /* Cor do separador */
+.select-container select {
+padding: 5px;
+font-size: 14px;
+color: #fff; 
+background-color: #444; 
+border: 1px solid #666; 
+border-radius: 10px; 
+height: 32px; 
+margin-left: 10px; 
+width: 100%; 
+max-width: 80px; 
+flex-shrink: 0; 
 }
 
-.input-icon {
-position: relative;
-display: inline-block;
+.select-container select:focus {
+outline: none; 
+box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); 
+}
+
+.launcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999; 
+  background-color: #4CAF50; 
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.launcher-error {
+  background-color: #f44336; 
+  color: white;
+}
+
+.launcher-show {
+  transform: translateY(0);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.confirmation-modal {
+display: none; 
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.3);
+justify-content: center; 
+align-items: center;    
+}
+
+.confirmation-modal-content {
+background-color: #333;
+color: white;
+padding: 20px;
+border-radius: 8px;
+text-align: center;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+max-width: 400px;
 width: 80%;
 }
 
-.input-icon i {
-position: absolute;
-right: 35px; /* Move o ícone para a direita */
-top: 61%;
-transform: translateY(-50%);
-color: #fff; /* Cor branca para o ícone */
-pointer-events: none; /* O ícone não interfere na interação do usuário com o input */
+.confirmation-modal-content h3 {
+margin-top: 0;
 }
 
-.input-icon input {
-padding-right: 30px; /* Espaço para o ícone dentro do campo */
-width: 100%;
+.confirmation-modal-content p {
+margin-bottom: 20px;
+}
+
+.confirmation-modal-content input[type=text] {
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #666;
+border-radius: 4px;
+width: calc(100% - 22px);
+font-size: 14px;
+background-color: #222;
+color: white;
 box-sizing: border-box;
 }
 
-/* Remove as flechinhas dos campos tipo number no Chrome, Safari e Edge */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
--webkit-appearance: none;
-margin: 0;
+.confirmation-modal-content button {
+margin-right: 20px; 
 }
 
-/* Remove as flechinhas dos campos tipo number em todos os navegadores */
-input[type="number"] {
--moz-appearance: textfield; /* Firefox */
--webkit-appearance: none; /* Chrome, Safari */
-appearance: none; /* Padrão */
+.confirmation-modal-content button:last-child {
+margin-right: 0; 
 }
 
-/* Para telas muito pequenas (menos de 400px) */
-/* Para telas muito pequenas (menos de 400px) */
+.modal-content::-webkit-scrollbar {
+width: 8px; 
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+background-color: #555; 
+border-radius: 4px; 
+}
+
+.modal-content::-webkit-scrollbar-track {
+background: #333; 
+}
+
+.modal {
+display: none;
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.3);
+justify-content: center;
+align-items: center;
+overflow: hidden;
+}
+
+.modal-content {
+background-color: #333;
+color: white;
+padding: 20px 10px;
+border-radius: 8px;
+text-align: center;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+max-width: 400px;
+width: 80%;
+max-height: 90vh;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
+.modal-content h2 {
+margin-top: 0;
+color: white;
+font-weight: arial;
+font-size: 20px;
+}
+
+.modal-content label {
+display: block;
+margin-bottom: 8px;
+font-weight: normal;
+color: white;
+text-align: left;
+width: 100%;
+box-sizing: border-box;
+margin-left: 4%;
+}
+
+.modal-content input {
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #666;
+border-radius: 4px;
+width: calc(100% - 22px);
+font-size: 14px;
+background-color: #222;
+color: white;
+box-sizing: border-box;
+}
+
+.data-porteiro {
+display: flex;
+justify-content: space-between;
+gap: 10px;
+margin-bottom: 10px;
+}
+
+.data-porteiro .data-field {
+flex: 0 0 25%; 
+display: flex;
+flex-direction: column;
+}
+
+.data-porteiro .porteiro-field {
+flex: 1;
+display: flex;
+flex-direction: column;
+}
+
+.data-porteiro input {
+width: 100%;
+}
+
+.km {
+display: flex;
+justify-content: space-between;
+gap: 10px;
+margin-bottom: 10px;
+}
+
+.km .km-field {
+flex: 1;
+display: flex;
+flex-direction: column;
+}
+
+.km input {
+width: 100%;
+}
+
+.horarios {
+display: flex;
+justify-content: space-between;
+gap: 10px;
+margin-bottom: 10px;
+}
+
+.horarios .horario {
+flex: 1;
+display: flex;
+flex-direction: column;
+}
+
+.horarios input {
+width: 100%;
+}
+
+.modal-content input[type="text"] {
+width: 100%; 
+}
+
+.modal-buttons {
+display: flex;
+justify-content: center;
+gap: 20px;
+margin-top: 10px;
+}
+
+.modal-content button {
+padding: 10px 16px;
+border: none;
+color: white;
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s;
+font-size: 14px;
+}
+
+.modal-content .cancelar {
+background-color: rgb(150, 0, 0); 
+line-height: 2; 
+padding: 0 7px; 
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.9rem; 
+border-radius: 5px; 
+background-image: linear-gradient(
+    to top left,
+    rgb(0 0 0 / 20%),
+    rgb(0 0 0 / 20%) 30%,
+    rgb(0 0 0 / 0%)
+);
+box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.modal-content .cancelar:hover {
+background-color: rgb(120, 0, 0); 
+}
+
+.modal-content .cancelar:active {
+box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 60%),
+    inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+.cancel {
+background-color: rgb(5, 143, 0); 
+line-height: 2; 
+padding: 0 15.5px; 
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.9rem; 
+border-radius: 5px; 
+cursor: pointer; 
+background-image: linear-gradient(
+    to top left,
+    rgb(0 0 0 / 20%),
+    rgb(0 0 0 / 20%) 30%,
+    rgb(0 0 0 / 0%)
+);
+box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.cancel:hover {
+background-color: rgb(4, 115, 0); 
+}
+
+.cancel:active {
+box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 60%),
+    inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+.modal-content .salvar {
+background-color: rgb(5, 143, 0); 
+line-height: 2; 
+padding: 0 15.5px; 
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.9rem; 
+border-radius: 5px; 
+cursor: pointer; 
+background-image: linear-gradient(
+    to top left,
+    rgb(0 0 0 / 20%),
+    rgb(0 0 0 / 20%) 30%,
+    rgb(0 0 0 / 0%)
+);
+box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.modal-content .salvar:hover {
+background-color: rgb(4, 115, 0); 
+}
+
+.modal-content .salvar:active {
+box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 60%),
+    inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+.button-container .salvar-button {
+border: 0;
+color: white;
+line-height: 2; 
+padding: 0 7px; 
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.9rem; 
+border-radius: 5px; 
+cursor: pointer;
+background-color: rgb(0, 170, 23); 
+background-image: linear-gradient(
+    to top left,
+    rgb(0 0 0 / 20%),
+    rgb(0 0 0 / 20%) 30%,
+    rgb(0 0 0 / 0%)
+);
+box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.button-container .salvar-button:hover {
+background-color: rgb(6, 131, 2);
+}
+
+.button-container .salvar-button:active {
+box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 60%),
+    inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+.voltar {
+position: absolute;
+top: 10px;
+left: 10px;
+border: 0;
+color: white;
+line-height: 1.75;
+padding: 0 40px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.95rem;
+border-radius: 10px;
+cursor: pointer;
+background-color: rgb(0, 138, 143);
+background-image: linear-gradient(
+    to top left,
+        rgb(0 0 0 / 20%),
+        rgb(0 0 0 / 20%) 30%,
+        rgb(0 0 0 / 0%));
+box-shadow:
+inset 2px 2px 3px rgb(255 255 255 / 60%),
+inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.voltar:hover {
+background-color: rgb(0, 209, 216);
+}
+
+.voltar:active {
+box-shadow:
+inset -2px -2px 3px rgb(255 255 255 / 60%),
+inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+.cancel {
+border: 0;
+color: white;
+line-height: 2; 
+padding: 0 4px; 
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.9rem; 
+border-radius: 5px; 
+cursor: pointer;
+background-color: rgb(94, 94, 94); 
+background-image: linear-gradient(
+    to top left,
+    rgb(0 0 0 / 20%),
+    rgb(0 0 0 / 20%) 30%,
+    rgb(0 0 0 / 0%)
+);
+box-shadow:
+    inset 1px 1px 2px rgb(255 255 255 / 60%),
+    inset -1px -1px 2px rgb(0 0 0 / 60%);
+}
+
+.cancel:hover {
+background-color: rgb(56, 56, 56); 
+}
+
+.cancel:active {
+box-shadow:
+    inset -1px -1px 2px rgb(255 255 255 / 60%),
+    inset 1px 1px 2px rgb(0 0 0 / 60%); 
+}
+
+.edit-button {
+border: 0;
+color: white;
+line-height: 2; 
+padding: 0 7px; 
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.9rem; 
+border-radius: 5px; 
+cursor: pointer;
+background-color: rgb(94, 94, 94); 
+background-image: linear-gradient(
+    to top left,
+    rgb(0 0 0 / 20%),
+    rgb(0 0 0 / 20%) 30%,
+    rgb(0 0 0 / 0%)
+);
+box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.edit-button:hover {
+background-color: rgb(56, 56, 56); 
+}
+
+.deledete-button:active {
+box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 60%),
+    inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+
+
 @media (max-width: 399px) {
-  .container {
-    width: 95%;
-    padding: 5px;
-  }
-
-  table {
-    font-size: 0.75em; /* Tamanho reduzido */
-  }
+.container {
+  width: 95%;
+  padding: 5px;
 }
 
-/* Para telas pequenas (400px a 599px) */
+table {
+  font-size: 0.75em; 
+}
+}
+
 @media (min-width: 400px) and (max-width: 599px) {
-  .container {
-    width: 95%;
-    padding: 10px;
-  }
-
-  table {
-    font-size: 0.85em; /* Tamanho reduzido */
-  }
+.container {
+  width: 95%;
+  padding: 10px;
 }
 
-/* Para telas pequenas a médias (600px a 899px) */
+table {
+  font-size: 0.85em;
+}
+}
+
 @media (min-width: 600px) and (max-width: 899px) {
-  .container {
-    width: 90%;
-    padding: 15px;
-  }
-
-  table {
-    font-size: 0.9em; /* Tamanho reduzido */
-  }
+.container {
+  width: 90%;
+  padding: 15px;
 }
 
-/* Para telas médias (900px a 1199px) */
+table {
+  font-size: 0.9em; 
+}
+}
+
 @media (min-width: 900px) and (max-width: 1199px) {
-  .container {
-    width: 80%;
-    padding: 20px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
+.container {
+  width: 80%;
+  padding: 20px;
 }
 
-/* Para telas grandes (1200px a 1599px) */
+table {
+  font-size: 1em; 
+}
+}
+
 @media (min-width: 1200px) and (max-width: 1599px) {
-  .container {
-    width: 75%;
-    padding: 25px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
+.container {
+  width: 75%;
+  padding: 25px;
 }
 
-/* Para telas extra grandes (1600px a 1920px) */
+table {
+  font-size: 1em; 
+}
+}
+
 @media (min-width: 1600px) and (max-width: 1920px) {
-  .container {
-    width: 70%;
-    padding: 30px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
+.container {
+  width: 70%;
+  padding: 30px;
 }
 
-/* Para telas ultra grandes (mais de 1920px) */
+table {
+  font-size: 1em; 
+}
+}
+
 @media (min-width: 1920px) {
-  .container {
-    width: 65%;
-    padding: 35px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
+.container {
+  width: 65%;
+  padding: 35px;
 }
 
-/* Para telas com alta densidade de pixels (como retina) */
+table {
+  font-size: 1em; 
+}
+}
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  th, td {
-    padding: 12px; /* Aumenta o padding para maior clareza */
-  }
-
-  table {
-    border: 2px solid #ddd; /* Destaca bordas em telas de alta resolução */
-  }
+th, td {
+  padding: 12px; 
 }
 
-/* Para TVs HD (1366px a 768px) */
+table {
+  border: 2px solid #ddd; 
+}
+}
+
 @media (min-width: 1366px) and (max-width: 1920px) {
-  .container {
-    width: 80%;
-    padding: 25px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
+.container {
+  width: 80%;
+  padding: 25px;
 }
 
-/* Para TVs Full HD (1920px a 2560px) */
+table {
+  font-size: 1em; 
+}
+}
+
 @media (min-width: 1920px) and (max-width: 2560px) {
-  .container {
-    width: 70%;
-    padding: 30px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
+.container {
+  width: 70%;
+  padding: 30px;
 }
 
-/* Para TVs 4K (2560px a 3840px) */
+table {
+  font-size: 1em; 
+}
+}
+
 @media (min-width: 2560px) and (max-width: 3840px) {
-  .container {
-    width: 60%;
-    padding: 35px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
+.container {
+  width: 60%;
+  padding: 35px;
 }
 
-/* Para telas ultra HD (mais de 3840px) */
+table {
+  font-size: 1em; 
+}
+}
+
 @media (min-width: 3840px) {
-  .container {
-    width: 50%;
-    padding: 40px;
-  }
-
-  table {
-    font-size: 1em; /* Tamanho normal */
-  }
+.container {
+  width: 50%;
+  padding: 40px;
 }
 
-/* Para monitores menores (até 1366px) */
-@media (max-width: 1365px) {
-  .container {
-    width: 90%;
-    padding: 20px;
-  }
+table {
+  font-size: 1em;
+}
+}
 
-  table {
-    font-size: 0.9em; /* Tamanho reduzido */
-  }
+@media (max-width: 1365px) {
+.container {
+  width: 90%;
+  padding: 20px;
+}
+
+table {
+  font-size: 0.9em; 
+}
 }

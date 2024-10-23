@@ -16,39 +16,39 @@ try {
     exit;
 }
 
-// Função para validar dados
+// Função para validar dados e garantir que não seja null
 function validate_data($data) {
-    return htmlspecialchars(strip_tags($data));
+    return htmlspecialchars(strip_tags($data)) ?: ''; // Retorna string vazia se for null
 }
 
 // Verifica se os dados do formulário foram enviados
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recebe e valida o ID
-    $id = isset($_POST['id']) ? validate_data($_POST['id']) : null;
+    $id = isset($_POST['id']) ? validate_data($_POST['id']) : '';
 
     // Se o ID estiver presente, verifica se os dados para atualização também estão presentes
-    if ($id !== null && isset($_POST['data'])) {
-        // Recebe e valida os dados do formulário
-        $data = isset($_POST['data']) ? validate_data($_POST['data']) : null;
-        $porteiro = isset($_POST['porteiro']) ? validate_data($_POST['porteiro']) : null;
-        $nome = isset($_POST['nome']) ? validate_data($_POST['nome']) : null;
-        $cpf = isset($_POST['cpf']) ? validate_data($_POST['cpf']) : null;
-        $tipovisitante = isset($_POST['tipovisitante']) ? validate_data($_POST['tipovisitante']) : null;
-        $servico = isset($_POST['servico']) ? validate_data($_POST['servico']) : null;
-        $empresa = isset($_POST['empresa']) ? validate_data($_POST['empresa']) : null;
-        $estacionamento = isset($_POST['estacionamento']) ? validate_data($_POST['estacionamento']) : null;
-        $placa = isset($_POST['placa']) ? validate_data($_POST['placa']) : null;
-        $horarioEntrada = isset($_POST['horario_entrada']) ? validate_data($_POST['horario_entrada']) : null;
-        $horarioSaida = isset($_POST['horario_saida']) ? validate_data($_POST['horario_saida']) : null;
-        $colaborador = isset($_POST['colaborador']) ? validate_data($_POST['colaborador']) : null;
-        $setor = isset($_POST['setor']) ? validate_data($_POST['setor']) : null;
+    if ($id !== '' && isset($_POST['data'])) {
+        // Recebe e valida os dados do formulário, substituindo null por strings vazias
+        $data = validate_data($_POST['data']);
+        $porteiro = validate_data($_POST['porteiro']);
+        $nome = validate_data($_POST['nome']);
+        $cpf = validate_data($_POST['cpf']); // CPF tratado como varchar(14)
+        $tipovisitante = validate_data($_POST['tipovisitante']);
+        $servico = validate_data($_POST['servico']);
+        $empresa = validate_data($_POST['empresa']);
+        $estacionamento = validate_data($_POST['estacionamento']);
+        $placa = validate_data($_POST['placa']);
+        $horarioEntrada = validate_data($_POST['horario_entrada']);
+        $horarioSaida = validate_data($_POST['horario_saida']);
+        $colaborador = validate_data($_POST['colaborador']);
+        $setor = validate_data($_POST['setor']);
 
         // Prepara a consulta SQL para atualizar os dados
         $sql = "UPDATE registro SET 
                     data = :data, 
                     porteiro = :porteiro, 
                     nome = :nome, 
-                    cpf = :cpf, 
+                    cpf = :cpf,  /* Campo CPF como varchar(14) */
                     tipovisitante = :tipovisitante, 
                     servico = :servico, 
                     empresa = :empresa, 
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ':data' => $data,
                 ':porteiro' => $porteiro,
                 ':nome' => $nome,
-                ':cpf' => $cpf,
+                ':cpf' => $cpf, // CPF tratado como varchar(14)
                 ':tipovisitante' => $tipovisitante,
                 ':servico' => $servico,
                 ':empresa' => $empresa,
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             http_response_code(500);
             echo json_encode(array('status' => 'error', 'message' => 'Erro ao atualizar o registro: ' . $e->getMessage()));
         }
-    } elseif ($id !== null && !isset($_POST['data'])) {
+    } elseif ($id !== '' && !isset($_POST['data'])) {
         // Se não houver dados para atualização, tenta excluir o registro
         if ($id > 0) {
             // Preparar a consulta SQL para excluir o registro
@@ -97,10 +97,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Verificar se a exclusão foi bem-sucedida
             if ($stmt->rowCount() > 0) {
-                echo json_encode(['status' => 'success', 'message' => 'Registro excluído com sucesso.']);
+                echo json_encode(['success' => true, 'message' => 'Registro excluído com sucesso.']);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Nenhum registro encontrado para excluir.']);
+                echo json_encode(['success' => false, 'message' => 'Nenhum registro encontrado para excluir.']);
             }
+            
         } else {
             echo json_encode(['status' => 'error', 'message' => 'ID inválido.']);
         }
