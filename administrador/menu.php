@@ -27,6 +27,7 @@ if (!isset($_SESSION['user_id'])) {
                     <li><a href="tabela_veiculos.php">Cadastros veiculos da empresa</a></li>
                     <li><a href="porteiros.php">Cadastrar porteiros</a></li>
                     <li><a href="tipo.php">Cadastrar tipo de visitante</a></li>
+                    <li><a href="apresentacao.php">Tabela de apresentação</a></li>
                </ul>
             </div>
             <div class="nav-column">
