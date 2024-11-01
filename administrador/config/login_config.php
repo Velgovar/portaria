@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     } else {
         // Armazena a mensagem de erro na sessão e redireciona de volta para login.php
-        $_SESSION['login_error'] = 'Senha Inválida';
+        $_SESSION['login_error'] = 'Usuário ou senha Inválido';
         header('Location: ../login.php');
         exit;
     }
