@@ -35,7 +35,6 @@
         <option value="data">DATA</option>
         <option value="porteiro">PORTEIRO</option>
         <option value="nome">NOME</option>
-        <option value="cpf">CPF</option>
         <option value="tipovisitante">TIPO VISITANTE</option>
         <option value="servico">SERVIÇO</option>
         <option value="empresa">EMPRESA</option>
@@ -96,7 +95,7 @@
                                         FROM registro 
                                         WHERE id = $busca 
                                         ORDER BY id DESC";
-                            } elseif ($criterio === 'cpf' || $criterio === 'placa') {
+                            } elseif ($criterio === 'placa') { // Remove 'cpf' aqui
                                 $sql = "SELECT id, data, porteiro, nome, cpf, tipovisitante, servico, empresa, estacionamento, placa, horario_entrada, horario_saida, colaborador, setor 
                                         FROM registro 
                                         WHERE $criterio = '$busca' 
@@ -120,7 +119,6 @@
                         
                         $result = $conn->query($sql);
                         
-
                         if ($result->num_rows > 0) {
 
                         while ($row = $result->fetch_assoc()) {
@@ -129,7 +127,15 @@
                             echo '<td title="' . date('d-m-Y', strtotime($row['data'])) . '">' . date('d-m-Y', strtotime($row['data'])) . '</td>';
                             echo '<td title="' . $row['porteiro'] . '">' . $row['porteiro'] . '</td>';
                             echo '<td title="' . $row['nome'] . '">' . $row['nome'] . '</td>';
-                            echo '<td title="' . $row['cpf'] . '">' . $row['cpf'] . '</td>';
+                    
+                            // Verifica se o CPF está vazio ou nulo e aplica a máscara
+                            if (!empty($row['cpf'])) {
+                                $cpf_mascarado = '***.***.***-**';
+                            } else {
+                                $cpf_mascarado = '-';
+                            }
+                            echo '<td title="' . $cpf_mascarado . '">' . $cpf_mascarado . '</td>';
+                    
                             echo '<td title="' . $row['tipovisitante'] . '">' . $row['tipovisitante'] . '</td>';
                             echo '<td title="' . $row['servico'] . '">' . $row['servico'] . '</td>';
                             echo '<td title="' . $row['empresa'] . '">' . $row['empresa'] . '</td>';
@@ -142,13 +148,13 @@
                             echo '<td><button class="edit-button" data-id="' . $row['id'] . '">Editar</button></td>';
                             echo '</tr>';
                         }
-                        } else {
-                            echo '<tr><td colspan="15">Nenhum registro cadastrado.</td></tr>';
-                        }
+                    } else {
+                        echo '<tr><td colspan="15">Nenhum registro cadastrado.</td></tr>';
+                    }
 
-                        $conn->close();
+                    $conn->close();
 
-                        ?>
+                    ?>
                     </tbody>
                 </table>
             </div>
