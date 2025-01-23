@@ -29,29 +29,31 @@
         </div>
 
         <form class="search-form" method="get" action="">
-    <label for="campo-busca">Buscar por</label>
+    <label for="search-select">Buscar por</label>
     <select name="criterio" id="criterio">
-        <option value="id">ID</option>
-        <option value="data">DATA</option>
-        <option value="porteiro">PORTEIRO</option>
-        <option value="nome">NOME</option>
-        <option value="tipovisitante">TIPO VISITANTE</option>
-        <option value="servico">SERVIÇO</option>
-        <option value="empresa">EMPRESA</option>
-        <option value="estacionamento">ESTACIONAMENTO</option>
-        <option value="placa">PLACA</option>
-        <option value="horario_entrada">HORÁRIO ENTRADA</option>
-        <option value="horario_saida">HORÁRIO SAÍDA</option>
-        <option value="colaborador">COLABORADOR</option>
-        <option value="setor">SETOR</option>
+        <option value="id" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'id') ? 'selected' : '' ?>>ID</option>
+        <option value="data" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'data') ? 'selected' : '' ?>>DATA</option>
+        <option value="porteiro" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'porteiro') ? 'selected' : '' ?>>PORTEIRO</option>
+        <option value="nome" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'nome') ? 'selected' : '' ?>>NOME</option>
+        <option value="tipovisitante" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'tipovisitante') ? 'selected' : '' ?>>TIPO VISITANTE</option>
+        <option value="servico" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'servico') ? 'selected' : '' ?>>SERVIÇO</option>
+        <option value="empresa" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'empresa') ? 'selected' : '' ?>>EMPRESA</option>
+        <option value="estacionamento" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'estacionamento') ? 'selected' : '' ?>>ESTACIONAMENTO</option>
+        <option value="placa" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'placa') ? 'selected' : '' ?>>PLACA</option>
+        <option value="horario_entrada" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'horario_entrada') ? 'selected' : '' ?>>HORÁRIO ENTRADA</option>
+        <option value="horario_saida" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'horario_saida') ? 'selected' : '' ?>>HORÁRIO SAÍDA</option>
+        <option value="colaborador" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'colaborador') ? 'selected' : '' ?>>COLABORADOR</option>
+        <option value="setor" <?= (isset($_GET['criterio']) && $_GET['criterio'] == 'setor') ? 'selected' : '' ?>>SETOR</option>
     </select>
+
     <div class="input-container">
-        <input type="text" name="busca" id="campo-busca" placeholder="Digite sua busca">
+        <input type="text" name="busca" id="search-input" placeholder="Digite sua busca" value="<?= isset($_GET['busca']) ? htmlspecialchars($_GET['busca']) : '' ?>">
         <button type="submit">
             <i class="fas fa-search search-icon"></i>
         </button>
     </div>
 </form>
+
 
 <div class="scrollable-container">
     <table>

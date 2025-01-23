@@ -34,29 +34,30 @@ if (!isset($_SESSION['user_id'])) {
         <!-- Estrutura do título e campo de busca na mesma linha -->
         <div class="search-container">
 
-            <form class="search-form" method="get" action="">
-                <label for="search-select">Buscar por</label>
-                <select name="criterio" id="search-select">
-                    <option value="id" <?php echo ($criterio == 'id') ? 'selected' : ''; ?>>ID</option>
-                    <option value="data" <?php echo ($criterio == 'data') ? 'selected' : ''; ?>>DATA</option>
-                    <option value="porteiro" <?php echo ($criterio == 'porteiro') ? 'selected' : ''; ?>>PORTEIRO</option>
-                    <option value="veiculo" <?php echo ($criterio == 'veiculo') ? 'selected' : ''; ?>>VEÍCULO</option>
-                    <option value="motorista" <?php echo ($criterio == 'motorista') ? 'selected' : ''; ?>>MOTORISTA</option>
-                    <option value="km_saida" <?php echo ($criterio == 'km_saida') ? 'selected' : ''; ?>>KM SAÍDA</option>
-                    <option value="km_chegada" <?php echo ($criterio == 'km_chegada') ? 'selected' : ''; ?>>KM CHEGADA</option>
-                    <option value="horario_saida" <?php echo ($criterio == 'horario_saida') ? 'selected' : ''; ?>>HORÁRIO SAÍDA</option>
-                    <option value="horario_chegada" <?php echo ($criterio == 'horario_chegada') ? 'selected' : ''; ?>>HORÁRIO CHEGADA</option>
-                    <option value="destino" <?php echo ($criterio == 'destino') ? 'selected' : ''; ?>>DESTINO</option>
-                    <option value="motivo" <?php echo ($criterio == 'motivo') ? 'selected' : ''; ?>>MOTIVO</option>
-                </select>
+        <form class="search-form" method="get" action="">
+    <label for="search-select">Buscar por</label>
+    <select name="criterio" id="search-select">
+        <option value="id" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'id') ? 'selected' : ''; ?>>ID</option>
+        <option value="data" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'data') ? 'selected' : ''; ?>>DATA</option>
+        <option value="porteiro" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'porteiro') ? 'selected' : ''; ?>>PORTEIRO</option>
+        <option value="veiculo" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'veiculo') ? 'selected' : ''; ?>>VEÍCULO</option>
+        <option value="motorista" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'motorista') ? 'selected' : ''; ?>>MOTORISTA</option>
+        <option value="km_saida" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'km_saida') ? 'selected' : ''; ?>>KM SAÍDA</option>
+        <option value="km_chegada" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'km_chegada') ? 'selected' : ''; ?>>KM CHEGADA</option>
+        <option value="horario_saida" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'horario_saida') ? 'selected' : ''; ?>>HORÁRIO SAÍDA</option>
+        <option value="horario_chegada" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'horario_chegada') ? 'selected' : ''; ?>>HORÁRIO CHEGADA</option>
+        <option value="destino" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'destino') ? 'selected' : ''; ?>>DESTINO</option>
+        <option value="motivo" <?php echo (isset($_GET['criterio']) && $_GET['criterio'] == 'motivo') ? 'selected' : ''; ?>>MOTIVO</option>
+    </select>
 
-                <div class="input-container">
-                    <input type="text" name="busca" id="search-input" placeholder="Digite sua busca">
-                    <button type="submit">
-                        <i class="fas fa-search search-icon"></i>
-                    </button>
-                </div>
-            </form>
+    <div class="input-container">
+        <input type="text" name="busca" id="search-input" placeholder="Digite sua busca" value="<?php echo isset($_GET['busca']) ? htmlspecialchars($_GET['busca']) : ''; ?>">
+        <button type="submit">
+            <i class="fas fa-search search-icon"></i>
+        </button>
+    </div>
+</form>
+
 
             <div class="table-container">
                 <div class="table-header">
