@@ -595,38 +595,49 @@ body {
   .search-form {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 10px; 
     width: 80%;
     margin: 0 auto;
+    margin-right: 50px; /* Ajuste o valor conforme necessário para mover um pouco mais à direita */
     padding: 15px;
     background-color: rgba(255, 255, 255, 0); 
     border-radius: 10px;
-  }
-  
-  .search-form label {
+    margin-top: 20px; /* Adiciona o espaçamento acima para mover o formulário para baixo */
+}
+
+.search-form label {
     font-size: 16px;
     color: #ffffff; 
     font-weight: bold;
     margin-right: 10px;
-  }
-  
-  .search-form select {
+}
+
+.search-form select {
     padding: 8px;
     font-size: 14px;
     border: 1px solid #b0b0b0;
     border-radius: 5px;
     background-color: rgba(51, 51, 51, 0.9); 
     color: #ffffff; 
-    width: 120px; 
-  }
-  
-  .search-form .input-container {
+    width: 60px; /* Campo bem menor inicialmente */
+    transition: width 0.3s ease; /* Suaviza a transição do tamanho */
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.search-form select:focus {
+    width: 220px; /* Expande o campo ao clicar */
+    outline: none;
+    background-color: rgba(51, 51, 51, 1); 
+}
+
+.search-form .input-container {
     position: relative; 
     width: 200px; 
-  }
-  
-  .search-form input[type="text"] {
+}
+
+.search-form input[type="text"] {
     padding: 8px 40px 8px 10px; 
     font-size: 14px;
     border: 1px solid #b0b0b0;
@@ -634,9 +645,9 @@ body {
     background-color: rgba(51, 51, 51, 0.9); 
     color: #ffffff; 
     width: 100%; 
-  }
-  
-  .search-form button[type="submit"] {
+}
+
+.search-form button[type="submit"] {
     position: absolute;
     right: -45px; 
     top: 50%; 
@@ -644,12 +655,12 @@ body {
     background: none; 
     border: none; 
     cursor: pointer; 
-  }
-  
-  .search-form .search-icon {
+}
+
+.search-form .search-icon {
     font-size: 16px;
     color: #ffffff; 
-  }
+}
   
   .tooltip {
     position: relative;
