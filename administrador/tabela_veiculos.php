@@ -197,11 +197,7 @@ function formatarHorario($horario) {
                     <option value="20">20</option>
                     <option value="30">30</option>
                     <option value="100">100</option>
-                    <option value="999">999</option>
-                    <option value="9999">9999</option>
-                    <option value="999999">999999</option>
-
-
+                    <option value="1000">1000</option>
                 </select>
                 <span> linhas / páginas</span>
             </div>
